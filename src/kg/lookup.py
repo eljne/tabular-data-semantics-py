@@ -77,6 +77,8 @@ class DBpediaLookup(Lookup):
     def getURL(self):
         return "http://lookup.dbpedia.org/api/search/KeywordSearch"
         #TODO: prefix search allows for partial searches
+        #return "http://lookup.dbpedia.org/api/search/PrefixSearch"
+        
         
         
         
@@ -113,10 +115,14 @@ class DBpediaLookup(Lookup):
                     if t['uri'].startswith('http://dbpedia.org/ontology/') or t['uri'].startswith('http://www.wikidata.org/entity/') or t['uri'].startswith('http://schema.org/'): 
                         types.add(t['uri'])
             
+            description=''
+            if 'description' in element:
+                description = element['description']
+            
             kg_entity = KGEntity(
                 element['uri'],
                 element['label'],
-                element['description'],
+                description,
                 types,
                 self.getKGName()
                 )
@@ -168,14 +174,16 @@ class WikidataAPI(Lookup):
     
     
     
-    def __createParams(self, query, limit):
+    def __createParams(self, query, limit, type='item'):
         
         params = {
             'action': 'wbsearchentities',
             'format' : 'json',
             'search': query,
+            'type': type,
             'limit': limit,
             'language' : 'en'
+        
             
         }
         
@@ -197,10 +205,14 @@ class WikidataAPI(Lookup):
             #empty list of type from wikidata lookup
             types = set()
             
+            description=''
+            if 'description' in element:
+                description = element['description']
+            
             kg_entity = KGEntity(
                 element['concepturi'],
                 element['label'],
-                element['description'],
+                description,
                 types,
                 self.getKGName()
                 )
@@ -218,8 +230,8 @@ class WikidataAPI(Lookup):
     
     
     
-    def getKGEntities(self, query, limit, filter=''):        
-        json = self.getJSONRequest(self.__createParams(query, limit), 3)     
+    def getKGEntities(self, query, limit, type='item', filter=''):        
+        json = self.getJSONRequest(self.__createParams(query, limit, type), 3)     
         
         if json==None:
             print("None results for", query)
@@ -287,10 +299,16 @@ class GoogleKGLookup(Lookup):
                 if t != 'Thing':
                     types.add("http://schema.org/"+t)
             
+            
+            description=''
+            if 'description' in  element['result']:
+                description = element['result']['description']
+            
+            
             kg_entity = KGEntity(
                 element['result']['@id'],
                 element['result']['name'],
-                element['result']['description'],
+                description,
                 types,
                 self.getKGName()
                 )
@@ -320,8 +338,15 @@ class GoogleKGLookup(Lookup):
 if __name__ == '__main__':
     
     #query = 'Taylor Swift'
-    query = 'Scotland'
+    #query = 'Scotland'
+    query = "Prim's algorithm"
+    query = "middle-square method"
     #query = 'http://dbpedia.org/resource/Scotland'
+    query = "Israel Museum Jerusalem artist"
+    #query = "ARTIC artist"
+    query="heaviest player Chicago Bulls?"
+    #query="Chicago Bulls"
+    query="player"
     limit=5
     
     #To be checked. Format of json seems to be different
@@ -340,8 +365,11 @@ if __name__ == '__main__':
     
     print("\n")
     
+    
+    type="item"
+    #type="property"
     wikidata = WikidataAPI()
-    entities = wikidata.getKGEntities(query, limit)
+    entities = wikidata.getKGEntities(query, limit, "item")
     print("Entities from Wikidata:")
     for ent in  entities:
         print(ent)
