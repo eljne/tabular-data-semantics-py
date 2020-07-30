@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/kg/EB_implement.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sampling/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sem_tab/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/constants/OWL.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/OWL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/constants/RDFS.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/RDFS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/constants/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/dbpedia.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/dbpedia.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/endpoints.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/endpoints.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/lookup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/lookup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/matching/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_find_semantic_counts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/matching/kg_matching.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/kg_matching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/oaei/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_more_training_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/oaei/dbpedia_fragment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/oaei/dbpedia_fragment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/oaei/tabular2rdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/oaei/tabular2rdf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/ontology/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_parse_type.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/ontology/onto_access.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ontology/onto_access.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sampling/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sampling/training.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sampling/training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sem_tab/CTA_Wikidata_Extend.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sem_tab/CTA_Wikidata_Extend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sem_tab/CTA_Wikidata_Statistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sem_tab/CTA_Wikidata_Statistic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sem_tab/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/oaei/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/challenge_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/challenge_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/error_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/error_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/mergeFiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/mergeFiles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/validate_sampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/validate_sampling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/util/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ontology/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/util/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/utilities.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1eSJi3qPX7BK50wOZg6UYJ9AG2x" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/kg" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.lookup">
+    <configuration name="EB_find_semantic_counts" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/EB_find_semantic_counts.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="endpoints" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/endpoints.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="lookup" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/lookup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="lookup_parsedqs" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/EB_implement.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="onto_access" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ontology" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ontology/onto_access.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.lookup" />
+        <item itemvalue="Python.EB_find_semantic_counts" />
+        <item itemvalue="Python.lookup_parsedqs" />
+        <item itemvalue="Python.onto_access" />
+        <item itemvalue="Python.endpoints" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="" />
+      <created>1594309184196</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594309184196</updated>
+      <workItem from="1594309186188" duration="809000" />
+      <workItem from="1594653134129" duration="220000" />
+      <workItem from="1594654049582" duration="1344000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="110" y="57" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594653955477">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="110" y="57" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.777@0.23.1280.777" timestamp="1594653955477" />
+    <state width="1239" height="143" key="GridCell.Tab.0.bottom" timestamp="1596101711222">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1239" height="143" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1596101711222" />
+    <state width="1239" height="143" key="GridCell.Tab.0.center" timestamp="1596101711221">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1239" height="143" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1596101711221" />
+    <state width="1239" height="143" key="GridCell.Tab.0.left" timestamp="1596101711220">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1239" height="143" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1596101711220" />
+    <state width="1239" height="143" key="GridCell.Tab.0.right" timestamp="1596101711222">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1239" height="143" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1596101711222" />
+    <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1595522011750">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1239" height="229" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1595522011750" />
+    <state width="1239" height="229" key="GridCell.Tab.1.center" timestamp="1595522011749">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1239" height="229" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1595522011749" />
+    <state width="1239" height="229" key="GridCell.Tab.1.left" timestamp="1595522011749">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1239" height="229" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1595522011749" />
+    <state width="1239" height="229" key="GridCell.Tab.1.right" timestamp="1595522011750">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1239" height="229" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1595522011750" />
+    <state x="37" y="46" key="SettingsEditor" timestamp="1594819584355">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="37" y="46" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1594819584355" />
+  </component>
+</project>
