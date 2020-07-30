@@ -13,6 +13,7 @@ from pprint import pprint
 import time
 from urllib import parse, request
 
+
 from kg.entity import KGEntity 
 
 
@@ -205,7 +206,7 @@ class WikidataAPI(Lookup):
                 )
             
             
-            #We filter according to givem URI
+            #We filter according to given URI
             if filter=='' or element['concepturi']==filter:
                 entities.append(kg_entity)
             
@@ -314,8 +315,7 @@ class GoogleKGLookup(Lookup):
         
         return self.__extractKGEntities(json, filter) #Optionally filter by URI
     
-    
-        
+
 
 if __name__ == '__main__':
     

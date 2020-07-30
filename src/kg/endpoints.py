@@ -638,11 +638,11 @@ if __name__ == '__main__':
     ep = DBpediaEndpoint()
     types = ep.getAllTypesForEntity("http://dbpedia.org/resource/Hern%C3%A1n_Andrade")
     print(len(types), types)
-    
-    
+
     cls = "http://dbpedia.org/ontology/BaseballTeam"
     
     entities = ep.getEntitiesForType(cls, 0, 100)
+    print('entities', entities)
     for e in entities:
         print(e)
     entities = ep.getEntitiesLabelsForType(cls, 0, 100)

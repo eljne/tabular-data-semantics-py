@@ -100,7 +100,9 @@ class KGEntity(object):
 
     def __str__(self):
         return "<id: %s, label: %s, description: %s, types: %s, source: %s>" % (self.ident, self.label, self.desc, self.types, self.source)
-    
+
+    def getIdstr(self):
+        return str(self.ident)
     
     def getId(self):
         return self.ident
@@ -127,9 +129,8 @@ class KGEntity(object):
         return self.desc
     
     def getSource(self):
-        return self.sourcec
-    
-    
+        return self.source
+
     def addType(self, cls):
         self.types.add(cls)
     
