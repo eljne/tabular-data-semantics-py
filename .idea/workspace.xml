@@ -2,39 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/kg/EB_implement.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sampling/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sem_tab/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/constants/OWL.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/OWL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/constants/RDFS.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/RDFS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/constants/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/dbpedia.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/dbpedia.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/endpoints.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/endpoints.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/kg/lookup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/lookup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/matching/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_find_semantic_counts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/matching/kg_matching.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/kg_matching.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/oaei/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_more_training_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/oaei/dbpedia_fragment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/oaei/dbpedia_fragment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/oaei/tabular2rdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/oaei/tabular2rdf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/ontology/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_parse_type.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/ontology/onto_access.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ontology/onto_access.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sampling/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sampling/training.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sampling/training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sem_tab/CTA_Wikidata_Extend.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sem_tab/CTA_Wikidata_Extend.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sem_tab/CTA_Wikidata_Statistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sem_tab/CTA_Wikidata_Statistic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/sem_tab/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/oaei/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/challenge_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/challenge_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/error_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/error_detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/mergeFiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/mergeFiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/test/validate_sampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/validate_sampling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/util/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ontology/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabularSemantics/src/util/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/utilities.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/endpoints.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/endpoints.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/lookup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/lookup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ontology/onto_access.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ontology/onto_access.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
