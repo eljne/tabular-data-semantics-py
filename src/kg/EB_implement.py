@@ -6,17 +6,17 @@ Edited on Jul 2020
 @author: eljne
 
 '''
-from ontology.onto_access import OntologyAccess, DBpediaOntology, SchemaOrgOntology
 
-'''
-lookup to find entity
-'''
+import re
+from ontology.onto_access import OntologyAccess, DBpediaOntology, SchemaOrgOntology
 import re
 from kg.endpoints import SPARQLEndpoint, DBpediaEndpoint
 from kg.lookup import Lookup, DBpediaLookup, WikidataAPI
+import itertools
 
-
-# load ontologies
+'''
+load ontologies
+'''
 
 folder_ontos = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/"
 
@@ -33,48 +33,74 @@ onto_access = SchemaOrgOntology()
 
 onto_access.loadOntology(True)
 
-# load parsed questions, search using KG
+'''
+load parsed questions
+'''
 
-parsed_questions = open('data/db_noun_list.txt', 'r')
-for line in parsed_questions:
-    db_questions = line.split('],')  # delimit on ?
-parsed_questions.close()
 
-parsed_questions = open('data/wd_noun_list.txt', 'r')
-for line in parsed_questions:
-    wd_questions = line.split('],')  # delimit on ?
-parsed_questions.close()
+# noun lists
 
-print('question', db_questions[0])
-# print(wd_questions[0])
+def read_file(filename, delm):
+    noun_list = open('data/' + filename, 'r')
+    for line in noun_list:
+        output_list = line.split(delm)  # delimit on ]
+    noun_list.close()
+    return output_list
+
+
+db_noun_list = read_file('db_noun_list.txt', '],')
+wd_noun_list = read_file('wd_noun_list.txt', '],')
+db_noun_phrase_list = read_file('db_nounphrase_list.txt', '],')
+wd_noun_phrase_list = read_file('wd_nounphrase_list.txt', '],')
+
+# print('\n db_noun_list', db_noun_list[0])
+# print('\n wd_noun_list', wd_noun_list[0])
+# print('\n db_noun_phrase_list', db_noun_phrase_list[0])
+# print('\n wd_noun_phrase_list', wd_noun_phrase_list[0])
+
+'''
+get entities using lookup
+'''
 
 all_entities = []
-db_questions = db_questions[0:1]
 
-for q in db_questions:
-    ws = re.sub('\W+', ' ', q)
-    words = ws.split(' ');
-    words = list(filter(None, words))
-    limit = 1
+# shorten just for testing
+db_noun_list = db_noun_list[0:1]
+wd_noun_list = wd_noun_list[0:1]
+db_noun_phrase_list = db_noun_phrase_list[0:1]
+wd_noun_phrase_list = wd_noun_phrase_list[0:1]
 
-    for w in words:
-        print('word', w)
-        #look up in DBP KG
-        dbpedia = DBpediaLookup()
-        entities = dbpedia.getKGEntities(w, limit)
-        #print("Entities from DBPedia:")
-        for ent in entities:
-            print('entity from DBPedia', ent)
-            all_entities.append(ent)
+#filter out stopwords fron noun phrase lists
 
+def get_entities(lst,splitter):
+    for q in lst:
+        ws = re.sub('\[', ' ', q)
+        words = ws.split(splitter);
+        words = list(filter(None, words))
+        limit = 1
+        for w in words:
+            print('word', w)
+            # look up in DBP KG
+            dbpedia = DBpediaLookup()
+            entities = dbpedia.getKGEntities(w, limit)
+            # print("Entities from DBPedia:")
+            for ent in entities:
+                print(w, 'DBPedia', ent)
+                all_entities.append(ent)
+    return all_entities
+
+db_ent_n = get_entities(db_noun_list,' ')
+wd_ent_n = get_entities(wd_noun_list,' ')
+db_ent_np = get_entities(db_noun_phrase_list, ',')
+wd_ent_np = get_entities(wd_noun_phrase_list, ',')
 
 '''
 endpoint to find type and other members of that type
 '''
 
-# #shorten array for test
+#shorten array for test
 all_entities = all_entities[0:1]
-type_counts = {} # dictionary to store types to count
+type_counts = {}  # dictionary to store types to count
 
 for ent in all_entities:
     print('ent id', ent.getId())
@@ -85,26 +111,26 @@ for ent in all_entities:
 
     ep = DBpediaEndpoint()
 
-    #finding types
+    # finding types
 
-    #using ID/int
+    # using ID/int
     ent2 = ent.getIdstr()
     types = ep.getAllTypesForEntity(ent2)
     print('all types for entity using endpoint id', len(types), types, '\n')
 
-    #using entity
-    cls = ent.getTypes() # ont
-    print('all types using entity',cls)
+    # using entity
+    cls = ent.getTypes()  # ont
+    print('all types using entity', cls)
 
     # get predicates using ID
 
     predicatesForSubject = ep.getPredicatesForSubject(ent2, 10)
     for p in predicatesForSubject:
-       print('predicates for subject using ID', p)
+        print('predicates for subject using ID', p)
 
     predicatesForObject = ep.getPredicatesForObject(ent2, 10)
     for p in predicatesForObject:
-       print('predicates for object using ID', p)
+        print('predicates for object using ID', p)
 
     print("Domain types")
     types_domain = ep.getTopTypesUsingPredicatesForSubject(ent2, 3)
@@ -120,16 +146,16 @@ for ent in all_entities:
 
     # get class siblings to create additional training data
 
-    for c in cls: #for each class
+    for c in cls:  # for each class
         print('c', c)
         entities2 = ep.getEntitiesForType(c, 0, 5)
-        print('entities for types from original entity', entities2) #http://dbpedia.org/resource/Axel_Anderberg
+        print('entities for types from original entity', entities2)  # http://dbpedia.org/resource/Axel_Anderberg
 
         entities_labels = ep.getEntitiesLabelsForType(c, 0, 5)
         for e, label in entities_labels.items():
             print('ent', e, 'label', label)
             label = str(label)
-            label = re.sub('}','', label)
+            label = re.sub('}', '', label)
             label = re.sub('{', '', label)
             label = re.sub('\'', '\"', label)
             labels.append(label)
@@ -153,8 +179,10 @@ for ent in all_entities:
         print('distance to sub', len(sub2dist), sub2dist)
 
         '''
-        OntologyAccess to find classes 
+        OntologyAccess to find classes
         '''
+
+        onto_access.getClassIRIsContainingName()  # look up classes containing a specific word.
 
         # OntologyAccess
         # a way to get classes
@@ -168,30 +196,29 @@ for ent in all_entities:
     # print('test', onto_access.getDescendantURIs(onto_access.getClassByName("City")))
     # print('test', onto_access.getAncestorsURIs(onto_access.getClassByName("City")))
 
-#wikidata
+# wikidata
 
-        #look up in WD KG
-        # wikidata = WikidataAPI()
-        # entities = wikidata.getKGEntities(w, limit)
-        # print("Entities from Wikidata:")
-        # for ent in entities:
-        #     print(ent)
-        # print("\n")
+# look up in WD KG
+# wikidata = WikidataAPI()
+# entities = wikidata.getKGEntities(w, limit)
+# print("Entities from Wikidata:")
+# for ent in entities:
+#     print(ent)
+# print("\n")
 
-    # ep = WikidataEndpoint()
-    # types = ep.getAllTypesForEntity("http://www.wikidata.org/entity/Q22")
-    # print(len(types), types)
+# ep = WikidataEndpoint()
+# types = ep.getAllTypesForEntity("http://www.wikidata.org/entity/Q22")
+# print(len(types), types)
 
-    # equiv = ep.getEquivalentClasses(c)
-    # print(len(equiv), equiv)
+# equiv = ep.getEquivalentClasses(c)
+# print(len(equiv), equiv)
 
-    # same = ep.getSameEntities(ent2)
-    # print(len(same), same)
+# same = ep.getSameEntities(ent2)
+# print(len(same), same)
 
-    # gt_cls = "http://www.wikidata.org/entity/Q5"
-    # sup2dist = ep.getDistanceToAllSuperClasses(gt_cls)
-    # print(len(sup2dist), sup2dist)
-    #
-    # sub2dist = ep.getDistanceToAllSubClasses(gt_cls, 2)
-    # print(len(sub2dist), sub2dist)
-
+# gt_cls = "http://www.wikidata.org/entity/Q5"
+# sup2dist = ep.getDistanceToAllSuperClasses(gt_cls)
+# print(len(sup2dist), sup2dist)
+#
+# sub2dist = ep.getDistanceToAllSubClasses(gt_cls, 2)
+# print(len(sub2dist), sub2dist)
