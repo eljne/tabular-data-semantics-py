@@ -28,12 +28,6 @@ folder_ontos = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologi
 uri_onto = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/dbpedia_2014_fix.owl"
 # uri_onto="/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/schema.org.owl"
 
-# onto_access = OntologyAccess(uri_onto)
-# onto_access = DBpediaOntology()
-onto_access = SchemaOrgOntology()
-
-onto_access.loadOntology(True)
-
 '''
 load parsed questions
 '''
@@ -58,26 +52,38 @@ wd_noun_phrase_list = read_file('wd_nounphrase_list.txt', '],')
 
 print('done')
 
+print(len(db_noun_list[0]))
+print(len(wd_noun_list[0]))
+print(len(db_noun_phrase_list[0]))
+print(len(wd_noun_phrase_list[0]))
+
+db_noun_list = db_noun_list[0]
+wd_noun_list = wd_noun_list[0]
+db_noun_phrase_list = db_noun_phrase_list[0]
+wd_noun_phrase_list = wd_noun_phrase_list[0]
+
 
 # filter out stopwords and special characters from lists
 def filter_SW(lst, splitter):
     wordsFiltered = []
-    for line in lst:
-        ws = line.split(splitter)
-        ws = list(filter(None, ws))
-        for w in ws:
-            w = re.sub('\[', ' ', w)
-            w = re.sub('[^A-Za-z0-9\' ]+', '', w)
-            if w not in stopWords and w != "''":
-                wordsFiltered.append(w)
+    ws = lst.split(splitter)
+    ws = list(filter(None, ws))
+    for w in ws:
+        w = re.sub('\[', ' ', w)
+        w = re.sub('[^A-Za-z0-9\' ]+', '', w)
+        if w not in stopWords and w != "''":
+            wordsFiltered.append(w)
     return wordsFiltered
 
+db_noun_list = db_noun_list[0:5]
+wd_noun_list = wd_noun_list[0:5]
+db_noun_phrase_list = db_noun_phrase_list[0:5]
+wd_noun_phrase_list = wd_noun_phrase_list[0:5]
 
-# shorten just for testing
-# db_noun_list = db_noun_list[0:5]
-# wd_noun_list = wd_noun_list[0:5]
-# db_noun_phrase_list = db_noun_phrase_list[0:5]
-# wd_noun_phrase_list = wd_noun_phrase_list[0:5]
+print(len(db_noun_list))
+print(len(wd_noun_list))
+print(len(db_noun_phrase_list))
+print(len(wd_noun_phrase_list))
 
 stopWords = set(stopwords.words('english'))  # load stopwords
 
@@ -191,17 +197,43 @@ def apply_endpoint(entity_list):  # question level
     return types_list, types_list_2
 
 
-db_noun_types, db_noun_types2 = apply_endpoint(db_noun_ent)
-wd_noun_types, wd_noun_types2 = apply_endpoint(wd_noun_ent)
-db_np_types, db_np_types2 = apply_endpoint(db_np_ent)
-wd_np_types, wd_np_types2 = apply_endpoint(wd_np_ent)
+db_noun_types = []
+db_noun_types2 = []
+wd_noun_types = []
+wd_noun_types2 = []
 
-print(db_noun_types, db_noun_types2)
+db_np_types = []
+db_np_types2 = []
+wd_np_types = []
+wd_np_types2 = []
 
-print('done')
+for a in db_noun_ent:
+    types_list, types_list_2 = apply_endpoint(a)
+    db_noun_types.append(types_list)
+    db_noun_types2.append(types_list_2)
+
+for a in wd_noun_ent:
+    types_list, types_list_2 = apply_endpoint(a)
+    wd_noun_types.append(types_list)
+    wd_noun_types2.append(types_list_2)
+
+for a in db_np_ent:
+    types_list, types_list_2 = apply_endpoint(a)
+    db_np_types.append(types_list)
+    db_np_types2.append(types_list_2)
+
+for a in wd_np_ent:
+    types_list, types_list_2 = apply_endpoint(a)
+    wd_np_types.append(types_list)
+    wd_np_types2.append(types_list_2)
+
+print(db_np_types)
+print(db_np_types2)
+
+print('types done')
 
 '''
-get classes using ontology.onto_access  
+get classes using ontology.onto_access
 '''
 
 db_noun_cls = []
@@ -209,36 +241,42 @@ wd_noun_cls = []
 db_np_cls = []
 wd_np_cls = []
 
+# onto_access = OntologyAccess(uri_onto)
+# onto_access = DBpediaOntology()
+# onto_access = SchemaOrgOntology()
+onto_access = DBpediaOntology()
+onto_access.loadOntology(True)
 
-def apply_onto_access(q_lst):
-    onto_access_list = []
+
+def apply_on_access(q_lst):
+    on_access_list = []
     for w in q_lst:
         if w != "''":
-            onto_access = OntologyAccess()   # look up in DBP KG
+            print(w)
             classes = onto_access.getClassIRIsContainingName(w)
             for cls in classes:
                 print(w, 'contained by: ', cls)
-                onto_access_list.append(cls)
-    return onto_access_list
+                on_access_list.append(cls)
+    return on_access_list
 
 
 for a in db_noun_list_flt:
-    class_list = apply_onto_access(a)
+    class_list = apply_on_access(a)
     db_noun_cls.append(class_list)
 
 for a in wd_noun_list_flt:
-    class_list = apply_onto_access(a)
+    class_list = apply_on_access(a)
     wd_noun_cls.append(class_list)
 
 for a in db_noun_phrase_list_flt:
-    class_list = apply_onto_access(a)
+    class_list = apply_on_access(a)
     db_np_cls.append(class_list)
 
 for a in wd_noun_phrase_list_flt:
-    class_list = apply_onto_access(a)
+    class_list = apply_on_access(a)
     wd_np_cls.append(class_list)
 
-print('done')
+print('ontology done')
 
 print(db_noun_cls)
 print(wd_noun_cls)
@@ -246,3 +284,4 @@ print(db_np_cls)
 print(wd_np_cls)
 
 
+#refactor to combine all, question by question - do this in a new program
