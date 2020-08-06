@@ -16,7 +16,9 @@ from kg.endpoints import SPARQLEndpoint, DBpediaEndpoint
 from kg.lookup import Lookup, DBpediaLookup, WikidataAPI
 
 
-# load ontologies
+'''
+load ontologies
+'''
 
 folder_ontos = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/"
 
@@ -27,63 +29,30 @@ folder_ontos = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologi
 uri_onto = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/dbpedia_2014_fix.owl"
 # uri_onto="/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/schema.org.owl"
 
-onto_access = OntologyAccess(uri_onto)
-onto_access = DBpediaOntology()
+# onto_access = OntologyAccess(uri_onto)
+# onto_access = DBpediaOntology()
 onto_access = SchemaOrgOntology()
 
-onto_access.loadOntology(True)
+'''
+load questions
+'''
 
-# load questions, search using KG
-
-def open_file(file_to_open):
-    temp = open('data/' + file_to_open + '.txt', 'r')
-    filename = []
-    for line in temp:
-        filename.append(line)  # delimit on ?
-    temp.close()
-    return filename
-
-def open_file_parsed(file_to_open,delimiter):
-    temp = open('data/' + file_to_open + '.txt', 'r')
-    filename = []
-    for line in temp:
-        filename.append(line.split(delimiter))  # delimit on ?
-    temp.close()
-    return filename
-
-#non-parsed
-db_questions = open_file('db_arr_q')
-wd_questions = open_file('wd_arr_q')
-
-#parsed
-#db_questions = open_file_parsed('db_noun_list', '],')
-#wd_questions = open_file_parsed('wd_noun_list', '],')
-
-#print('question: ', db_questions[0])
-#print('question: ', wd_questions[0])
-
-all_entities = []
-
-# split words
-
-# for q in db_questions:
-#     ws = re.sub('\W+', ' ', q)
-#     words = ws.split(' ');
-#     words = list(filter(None, words))
-#     limit = 1
-#
-#     for w in words:
-#         # print('word', w)
-#         #look up in DBP KG
-#         dbpedia = DBpediaLookup()
-#         entities = dbpedia.getKGEntities(w, limit)
-#         #print("Entities from DBPedia:")
-#         for ent in entities:
-#             # print('entity from DBPedia', ent)
-#             all_entities.append(ent)
+def read_file(filename, delm):
+    noun_list = open('data/' + filename, 'r')
+    file = []
+    for line in noun_list:
+        output_list = line.split(delm)  # delimit on ]
+        file.append(output_list)
+    noun_list.close()
+    return file
 
 
-# use entire question
+db_noun_list = read_file('db_noun_list.txt', '],')
+wd_noun_list = read_file('wd_noun_list.txt', '],')
+db_noun_phrase_list = read_file('db_nounphrase_list.txt', '],')
+wd_noun_phrase_list = read_file('wd_nounphrase_list.txt', '],')
+
+
 
 for q in db_questions:
     limit = 1
@@ -154,11 +123,16 @@ for ent in all_entities:
         # print('range types: top types using predicates for object', t)
         type_counts_range.append(t)
 
+
+onto_access.loadOntology(True)
+
+
 def count_it(list):
     counts = dict()
     for i in list:
       counts[i] = counts.get(i, 0) + 1
     return counts
+
 
 type_counts_ID_fin = count_it(type_counts_ID)
 type_counts_entity_fin = count_it(type_counts_entity)

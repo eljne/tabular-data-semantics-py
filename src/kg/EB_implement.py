@@ -2,9 +2,10 @@
 Created on 19 Mar 2019
 @author: ejimenez-ruiz
 
-Edited on 5th August 2020
+Edited on 6th August 2020
 @author: eljne
 
+This code finds entities and types using lookup and endpoint, and the related classes using ontolo_class
 '''
 
 import re
@@ -33,8 +34,6 @@ load parsed questions
 '''
 
 
-# noun lists
-
 def read_file(filename, delm):
     noun_list = open('data/' + filename, 'r')
     file = []
@@ -45,12 +44,20 @@ def read_file(filename, delm):
     return file
 
 
+def write_file(file_to_write, filename):
+    myFile = open('data/' + filename + '.txt', 'w')
+    myFile.write(str(file_to_write))
+    myFile.write('\n')
+    myFile.close()
+    return 0
+
+
 db_noun_list = read_file('db_noun_list.txt', '],')
 wd_noun_list = read_file('wd_noun_list.txt', '],')
 db_noun_phrase_list = read_file('db_nounphrase_list.txt', '],')
 wd_noun_phrase_list = read_file('wd_nounphrase_list.txt', '],')
 
-print('done')
+print('read files done')
 
 print(len(db_noun_list[0]))
 print(len(wd_noun_list[0]))
@@ -61,7 +68,6 @@ db_noun_list = db_noun_list[0]
 wd_noun_list = wd_noun_list[0]
 db_noun_phrase_list = db_noun_phrase_list[0]
 wd_noun_phrase_list = wd_noun_phrase_list[0]
-
 
 # filter out stopwords and special characters from lists
 def filter_SW(lst, splitter):
@@ -75,15 +81,16 @@ def filter_SW(lst, splitter):
             wordsFiltered.append(w)
     return wordsFiltered
 
-db_noun_list = db_noun_list[0:5]
-wd_noun_list = wd_noun_list[0:5]
-db_noun_phrase_list = db_noun_phrase_list[0:5]
-wd_noun_phrase_list = wd_noun_phrase_list[0:5]
 
-print(len(db_noun_list))
-print(len(wd_noun_list))
-print(len(db_noun_phrase_list))
-print(len(wd_noun_phrase_list))
+# db_noun_list = db_noun_list[0:5]
+# wd_noun_list = wd_noun_list[0:5]
+# db_noun_phrase_list = db_noun_phrase_list[0:5]
+# wd_noun_phrase_list = wd_noun_phrase_list[0:5]
+
+# print(len(db_noun_list))
+# print(len(wd_noun_list))
+# print(len(db_noun_phrase_list))
+# print(len(wd_noun_phrase_list))
 
 stopWords = set(stopwords.words('english'))  # load stopwords
 
@@ -108,13 +115,12 @@ for q in wd_noun_phrase_list:
     temp = filter_SW(q, ',')
     wd_noun_phrase_list_flt.append(temp)
 
-print('done')
+print('filters done')
 
-print(db_noun_list_flt)
-print(wd_noun_list_flt)
-print(db_noun_phrase_list_flt)
-print(wd_noun_phrase_list_flt)
-
+# print(db_noun_list_flt)
+# print(wd_noun_list_flt)
+# print(db_noun_phrase_list_flt)
+# print(wd_noun_phrase_list_flt)
 
 '''
 get entities for all using lookup
@@ -128,11 +134,10 @@ wd_np_ent = []
 
 def get_entities(q_lst):  # question as a list of words
     question_entities = []
-    types_lkup = []
     limit = 1
     for w in q_lst:
         if w != "''":
-            dbpedia = DBpediaLookup()   # look up in DBP KG
+            dbpedia = DBpediaLookup()  # look up in DBP KG
             entities = dbpedia.getKGEntities(w, limit)
             for ent in entities:
                 # print(w, 'DBPedia', ent)
@@ -156,22 +161,22 @@ for a in wd_noun_phrase_list_flt:
     question_entities = get_entities(a)
     wd_np_ent.append(question_entities)
 
-print('done')
+print('get entities done')
 
-print(db_noun_ent)
-print(wd_noun_ent)
-print(db_np_ent)
-print(wd_np_ent)
+# print(db_noun_ent)
+# print(wd_noun_ent)
+# print(db_np_ent)
+# print(wd_np_ent)
 
 '''
 get types for all using endpoint
 '''
 
 # shorten array for test
-db_noun_ent = db_noun_ent[0:2]
-wd_noun_ent = wd_noun_ent[0:2]
-db_np_ent = db_np_ent[0:2]
-wd_np_ent = wd_np_ent[0:2]
+# db_noun_ent = db_noun_ent[0:2]
+# wd_noun_ent = wd_noun_ent[0:2]
+# db_np_ent = db_np_ent[0:2]
+# wd_np_ent = wd_np_ent[0:2]
 
 
 def apply_endpoint(entity_list):  # question level
@@ -187,12 +192,12 @@ def apply_endpoint(entity_list):  # question level
         ent2 = ent.getIdstr()
         types = ep.getTypesForEntity(ent2)
         types_list.append(types)
-        print('all types for entity using endpoint id', len(types), types, '\n')
+        # print('all types for entity using endpoint id', len(types), types, '\n')
 
         # using entity
         types2 = ent.getTypes()  # ont
         types_list_2.append(types2)
-        print('all types using entity', types2)
+        # print('all types using entity', types2)
 
     return types_list, types_list_2
 
@@ -227,10 +232,50 @@ for a in wd_np_ent:
     wd_np_types.append(types_list)
     wd_np_types2.append(types_list_2)
 
-print(db_np_types)
-print(db_np_types2)
+# print(db_np_types)
+# print(db_np_types2)
 
-print('types done')
+print('get types done')
+
+
+# count types
+
+
+def count_it(lst):
+    # print(lst)
+    counts = dict()
+    for i in lst:
+        for l in i:     # accesses question level types: in another list
+            try:
+                type = next(iter(l))    # get 'first' type in list
+                counts[type] = counts.get(type, 0) + 1
+            except Exception as e:
+                print(e)
+    return counts
+
+
+type_counts_db_fin = count_it(db_noun_types)
+type_counts_db2_fin = count_it(db_noun_types2)
+
+type_counts_wd_fin = count_it(wd_noun_types)
+type_counts_wd2_fin = count_it(wd_noun_types2)
+
+type_counts_dbnp_fin = count_it(db_np_types)
+type_counts_dbnp2_fin = count_it(db_np_types2)
+
+type_counts_wdnp_fin = count_it(wd_np_types)
+type_counts_wdnp2_fin = count_it(wd_np_types2)
+
+write_file(type_counts_db_fin, 'type_counts_db_fin')
+write_file(type_counts_db2_fin, 'type_counts_db2_fin')
+write_file(type_counts_wd_fin, 'type_counts_wd_fin')
+write_file(type_counts_wd2_fin, 'type_counts_wd2_fin')
+write_file(type_counts_dbnp_fin, 'type_counts_dbnp_fin')
+write_file(type_counts_dbnp_fin, 'type_counts_dbnp2_fin')
+write_file(type_counts_wdnp_fin, 'type_counts_wdnp_fin')
+write_file(type_counts_wdnp2_fin, 'type_counts_wdnp2_fin')
+
+print('counting types done')
 
 '''
 get classes using ontology.onto_access
@@ -252,10 +297,10 @@ def apply_on_access(q_lst):
     on_access_list = []
     for w in q_lst:
         if w != "''":
-            print(w)
+            # print(w)
             classes = onto_access.getClassIRIsContainingName(w)
             for cls in classes:
-                print(w, 'contained by: ', cls)
+                # print(w, 'contained by: ', cls)
                 on_access_list.append(cls)
     return on_access_list
 
@@ -278,10 +323,14 @@ for a in wd_noun_phrase_list_flt:
 
 print('ontology done')
 
-print(db_noun_cls)
-print(wd_noun_cls)
-print(db_np_cls)
-print(wd_np_cls)
+# print(db_noun_cls)
+# print(wd_noun_cls)
+# print(db_np_cls)
+# print(wd_np_cls)
 
+write_file(db_noun_cls, 'db_noun_cls')
+write_file(wd_noun_cls, 'wd_noun_cls')
+write_file(db_np_cls, 'db_np_cls')
+write_file(wd_np_cls, 'wd_np_cls')
 
-#refactor to combine all, question by question - do this in a new program
+print('all done')

@@ -1,0 +1,1 @@
+{'http://dbpedia.org/ontology/Person': 2, 'http://schema.org/Person': 6, 'http://dbpedia.org/ontology/Country': 1, 'http://schema.org/MusicGroup': 2, 'http://dbpedia.org/ontology/Award': 2, 'http://dbpedia.org/ontology/Artist': 1, 'http://dbpedia.org/ontology/Agent': 1}

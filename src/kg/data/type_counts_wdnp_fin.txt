@@ -1,0 +1,1 @@
+{'http://dbpedia.org/ontology/Book': 1, 'http://www.wikidata.org/entity/Q4022': 1, 'http://dbpedia.org/ontology/Software': 1, 'http://www.wikidata.org/entity/Q386724': 1, 'http://www.wikidata.org/entity/Q24229398': 2, 'http://dbpedia.org/ontology/Airline': 1, 'http://dbpedia.org/ontology/RadioStation': 1}
