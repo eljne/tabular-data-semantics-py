@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/kg/EB_implement2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/EB_sample_general.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/EB_sample_lookup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/EB_sample_particular.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/EB_find_semantic_counts.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_find_semantic_counts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/EB_implement.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_implement.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/EB_more_training_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_count.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_db_fin.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/type_counts_db_fin.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_dbnp_fin.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/type_counts_dbnp_fin.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +46,28 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.lookup_parsedqs">
+  <component name="RunManager" selected="Python.EB_count">
+    <configuration name="EB_count" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/EB_count.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="EB_find_semantic_counts" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tabular-data-semantics-py" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -62,7 +89,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="endpoints" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="EB_implement2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tabular-data-semantics-py" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -74,7 +101,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/endpoints.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/EB_implement2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -125,34 +152,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="onto_access" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tabular-data-semantics-py" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ontology" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ontology/onto_access.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.EB_count" />
+        <item itemvalue="Python.EB_implement2" />
         <item itemvalue="Python.lookup_parsedqs" />
         <item itemvalue="Python.lookup" />
         <item itemvalue="Python.EB_find_semantic_counts" />
-        <item itemvalue="Python.onto_access" />
-        <item itemvalue="Python.endpoints" />
       </list>
     </recent_temporary>
   </component>
@@ -205,22 +211,26 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="110" y="57" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.777@0.23.1280.777" timestamp="1594653955477" />
-    <state width="1239" height="123" key="GridCell.Tab.0.bottom" timestamp="1596734599024">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1259" height="74" key="GridCell.Tab.0.bottom" timestamp="1597140808223">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1239" height="123" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1596734599024" />
-    <state width="1239" height="123" key="GridCell.Tab.0.center" timestamp="1596734599022">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1259" height="74" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1597140808223" />
+    <state width="1239" height="71" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1596797240812" />
+    <state width="1259" height="74" key="GridCell.Tab.0.center" timestamp="1597140808221">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1239" height="123" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1596734599022" />
-    <state width="1239" height="123" key="GridCell.Tab.0.left" timestamp="1596734599021">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1259" height="74" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1597140808221" />
+    <state width="1239" height="71" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1596797240811" />
+    <state width="1259" height="74" key="GridCell.Tab.0.left" timestamp="1597140808220">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1239" height="123" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1596734599021" />
-    <state width="1239" height="123" key="GridCell.Tab.0.right" timestamp="1596734599022">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1259" height="74" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1597140808220" />
+    <state width="1239" height="71" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1596797240810" />
+    <state width="1259" height="74" key="GridCell.Tab.0.right" timestamp="1597140808222">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1239" height="123" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1596734599022" />
+    <state width="1259" height="74" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1597140808222" />
+    <state width="1239" height="71" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1596797240812" />
     <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1596643864326">
       <screen x="0" y="23" width="1280" height="777" />
     </state>

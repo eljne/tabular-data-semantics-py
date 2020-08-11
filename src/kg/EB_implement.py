@@ -2,7 +2,7 @@
 Created on 19 Mar 2019
 @author: ejimenez-ruiz
 
-Edited on 6th August 2020
+Edited on 10th August 2020
 @author: eljne
 
 This code finds entities and types using lookup and endpoint, and the related classes using ontolo_class
@@ -53,21 +53,21 @@ def write_file(file_to_write, filename):
 
 
 db_noun_list = read_file('db_noun_list.txt', '],')
-wd_noun_list = read_file('wd_noun_list.txt', '],')
+# wd_noun_list = read_file('wd_noun_list.txt', '],')
 db_noun_phrase_list = read_file('db_nounphrase_list.txt', '],')
-wd_noun_phrase_list = read_file('wd_nounphrase_list.txt', '],')
+# wd_noun_phrase_list = read_file('wd_nounphrase_list.txt', '],')
 
 print('read files done')
 
 print(len(db_noun_list[0]))
-print(len(wd_noun_list[0]))
+# print(len(wd_noun_list[0]))
 print(len(db_noun_phrase_list[0]))
-print(len(wd_noun_phrase_list[0]))
+# print(len(wd_noun_phrase_list[0]))
 
 db_noun_list = db_noun_list[0]
-wd_noun_list = wd_noun_list[0]
+# wd_noun_list = wd_noun_list[0]
 db_noun_phrase_list = db_noun_phrase_list[0]
-wd_noun_phrase_list = wd_noun_phrase_list[0]
+# wd_noun_phrase_list = wd_noun_phrase_list[0]
 
 # filter out stopwords and special characters from lists
 def filter_SW(lst, splitter):
@@ -95,25 +95,25 @@ def filter_SW(lst, splitter):
 stopWords = set(stopwords.words('english'))  # load stopwords
 
 db_noun_list_flt = []
-wd_noun_list_flt = []
+# wd_noun_list_flt = []
 db_noun_phrase_list_flt = []
-wd_noun_phrase_list_flt = []
+# wd_noun_phrase_list_flt = []
 
 for q in db_noun_list:
     temp = filter_SW(q, ' ')
     db_noun_list_flt.append(temp)
 
-for q in wd_noun_list:
-    temp = filter_SW(q, ' ')
-    wd_noun_list_flt.append(temp)
+# for q in wd_noun_list:
+#     temp = filter_SW(q, ' ')
+#     wd_noun_list_flt.append(temp)
 
 for q in db_noun_phrase_list:
     temp = filter_SW(q, ',')
     db_noun_phrase_list_flt.append(temp)
 
-for q in wd_noun_phrase_list:
-    temp = filter_SW(q, ',')
-    wd_noun_phrase_list_flt.append(temp)
+# for q in wd_noun_phrase_list:
+#     temp = filter_SW(q, ',')
+#     wd_noun_phrase_list_flt.append(temp)
 
 print('filters done')
 
@@ -127,9 +127,9 @@ get entities for all using lookup
 '''
 
 db_noun_ent = []
-wd_noun_ent = []
+# wd_noun_ent = []
 db_np_ent = []
-wd_np_ent = []
+# wd_np_ent = []
 
 
 def get_entities(q_lst):  # question as a list of words
@@ -149,19 +149,25 @@ for a in db_noun_list_flt:
     question_entities = get_entities(a)
     db_noun_ent.append(question_entities)
 
-for a in wd_noun_list_flt:
-    question_entities = get_entities(a)
-    wd_noun_ent.append(question_entities)
+# for a in wd_noun_list_flt:
+#     question_entities = get_entities(a)
+#     wd_noun_ent.append(question_entities)
 
 for a in db_noun_phrase_list_flt:
     question_entities = get_entities(a)
     db_np_ent.append(question_entities)
 
-for a in wd_noun_phrase_list_flt:
-    question_entities = get_entities(a)
-    wd_np_ent.append(question_entities)
+# for a in wd_noun_phrase_list_flt:
+#     question_entities = get_entities(a)
+#     wd_np_ent.append(question_entities)
 
-print('get entities done')
+write_file(db_noun_ent, 'db_noun_ent')
+# write_file(wd_noun_ent, 'wd_noun_ent')
+write_file(db_np_ent, 'db_np_ent')
+# write_file(wd_np_ent, 'wd_np_ent')
+
+
+print('get + write entities done')
 
 # print(db_noun_ent)
 # print(wd_noun_ent)
@@ -195,96 +201,63 @@ def apply_endpoint(entity_list):  # question level
         # print('all types for entity using endpoint id', len(types), types, '\n')
 
         # using entity
-        types2 = ent.getTypes()  # ont
-        types_list_2.append(types2)
+        # types2 = ent.getTypes()  # ont
+        # types_list_2.append(types2)
         # print('all types using entity', types2)
 
-    return types_list, types_list_2
+    return types_list
+        # , types_list_2
 
 
 db_noun_types = []
-db_noun_types2 = []
+# db_noun_types2 = []
 wd_noun_types = []
-wd_noun_types2 = []
+# wd_noun_types2 = []
 
 db_np_types = []
-db_np_types2 = []
+# db_np_types2 = []
 wd_np_types = []
-wd_np_types2 = []
+# wd_np_types2 = []
 
 for a in db_noun_ent:
-    types_list, types_list_2 = apply_endpoint(a)
+    types_list = apply_endpoint(a)
     db_noun_types.append(types_list)
-    db_noun_types2.append(types_list_2)
+    # db_noun_types2.append(types_list_2)
 
-for a in wd_noun_ent:
-    types_list, types_list_2 = apply_endpoint(a)
-    wd_noun_types.append(types_list)
-    wd_noun_types2.append(types_list_2)
+# for a in wd_noun_ent:
+#     types_list = apply_endpoint(a)
+#     wd_noun_types.append(types_list)
+    # wd_noun_types2.append(types_list_2)
 
 for a in db_np_ent:
-    types_list, types_list_2 = apply_endpoint(a)
+    types_list = apply_endpoint(a)
     db_np_types.append(types_list)
-    db_np_types2.append(types_list_2)
+    # db_np_types2.append(types_list_2)
 
-for a in wd_np_ent:
-    types_list, types_list_2 = apply_endpoint(a)
-    wd_np_types.append(types_list)
-    wd_np_types2.append(types_list_2)
+# for a in wd_np_ent:
+#     types_list = apply_endpoint(a)
+#     wd_np_types.append(types_list)
+    # wd_np_types2.append(types_list_2)
 
 # print(db_np_types)
-# print(db_np_types2)
 
-print('get types done')
+write_file(db_noun_types, 'db_noun_typ')
+# write_file(wd_noun_types, 'wd_noun_ent')
+write_file(db_np_types, 'db_np_typ')
+# write_file(wd_np_types, 'wd_np_ent')
 
-
-# count types
-
-
-def count_it(lst):
-    # print(lst)
-    counts = dict()
-    for i in lst:
-        for l in i:     # accesses question level types: in another list
-            try:
-                type = next(iter(l))    # get 'first' type in list
-                counts[type] = counts.get(type, 0) + 1
-            except Exception as e:
-                print(e)
-    return counts
+print('get + write types done')
 
 
-type_counts_db_fin = count_it(db_noun_types)
-type_counts_db2_fin = count_it(db_noun_types2)
-
-type_counts_wd_fin = count_it(wd_noun_types)
-type_counts_wd2_fin = count_it(wd_noun_types2)
-
-type_counts_dbnp_fin = count_it(db_np_types)
-type_counts_dbnp2_fin = count_it(db_np_types2)
-
-type_counts_wdnp_fin = count_it(wd_np_types)
-type_counts_wdnp2_fin = count_it(wd_np_types2)
-
-write_file(type_counts_db_fin, 'type_counts_db_fin')
-write_file(type_counts_db2_fin, 'type_counts_db2_fin')
-write_file(type_counts_wd_fin, 'type_counts_wd_fin')
-write_file(type_counts_wd2_fin, 'type_counts_wd2_fin')
-write_file(type_counts_dbnp_fin, 'type_counts_dbnp_fin')
-write_file(type_counts_dbnp_fin, 'type_counts_dbnp2_fin')
-write_file(type_counts_wdnp_fin, 'type_counts_wdnp_fin')
-write_file(type_counts_wdnp2_fin, 'type_counts_wdnp2_fin')
-
-print('counting types done')
 
 '''
 get classes using ontology.onto_access
 '''
 
 db_noun_cls = []
-wd_noun_cls = []
+# wd_noun_cls = []
 db_np_cls = []
-wd_np_cls = []
+# wd_np_cls = []
 
 # onto_access = OntologyAccess(uri_onto)
 # onto_access = DBpediaOntology()
@@ -309,17 +282,17 @@ for a in db_noun_list_flt:
     class_list = apply_on_access(a)
     db_noun_cls.append(class_list)
 
-for a in wd_noun_list_flt:
-    class_list = apply_on_access(a)
-    wd_noun_cls.append(class_list)
+# for a in wd_noun_list_flt:
+#     class_list = apply_on_access(a)
+#     wd_noun_cls.append(class_list)
 
 for a in db_noun_phrase_list_flt:
     class_list = apply_on_access(a)
     db_np_cls.append(class_list)
 
-for a in wd_noun_phrase_list_flt:
-    class_list = apply_on_access(a)
-    wd_np_cls.append(class_list)
+# for a in wd_noun_phrase_list_flt:
+#     class_list = apply_on_access(a)
+#     wd_np_cls.append(class_list)
 
 print('ontology done')
 
@@ -329,8 +302,9 @@ print('ontology done')
 # print(wd_np_cls)
 
 write_file(db_noun_cls, 'db_noun_cls')
-write_file(wd_noun_cls, 'wd_noun_cls')
+# write_file(wd_noun_cls, 'wd_noun_cls')
 write_file(db_np_cls, 'db_np_cls')
-write_file(wd_np_cls, 'wd_np_cls')
+# write_file(wd_np_cls, 'wd_np_cls')
 
-print('all done')
+print('final write done')
+
