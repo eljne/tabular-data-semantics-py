@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/kg/EB_implement2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kg/EB_sample_general.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kg/EB_sample_lookup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kg/EB_sample_particular.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/EB_implement.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_implement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/EB_more_training_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_count.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_db_fin.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/type_counts_db_fin.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_dbnp_fin.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/type_counts_dbnp_fin.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/EB_count.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/01_EB_count_types_KGE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/EB_find_semantic_counts.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/01_EB_count_types_KGE2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/EB_implement.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/01_EB_lookup_endpoint_onto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/EB_implement2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/01_EB_count_types_KGE3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/EB_sample_general.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/02_EB_sample_general.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/EB_sample_lookup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/EB_sample_particular.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/02_EB_sample_specific.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/EB_count.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/01_EB_count_types_KGE.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -80,7 +79,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/EB_find_semantic_counts.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/01_EB_count_types_KGE2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -101,7 +100,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/EB_implement2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/01_EB_count_types_KGE3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -143,7 +142,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/EB_implement.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/01_EB_lookup_endpoint_onto.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
