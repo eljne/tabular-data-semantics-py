@@ -8,6 +8,7 @@ Edited on 10th August 2020
 This code finds entities and types using lookup and endpoint, and the related classes using ontolo_class
 '''
 
+
 from ontology.onto_access import OntologyAccess, DBpediaOntology, SchemaOrgOntology
 import re
 from kg.endpoints import SPARQLEndpoint, DBpediaEndpoint
@@ -75,8 +76,8 @@ def filter_SW(lst, splitter):
     return wordsFiltered
 
 
-# db_noun_list = db_noun_list[0:5]
-# db_noun_phrase_list = db_noun_phrase_list[0:5]
+db_noun_list = db_noun_list[0:5]
+db_noun_phrase_list = db_noun_phrase_list[0:5]
 
 # print(len(db_noun_list))
 # print(len(db_noun_phrase_list))
@@ -150,6 +151,7 @@ def apply_endpoint(entity_list):  # question level
     types_list_2 = []
 
     for ent in entity_list:
+        print('ent', ent)
         ep = DBpediaEndpoint()
 
         # finding types
