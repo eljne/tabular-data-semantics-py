@@ -220,6 +220,7 @@ for entry in dbpedia_train_wh:
         if len(types) > 0:
             entity_types.append(types)
     entry.update({'entity_types': entity_types})
+    re_list.append(entry)
 
 dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '05_dbpedia_train_wh')
