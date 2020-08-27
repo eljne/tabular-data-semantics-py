@@ -8,12 +8,10 @@ Edited on 10th August 2020
 This code finds entities and types using lookup and endpoint, and the related classes using ontolo_class
 '''
 
-import re
 from ontology.onto_access import OntologyAccess, DBpediaOntology, SchemaOrgOntology
 import re
 from kg.endpoints import SPARQLEndpoint, DBpediaEndpoint
 from kg.lookup import Lookup, DBpediaLookup, WikidataAPI
-import itertools
 from nltk.corpus import stopwords
 
 '''
