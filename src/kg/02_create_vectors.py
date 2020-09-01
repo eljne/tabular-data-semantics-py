@@ -15,11 +15,13 @@ list of created vectors/steps:
 import re
 import json
 import nltk
+import pandas as pd
 import requests
 import numpy as np
 from textblob import TextBlob
 from nltk.corpus import stopwords
 from collections import defaultdict
+
 stopWords = set(stopwords.words('english'))  # load stopwords
 from ontology.onto_access import OntologyAccess, DBpediaOntology, SchemaOrgOntology
 from kg.endpoints import SPARQLEndpoint, DBpediaEndpoint
@@ -42,11 +44,12 @@ def load_json(filename):
     return data
 
 
-dbpedia_train = load_json("data/smarttask_dbpedia_train")   # to list of dictionaries
+dbpedia_train = load_json("data/smarttask_dbpedia_train")  # to list of dictionaries
 dbpedia_train = dbpedia_train[0:5]  # shorten for purposes of testing
 print('done shorten')
 
 '''PARSING AND EXTRACTION'''
+
 
 # search questions for given wh words
 def find_w(question):
@@ -61,6 +64,7 @@ def find_w(question):
     if len(wh) == 0:
         wh.append('N/A')
     return wh
+
 
 re_list = []
 for a in dbpedia_train:
@@ -116,12 +120,14 @@ for question in dbpedia_train_wh:
 
 print('done quick answer type rules')
 
+
 # parse and extract nouns
 def nouns(question):
     tokens = nltk.word_tokenize(question)
     tags = nltk.pos_tag(tokens)
     nouns = [word for word, pos in tags if (pos == 'NN' or pos == 'NNP' or pos == 'NNS' or pos == 'NNPS')]
     return nouns
+
 
 re_list = []
 for entry in dbpedia_train_wh:
@@ -134,12 +140,14 @@ dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '02_dbpedia_train_wh')
 print('done nouns parsed')
 
+
 # parse and extract noun phrases
 def noun_phrases(question):
     blob = TextBlob(question)
     noun_phrases = blob.noun_phrases
     np2 = list(noun_phrases)  # convert from wordlist to list
     return np2
+
 
 re_list = []
 for entry in dbpedia_train_wh:
@@ -156,13 +164,14 @@ print('done noun phrases parsed')
 # filter out stopwords and special characters from np lists
 def filter_SW(lst):
     wordsFiltered = []
-    lst = list(filter(None, lst))   # remove any empty strings
+    lst = list(filter(None, lst))  # remove any empty strings
     for w in lst:  # for word in list of nouns
         w = re.sub('\[', ' ', w)
         w = re.sub('[^A-Za-z0-9\' ]+', '', w)
         if w not in stopWords and w != "''":
             wordsFiltered.append(w)
     return wordsFiltered
+
 
 re_list = []
 for entry in dbpedia_train_wh:
@@ -188,7 +197,7 @@ def get_entities(phrase):  # question as a list of words
         entities = dbpedia.getKGEntities(phrase, limit)
     else:
         entities = []
-    for et in entities: # return just one entity, outside a list format
+    for et in entities:  # return just one entity, outside a list format
         e = et
     return e
 
@@ -196,9 +205,9 @@ def get_entities(phrase):  # question as a list of words
 def apply_endpoint(entity):  # find types
     ep = DBpediaEndpoint()  # using ID/int
     ent2 = entity.getIdstr()
-    types = ep.getTypesForEntity(ent2) # limit to 5
+    types = ep.getTypesForEntity(ent2)  # limit to 5
     # print('types using endpoint id', types)
-    if len(types) == 0: # using entity: back up
+    if len(types) == 0:  # using entity: back up
         types = entity.getTypes()  # ont
         # print('types using entity', types, '\n')
     return types
@@ -216,7 +225,7 @@ for entry in dbpedia_train_wh:
     entity_types = []
     for a in entry['entities']:
         # print('a', a)
-        types = apply_endpoint(a)   # a single entity in a list
+        types = apply_endpoint(a)  # a single entity in a list
         if len(types) > 0:
             entity_types.append(types)
     entry.update({'entity_types': entity_types})
@@ -226,11 +235,10 @@ dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '05_dbpedia_train_wh')
 print('done types found')
 
-
-
 ''' word embeddings on wh and nouns '''
 
 from gensim.models import KeyedVectors
+
 fastTextfile = 'data/wiki-news-300d-1M.vec'
 loaded_model = KeyedVectors.load_word2vec_format(fastTextfile)
 
@@ -263,14 +271,13 @@ dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '06_dbpedia_train_wh')
 print('done wh WE vectors found')
 
-
 # run nouns through word embedding
 re_list = []
 for entry in dbpedia_train_wh:
     we_nouns = []
     for noun in entry['noun list']:
         we = find_vector_we(noun)
-        if len(we) > 0:     # removed zeroed vectors to avoid affecting average
+        if len(we) > 0:  # removed zeroed vectors to avoid affecting average
             we_nouns.append(we)
     average_vector = cal_average(we_nouns)
     entry.update({'we_nouns_vector': average_vector})
@@ -286,7 +293,7 @@ for entry in dbpedia_train_wh:
     we_np = []
     for n in entry['np list']:
         we = find_vector_we(n)
-        if len(we) > 0:     # removed zeroed vectors to avoid affecting average
+        if len(we) > 0:  # removed zeroed vectors to avoid affecting average
             we_np.append(we)
     average_vector = cal_average(we_np)
     entry.update({'we_np_vector': average_vector})
@@ -302,7 +309,7 @@ for entry in dbpedia_train_wh:
     we_entities = []
     for ent in entry['entities']:
         we = find_vector_we(ent)
-        if len(we) > 0:     # removed zeroed vectors to avoid affecting average
+        if len(we) > 0:  # removed zeroed vectors to avoid affecting average
             we_entities.append(we)
     average_vector = cal_average(we_entities)
     entry.update({'we_entities_vector': average_vector})
@@ -312,25 +319,22 @@ dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '09_dbpedia_train_wh')
 print('done entity WE vectors found')
 
-
 # run closest type through word embedding
 re_list = []
 for entry in dbpedia_train_wh:
     we_type = []
     for type in entry['entity_types']:
         we = find_vector_we(type)
-        if len(we) > 0:     # removed zeroed vectors to avoid affecting average
+        if len(we) > 0:  # removed zeroed vectors to avoid affecting average
             we_type.append(we)
     average_vector = cal_average(we_type)
     entry.update({'we_type_vector': average_vector})
     re_list.append(entry)
 
-
 del loaded_model  # delete WE model from memory
 dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '10_dbpedia_train_wh')
 print('done type WE vectors found')
-
 
 ''' use kgvec2go KGEs '''
 ''' link to kg embeddings using nouns and nps to find types '''
@@ -347,7 +351,7 @@ def find_vector_kge(word_or_phrase):
     except:
         try:
             word_or_phrase1 = word_or_phrase.replace("_", " ")
-            word_or_phrase = word_or_phrase1.title()    # capitalise each first letter to catch e.g. names
+            word_or_phrase = word_or_phrase1.title()  # capitalise each first letter to catch e.g. names
             word_or_phrase2 = word_or_phrase.replace(" ", "_")  # replace w/underscores again for API
             query = 'http://www.kgvec2go.org/rest/get-vector/dbpedia/' + str(word_or_phrase2)
             response = requests.get(query)
@@ -372,16 +376,62 @@ for entry in dbpedia_train_wh:
 
 print('done entities KGE vectors found')
 dbpedia_train_wh = re_list
-write_file(dbpedia_train_wh, '11_dbpedia_train_wh_kge')
+write_file(dbpedia_train_wh, '11_dbpedia_train_wh')
 
+'''
+we_wh_vector - First position could be for the embedding of the wh question word (we can create our own embedding/encoding).
+we_nouns_vector - Second position for the WE of the sentence or set of nouns.
+we_np_vector - Third position (up to 3 or 4 vector positions? we can play with different values) for noun phrases without a good correspondence in KG (WE of the noun phrase)
+entities_KGE_vector - Fourth position (up to 3 or 4 vector positions) for noun phrases with a good correspondence in KG (KGE of entity representing noun phrase)
+we_type_vector - Fifth position (up to 3 or 4 vector positions) for the WE of the types of the KG entities above.
+'''
+
+
+def concatenate_vector(entry):
+    cv = [entry['we_wh_vector'],
+          entry['we_nouns_vector'],
+          entry['we_np_vector'],
+          entry['entities_KGE_vector'],
+          entry['we_type_vector']]
+    return cv
+
+
+re_list = []
+for entry in dbpedia_train_wh:
+    concatenated_vector = concatenate_vector(entry)
+    entry.update({'concatenated_vector': concatenated_vector})
+    re_list.append(entry)
+
+print('done concatenate vector')
+dbpedia_train_wh = re_list
+write_file(dbpedia_train_wh, '12_dbpedia_train_wh')
+
+# convert to dataframe to split
+df_all = pd.DataFrame()
+
+df = pd.DataFrame(dbpedia_train_wh)
+print(df.head(4))
+
+print('done convert to df')
+
+# group by on categories, types
 
 
 # vectors created to use with classifiers
 # group vector by categories, types
-#
-# categories_list = defaultdict(list)
-# types_list = defaultdict(list)
-#
-# for entity in sorted(dbpedia_train_wh.items()):
-#     categories_list[entity['category']].append(entity)
-#     types_list[entity['type']].append(entity)
+
+# find unique categories, types
+
+categories_list = ['boolean', 'literal', 'resource']
+temp = []
+for entry in dbpedia_train_wh:
+    ty = entry['type']
+    temp.append(ty)
+types_list = np.unique(temp)
+
+print('done found uniques')
+
+dict_of_types = dict(iter(df.groupby('type')))
+dict_of_categories = dict(iter(df.groupby('category')))
+
+print('done split to types and categories')
