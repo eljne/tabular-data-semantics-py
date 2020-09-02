@@ -305,9 +305,11 @@ print('done noun phrase WE vectors found')
 re_list = []
 for entry in dbpedia_train_wh:
     we_type = []
-    for type in entry['entity_types']:
-        print('entity type:', type)
-        we = find_vector_we(type)
+    for t in entry['entity_types']:
+        ty = next(iter(t))
+        print('entity type:', ty)
+        we = find_vector_we(ty)
+        print('we', we)
         if len(we) > 0:  # removed zeroed vectors to avoid affecting average
             we_type.append(we)
     average_vector = cal_average(we_type)

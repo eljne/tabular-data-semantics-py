@@ -2,20 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kg/03_splitdf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tabular-data-semantics-py.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tabular-data-semantics-py.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/02_create_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/02_create_vectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/03_splitdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/03_splitdf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/05_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/05_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/07_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/07_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/08_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/08_dbpedia_train_wh.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/09_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/09_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/10_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/10_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/11_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/11_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/12_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/12_dbpedia_train_wh.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/data/df.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/df.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +187,7 @@
       <workItem from="1599053999961" duration="229000" />
       <workItem from="1599054834766" duration="2536000" />
       <workItem from="1599059085633" duration="1132000" />
+      <workItem from="1599060792081" duration="1563000" />
     </task>
     <servers />
   </component>
@@ -221,26 +219,26 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="334" y="138" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.777@0.23.1280.777" timestamp="1599053392774" />
-    <state width="1258" height="197" key="GridCell.Tab.0.bottom" timestamp="1599060293649">
+    <state width="1258" height="197" key="GridCell.Tab.0.bottom" timestamp="1599062216920">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1597140808223" />
-    <state width="1258" height="197" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599060293649" />
-    <state width="1258" height="197" key="GridCell.Tab.0.center" timestamp="1599060293647">
+    <state width="1258" height="197" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599062216920" />
+    <state width="1258" height="197" key="GridCell.Tab.0.center" timestamp="1599062216919">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1597140808221" />
-    <state width="1258" height="197" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1599060293647" />
-    <state width="1258" height="197" key="GridCell.Tab.0.left" timestamp="1599060293647">
+    <state width="1258" height="197" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1599062216919" />
+    <state width="1258" height="197" key="GridCell.Tab.0.left" timestamp="1599062216919">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1597140808220" />
-    <state width="1258" height="197" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1599060293647" />
-    <state width="1258" height="197" key="GridCell.Tab.0.right" timestamp="1599060293648">
+    <state width="1258" height="197" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1599062216919" />
+    <state width="1258" height="197" key="GridCell.Tab.0.right" timestamp="1599062216920">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1597140808222" />
-    <state width="1258" height="197" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1599060293648" />
+    <state width="1258" height="197" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1599062216920" />
     <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1596643864326">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -263,6 +261,6 @@
     <state x="37" y="46" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1594819584355" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/tabular_data_semantics_py$02_create_vectors.coverage" NAME="02_create_vectors Coverage Results" MODIFIED="1599060293631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kg" />
+    <SUITE FILE_PATH="coverage/tabular_data_semantics_py$02_create_vectors.coverage" NAME="02_create_vectors Coverage Results" MODIFIED="1599062216903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kg" />
   </component>
 </project>

@@ -1,8 +1,10 @@
-# import csv
+''' import csv, split into types/categories, select randomly from training data to train classifier'''
 
 import pandas as pd
+import random
 
-df = pd.DataFrame()
+# read csv file
+df = pd.read_csv('data/df.csv')
 
 # find unique categories, types
 
@@ -15,8 +17,12 @@ df = pd.DataFrame()
 #
 # print('done found uniques')
 
-
 dict_of_types = dict(iter(df.groupby('type')))
 dict_of_categories = dict(iter(df.groupby('category')))
 
 print('done split to types and categories')
+
+'''select negative samples at random from training data'''
+'''look at PDS coursework'''
+
+
