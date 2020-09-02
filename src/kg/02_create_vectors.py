@@ -20,10 +20,10 @@ import requests
 import numpy as np
 from textblob import TextBlob
 from nltk.corpus import stopwords
-from collections import defaultdict
+from gensim.models import KeyedVectors
 
 stopWords = set(stopwords.words('english'))  # load stopwords
-from ontology.onto_access import OntologyAccess, DBpediaOntology, SchemaOrgOntology
+# from ontology.onto_access import OntologyAccess, DBpediaOntology, SchemaOrgOntology
 from kg.endpoints import SPARQLEndpoint, DBpediaEndpoint
 from kg.lookup import Lookup, DBpediaLookup, WikidataAPI
 
@@ -237,8 +237,6 @@ print('done types found')
 
 ''' word embeddings on wh and nouns '''
 
-from gensim.models import KeyedVectors
-
 fastTextfile = 'data/wiki-news-300d-1M.vec'
 loaded_model = KeyedVectors.load_word2vec_format(fastTextfile)
 
@@ -246,7 +244,7 @@ loaded_model = KeyedVectors.load_word2vec_format(fastTextfile)
 # find word embedding vector
 def find_vector_we(word_or_phrase):
     try:
-        vector = loaded_model.wv.word_vec(word_or_phrase)
+        vector = loaded_model.word_vec(word_or_phrase)
     except:
         vector = np.zeros(1)
     return vector
@@ -303,27 +301,12 @@ dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '08_dbpedia_train_wh')
 print('done noun phrase WE vectors found')
 
-# run related entities through word embedding
-re_list = []
-for entry in dbpedia_train_wh:
-    we_entities = []
-    for ent in entry['entities']:
-        we = find_vector_we(ent)
-        if len(we) > 0:  # removed zeroed vectors to avoid affecting average
-            we_entities.append(we)
-    average_vector = cal_average(we_entities)
-    entry.update({'we_entities_vector': average_vector})
-    re_list.append(entry)
-
-dbpedia_train_wh = re_list
-write_file(dbpedia_train_wh, '09_dbpedia_train_wh')
-print('done entity WE vectors found')
-
 # run closest type through word embedding
 re_list = []
 for entry in dbpedia_train_wh:
     we_type = []
     for type in entry['entity_types']:
+        print('entity type:', type)
         we = find_vector_we(type)
         if len(we) > 0:  # removed zeroed vectors to avoid affecting average
             we_type.append(we)
@@ -362,13 +345,13 @@ def find_vector_kge(word_or_phrase):
     return vector
 
 
-# run entities through kg embedding to get vectors
+# run noun phrases through kg embedding to get vectors
 re_list = []
 for entry in dbpedia_train_wh:
     kge_entities = []
-    for noun_phrase in entry['entities']:
+    for noun_phrase in entry['np list']:
         kge = find_vector_kge(noun_phrase)
-        if len(we) > 1:
+        if len(kge) > 1:
             kge_entities.append(kge)
     average_vector = cal_average(kge_entities)
     entry.update({'entities_KGE_vector': average_vector})
@@ -414,24 +397,6 @@ print(df.head(4))
 
 print('done convert to df')
 
-# group by on categories, types
+df.to_csv(r'data/df.csv', index = False)
 
-
-# vectors created to use with classifiers
-# group vector by categories, types
-
-# find unique categories, types
-
-categories_list = ['boolean', 'literal', 'resource']
-temp = []
-for entry in dbpedia_train_wh:
-    ty = entry['type']
-    temp.append(ty)
-types_list = np.unique(temp)
-
-print('done found uniques')
-
-dict_of_types = dict(iter(df.groupby('type')))
-dict_of_categories = dict(iter(df.groupby('category')))
-
-print('done split to types and categories')
+print('done written to csv')
