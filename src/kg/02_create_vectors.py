@@ -26,6 +26,7 @@ stopWords = set(stopwords.words('english'))  # load stopwords
 # from ontology.onto_access import OntologyAccess, DBpediaOntology, SchemaOrgOntology
 from kg.endpoints import SPARQLEndpoint, DBpediaEndpoint
 from kg.lookup import Lookup, DBpediaLookup, WikidataAPI
+from util.utilities import getEntityName
 
 
 def write_file(file_to_write, filename):
@@ -45,7 +46,7 @@ def load_json(filename):
 
 
 dbpedia_train = load_json("data/smarttask_dbpedia_train")  # to list of dictionaries
-dbpedia_train = dbpedia_train[0:5]  # shorten for purposes of testing
+# dbpedia_train = dbpedia_train[0:5]  # shorten for purposes of testing
 print('done shorten')
 
 '''PARSING AND EXTRACTION'''
@@ -301,17 +302,29 @@ dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '08_dbpedia_train_wh')
 print('done noun phrase WE vectors found')
 
+
+#   get the entity name for a given URI
+def type_convert(ty):
+    label = getEntityName(ty)
+    return label
+
+#   query the SPARQL endpoint to get the label
+# def type_convert(ty):
+#     ep = SPARQLEndpoint(ty)
+#     label = ep.getEnglishLabelsForEntity(ty)
+#     return label
+
+
 # run closest type through word embedding
 re_list = []
 for entry in dbpedia_train_wh:
     we_type = []
     for t in entry['entity_types']:
         ty = next(iter(t))
-        print('entity type:', ty)
-        we = find_vector_we(ty)
-        print('we', we)
-        if len(we) > 0:  # removed zeroed vectors to avoid affecting average
-            we_type.append(we)
+        english_label = type_convert(ty)
+        we2 = find_vector_we(english_label)
+        if len(we2) > 0:  # removed zeroed vectors to avoid affecting average
+            we_type.append(we2)
     average_vector = cal_average(we_type)
     entry.update({'we_type_vector': average_vector})
     re_list.append(entry)
@@ -395,7 +408,7 @@ write_file(dbpedia_train_wh, '12_dbpedia_train_wh')
 df_all = pd.DataFrame()
 
 df = pd.DataFrame(dbpedia_train_wh)
-print(df.head(4))
+# print(df.head(4))
 
 print('done convert to df')
 

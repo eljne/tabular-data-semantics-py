@@ -41,7 +41,7 @@ class SPARQLEndpoint(object):
     
     
         
-    def getEntitiesForType(self, cls, offset=0, limit=1000):
+    def getEntitiesForType(self, cls: object, offset: object = 0, limit: object = 1000) -> object:
         
         query = self.createSPARQLEntitiesForClass(cls, offset, limit)
         
