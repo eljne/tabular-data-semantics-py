@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tabular-data-semantics-py.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tabular-data-semantics-py.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/020_create_vectors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/021_create_vectors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/022_concat_vectors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/030_split_df_augment_samples.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/040_train_classifiers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/050_use_classifiers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/02_create_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/02_create_vectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/02_create_vectors.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/03_splitdf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/data/01_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/01_dbpedia_train_wh.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/data/02_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/02_dbpedia_train_wh.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/data/03_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/03_dbpedia_train_wh.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/data/04_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/04_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/05_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/05_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/07_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/07_dbpedia_train_wh.txt" afterDir="false" />
@@ -14,7 +23,6 @@
       <change beforePath="$PROJECT_DIR$/src/kg/data/11_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/11_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/12_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/12_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/df.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/df.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/endpoints.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/endpoints.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +58,49 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.02_create_vectors">
+  <component name="RunManager" selected="Python.030_split_df_augment_samples">
+    <configuration name="021_create_vectors" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/021_create_vectors.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="022_concat_vectors" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/022_concat_vectors.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="02_create_vectors" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tabular-data-semantics-py" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -64,7 +114,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/02_create_vectors.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/020_create_vectors.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -73,7 +123,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="EB_count" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="030_split_df_augment_samples" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tabular-data-semantics-py" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -85,52 +135,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/01_EB_count_types_KGE.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="EB_implement2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tabular-data-semantics-py" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/01_EB_count_types_KGE3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="lookup" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tabular-data-semantics-py" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/lookup.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/030_split_df_augment_samples.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -163,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.030_split_df_augment_samples" />
+        <item itemvalue="Python.022_concat_vectors" />
+        <item itemvalue="Python.021_create_vectors" />
         <item itemvalue="Python.02_create_vectors" />
         <item itemvalue="Python.lookup_parsedqs" />
-        <item itemvalue="Python.EB_count" />
-        <item itemvalue="Python.EB_implement2" />
-        <item itemvalue="Python.lookup" />
       </list>
     </recent_temporary>
   </component>
@@ -234,45 +239,49 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="334" y="138" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.777@0.23.1280.777" timestamp="1599053392774" />
-    <state width="1239" height="163" key="GridCell.Tab.0.bottom" timestamp="1599164271049">
+    <state width="1239" height="201" key="GridCell.Tab.0.bottom" timestamp="1599233002915">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1597140808223" />
-    <state width="1239" height="163" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599164271049" />
-    <state width="1239" height="163" key="GridCell.Tab.0.center" timestamp="1599164271048">
+    <state width="1239" height="201" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599233002915" />
+    <state width="1239" height="201" key="GridCell.Tab.0.center" timestamp="1599233002914">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1597140808221" />
-    <state width="1239" height="163" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1599164271048" />
-    <state width="1239" height="163" key="GridCell.Tab.0.left" timestamp="1599164271048">
+    <state width="1239" height="201" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1599233002914" />
+    <state width="1239" height="201" key="GridCell.Tab.0.left" timestamp="1599233002913">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1597140808220" />
-    <state width="1239" height="163" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1599164271048" />
-    <state width="1239" height="163" key="GridCell.Tab.0.right" timestamp="1599164271049">
+    <state width="1239" height="201" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1599233002913" />
+    <state width="1239" height="201" key="GridCell.Tab.0.right" timestamp="1599233002914">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1597140808222" />
-    <state width="1239" height="163" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1599164271049" />
-    <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1596643864326">
+    <state width="1239" height="201" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1599233002914" />
+    <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1599166070362">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1239" height="229" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1596643864326" />
-    <state width="1239" height="229" key="GridCell.Tab.1.center" timestamp="1596643864326">
+    <state width="1239" height="229" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599166070362" />
+    <state width="1239" height="229" key="GridCell.Tab.1.center" timestamp="1599166070360">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1239" height="229" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1596643864326" />
-    <state width="1239" height="229" key="GridCell.Tab.1.left" timestamp="1596643864326">
+    <state width="1239" height="229" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1599166070360" />
+    <state width="1239" height="229" key="GridCell.Tab.1.left" timestamp="1599166070360">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1239" height="229" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1596643864326" />
-    <state width="1239" height="229" key="GridCell.Tab.1.right" timestamp="1596643864326">
+    <state width="1239" height="229" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1599166070360" />
+    <state width="1239" height="229" key="GridCell.Tab.1.right" timestamp="1599166070361">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1239" height="229" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1596643864326" />
+    <state width="1239" height="229" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1599166070361" />
     <state x="37" y="46" key="SettingsEditor" timestamp="1599151716363">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="37" y="46" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1599151716363" />
+    <state x="308" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1599165973554">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="308" y="124" width="670" height="676" key="search.everywhere.popup/0.23.1280.777@0.23.1280.777" timestamp="1599165973554" />
   </component>
 </project>
