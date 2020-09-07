@@ -212,10 +212,10 @@ if __name__ == '__main__':
     
     
     
-    print(onto_access.getClassByName("City"))
-    print(onto_access.getClassByName("City").descendants())
-    print(onto_access.getClassByName("City").ancestors())
-    print(onto_access.getDescendantURIs(onto_access.getClassByName("City")))
-    print(onto_access.getAncestorsURIs(onto_access.getClassByName("City")))
+    print('1',onto_access.getClassByName("City"))
+    print('2',onto_access.getClassByName("City").descendants())
+    print('3',onto_access.getClassByName("City").ancestors())
+    print('4',onto_access.getDescendantURIs(onto_access.getClassByName("City")))
+    print('5',onto_access.getAncestorsURIs(onto_access.getClassByName("City")))
     
     

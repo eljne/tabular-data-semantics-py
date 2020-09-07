@@ -729,25 +729,26 @@ if __name__ == '__main__':
     #    print(e, label)
     
     
-    #predicatesForSubject = ep.getPredicatesForSubject(ent, 10)
-    #for p in predicatesForSubject:
-    #    print(p)
+    predicatesForSubject = ep.getPredicatesForSubject(ent, 10)
+    for p in predicatesForSubject:
+        print('predicatesForSubject',p)
     
-    #predicatesForObject = ep.getPredicatesForObject(ent, 50)
-    #for p in predicatesForObject:
-    #    print(p)
+    predicatesForObject = ep.getPredicatesForObject(ent, 50)
+    for p in predicatesForObject:
+        print('predicatesForObject',p)
     
     print("Domain types")
     types_domain = ep.getTopTypesUsingPredicatesForSubject(ent, 3)
     for t in types_domain:
-        print(t)
+        print('tt', t)
     
     print("Range types")
-    types_range = ep.getTopTypesUsingPredicatesForObject(ent, 3)
+    types_range = ep.createSPARQLQueryEquivalentClasses(ent, 3)
     for t in types_range:
-        print(t)
+        print('t', t)
     
-    
+
+
     
     cls = "http://dbpedia.org/ontology/Country"
     #cls = "http://dbpedia.org/ontology/Person"
@@ -755,10 +756,10 @@ if __name__ == '__main__':
     
    
     sup2dist = ep.getDistanceToAllSuperClasses(cls)
-    print(len(sup2dist), sup2dist)
+    print('s', len(sup2dist), sup2dist)
     
     sub2dist = ep.getDistanceToAllSubClasses(cls)
-    print(len(sub2dist), sub2dist)
+    print('ss', len(sub2dist), sub2dist)
     
     
     
@@ -772,8 +773,8 @@ if __name__ == '__main__':
     #print(len(equiv), equiv)
     
     
-    #same = ep.getSameEntities(ent)
-    #print(len(same), same)
+    same = ep.getSameEntities(ent)
+    print(len(same), same)
     
     
     gt_cls="http://www.wikidata.org/entity/Q5"
@@ -793,7 +794,8 @@ if __name__ == '__main__':
     labels = ep.getEnglishLabelsForEntity(ent)
     print(len(labels), labels)
     
-    
+    labels = ep.getEnglishLabelsForEntity(ent)
+    print(len(labels), labels)
     
     
         
