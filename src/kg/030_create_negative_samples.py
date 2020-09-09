@@ -1,24 +1,22 @@
-''' import csv, split into types/categories, select randomly from training data to train classifier'''
-# 8th september - ejb
+''' import csv, create negative samples from positive samples'''
+# 9th september - ejb
 
 import pandas as pd
 import pickle
 import random
 import numpy as np
 from ontology.onto_access import DBpediaOntology
-from owlready2 import *
 
 # read csv file
 df = pd.read_csv('data/df.csv')
 
 print('done read from csv')
 
-
 '''test different strategies to augment positive samples to get negative samples'''
 
 # query for siblings of target types
 # siblings of the classes associated with the target types e.g. ‘basketball player’ vs. ‘football player’
-uri_onto="http://www.cs.ox.ac.uk/isg/ontologies/schema.org.owl"
+uri_onto = "http://www.cs.ox.ac.uk/isg/ontologies/schema.org.owl"
 onto_access = DBpediaOntology()
 onto_access.loadOntology(True)
 
@@ -120,20 +118,15 @@ output_column
 '''
 
 # check sample is actually negative
-# if df['output_column'] != df['type']:
-
-
-
+df_negative2 = df_negative[(df_negative.output_column != df_negative.type)]
 
 # pickle
-# f = open('data/positive_samples.pkl', 'rb')
-# pickle.dump(positive_samples,f)
-# f.close()
-#
-# f = open('data/negative_samples.pkl', 'rb')
-# pickle.dump(negative_samples,f)
-# f.close()
+f = open('data/positive_samples.pkl', 'wb')
+pickle.dump(df_positive, f)
+f.close()
 
-# create vectors for negative types
-# apply to shuffled type: KGE or WE
-# apply to sibling type: KGE or WE
+f = open('data/negative_samples.pkl', 'wb')
+pickle.dump(df_negative2, f)
+f.close()
+
+print('done pickled')

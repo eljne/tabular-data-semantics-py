@@ -1,5 +1,6 @@
 ''' classify test data '''
 import pickle
+import pandas as pd
 from sklearn.neural_network import MLPClassifier
 
 '''unpickle classifiers'''
@@ -21,11 +22,14 @@ classifiers_all_typ = pickle.load(pkl_file)
 pkl_file.close()
 
 
-'''load test data'''
-test data = []
+'''load test data vectors'''
+
+pkl_file = open('data/dbpedia_test_final.pkl', 'rb')
+dbpedia_test_final = pickle.load(pkl_file)
+pkl_file.close()
+test_data = pd.DataFrame(dbpedia_test_final)
 
 ''' run through classifiers '''
-
 
 '''category'''
 max_pos = 0

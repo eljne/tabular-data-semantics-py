@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/kg/040_create_positive_samples.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kg/060_test_data_vectors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/030_split_df_augment_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/030_split_df_augment_samples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/030_split_df_augment_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/030_create_negative_samples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/040_train_classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/050_train_classifiers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/050_use_classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/070_use_classifiers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/08_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/08_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/10_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/10_dbpedia_train_wh.txt" afterDir="false" />
@@ -78,7 +82,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/030_split_df_augment_samples.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/030_create_negative_samples.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -223,26 +227,26 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="334" y="138" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.777@0.23.1280.777" timestamp="1599053392774" />
-    <state width="1239" height="201" key="GridCell.Tab.0.bottom" timestamp="1599577981139">
+    <state width="1239" height="201" key="GridCell.Tab.0.bottom" timestamp="1599649373998">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1597140808223" />
-    <state width="1239" height="201" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599577981139" />
-    <state width="1239" height="201" key="GridCell.Tab.0.center" timestamp="1599577981138">
+    <state width="1239" height="201" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599649373998" />
+    <state width="1239" height="201" key="GridCell.Tab.0.center" timestamp="1599649373997">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1597140808221" />
-    <state width="1239" height="201" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1599577981138" />
-    <state width="1239" height="201" key="GridCell.Tab.0.left" timestamp="1599577981137">
+    <state width="1239" height="201" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1599649373997" />
+    <state width="1239" height="201" key="GridCell.Tab.0.left" timestamp="1599649373997">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1597140808220" />
-    <state width="1239" height="201" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1599577981137" />
-    <state width="1239" height="201" key="GridCell.Tab.0.right" timestamp="1599577981138">
+    <state width="1239" height="201" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1599649373997" />
+    <state width="1239" height="201" key="GridCell.Tab.0.right" timestamp="1599649373997">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1597140808222" />
-    <state width="1239" height="201" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1599577981138" />
+    <state width="1239" height="201" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1599649373997" />
     <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1599562559123">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -267,5 +271,16 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="308" y="124" width="670" height="676" key="search.everywhere.popup/0.23.1280.777@0.23.1280.777" timestamp="1599165973554" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/kg/021_create_vectors.py</url>
+          <line>3</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
