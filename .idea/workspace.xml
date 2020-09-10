@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/030_create_negative_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/030_create_negative_samples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/040_create_positive_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/040_create_positive_samples.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/050_train_classifiers_only_positive.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/050_train_classifiers_only_positive.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/08_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/08_dbpedia_train_wh.txt" afterDir="false" />
@@ -230,26 +228,26 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="334" y="138" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.777@0.23.1280.777" timestamp="1599053392774" />
-    <state width="1239" height="176" key="GridCell.Tab.0.bottom" timestamp="1599771349866">
+    <state width="1239" height="176" key="GridCell.Tab.0.bottom" timestamp="1599776197918">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1597140808223" />
-    <state width="1239" height="176" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599771349866" />
-    <state width="1239" height="176" key="GridCell.Tab.0.center" timestamp="1599771349865">
+    <state width="1239" height="176" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1599776197918" />
+    <state width="1239" height="176" key="GridCell.Tab.0.center" timestamp="1599776197918">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1597140808221" />
-    <state width="1239" height="176" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1599771349865" />
-    <state width="1239" height="176" key="GridCell.Tab.0.left" timestamp="1599771349865">
+    <state width="1239" height="176" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1599776197918" />
+    <state width="1239" height="176" key="GridCell.Tab.0.left" timestamp="1599776197917">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1597140808220" />
-    <state width="1239" height="176" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1599771349865" />
-    <state width="1239" height="176" key="GridCell.Tab.0.right" timestamp="1599771349866">
+    <state width="1239" height="176" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1599776197917" />
+    <state width="1239" height="176" key="GridCell.Tab.0.right" timestamp="1599776197918">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1597140808222" />
-    <state width="1239" height="176" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1599771349866" />
+    <state width="1239" height="176" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1599776197918" />
     <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1599759657847">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
