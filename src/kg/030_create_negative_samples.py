@@ -7,10 +7,12 @@ import random
 import numpy as np
 from ontology.onto_access import DBpediaOntology
 
-# read csv file
-df = pd.read_csv('data/df.csv')
+# unpickle
+pkl_file = open('data/df.pkl', 'rb')
+df = pickle.load(pkl_file)
+pkl_file.close()
 
-print('done read from csv')
+print('done unpickled')
 
 '''test different strategies to augment positive samples to get negative samples'''
 
@@ -68,33 +70,40 @@ def get_sibling(type):
 
 df['sibling_type'] = df['type'].apply(get_sibling)   # column by column
 
-
 # shuffle the answer categories and types independent of the questions to get a random answer category/type
 
-df['output_column'] = df['type'].copy()
+df['shuffled_type'] = df['type'].copy()
 n_rows = len(df['type'])
 pick_new_rows = np.random.permutation(list(range(n_rows)))[0:n_rows]
-shuffled_values = np.random.permutation(df['output_column'][pick_new_rows])
-df['output_column'][pick_new_rows] = shuffled_values
-print('done shuffle')
+shuffled_values = np.random.permutation(df['shuffled_type'][pick_new_rows])
+df['shuffled_type'][pick_new_rows] = shuffled_values
+print('done type shuffle')
+
+df['shuffled_category'] = df['category'].copy()
+n_rows = len(df['category'])
+pick_new_rows = np.random.permutation(list(range(n_rows)))[0:n_rows]
+shuffled_values = np.random.permutation(df['shuffled_category'][pick_new_rows])
+df['shuffled_category'][pick_new_rows] = shuffled_values
+print('done category shuffle')
 
 df_csv_test = df[0:20]
-print(df_csv_test.shape)
-
 df_csv_test.to_csv('data/df2.csv')
-print('done read to csv')
+print('done read extract to csv')
 
 # separate positive and negative samples
-
-df_positive = pd.read_csv('data/df.csv')
 df_negative = df[["category",
                   "type",
                   "question",
                   "wh",
                   "id",
                   "sibling_type",
-                  "output_column"
+                  "shuffled_type",
+                  "shuffled_category"
                   ]]    # subset of df
+
+# labels for training samples: 0 for negative, 1 for positive
+df_negative['polarity'] = "0"
+
 '''
 category	
 concatenated_vector	
@@ -114,19 +123,16 @@ we_type_vector
 we_wh_vector	
 wh	
 sibling_type	
-output_column
+shuffled_type
+shuffled_category
 '''
 
 # check sample is actually negative
-df_negative2 = df_negative[(df_negative.output_column != df_negative.type)]
-
-# pickle
-f = open('data/positive_samples.pkl', 'wb')
-pickle.dump(df_positive, f)
-f.close()
+df_negative2 = df_negative[(df_negative.shuffled_type != df_negative.type)]
+df_negative3 = df_negative2[(df_negative2.shuffled_category != df_negative2.category)]
 
 f = open('data/negative_samples.pkl', 'wb')
-pickle.dump(df_negative2, f)
+pickle.dump(df_negative3, f)
 f.close()
 
 print('done pickled')

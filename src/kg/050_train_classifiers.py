@@ -22,6 +22,10 @@ dict_of_categories_neg = dict(iter(negative_samples.groupby('category')))
 print('done split to types and categories')
 
 
+
+# choose the number of negative examples trained for each positive example
+
+
 def train_test(dataset, fraction):
     train_set = dataset.sample(frac=fraction, random_state=0)
     test_set = dataset.drop(train_set.index)
@@ -33,31 +37,6 @@ def train_classifier(train_set, label):
                         hidden_layer_sizes=(5, 2), random_state=1)
     clf.fit(train_set, label)
     return clf
-
-
-'''select positive samples at random from training data'''
-classifiers_pos_cat = {}
-classifiers_pos_typ = {}
-
-for category, df in dict_of_categories_neg:
-    train_set, test_set = train_test(df, 0.80)
-    classifier = train_classifier(train_set['concatenated_vector'], category)
-    classifiers_pos_cat[category] = classifier
-
-
-for type, df in dict_of_types_neg:
-    train_set, test_set = train_test(df, 0.80)
-    classifier = train_classifier(train_set['concatenated_vector'], type)
-    classifiers_pos_typ[type] = classifier
-
-
-f = open('data/classifiers_pos_cat.pkl', 'rb')
-pickle.dump(classifiers_pos_cat,f)
-pkl_file.close()
-
-f = open('data/classifiers_pos_typ.pkl', 'rb')
-pickle.dump(classifiers_pos_typ,f)
-pkl_file.close()
 
 
 '''use all training data'''

@@ -44,11 +44,7 @@ print('done concatenate vector')
 dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '12_dbpedia_train_wh')
 
-# convert to dataframe to split
-df_all = pd.DataFrame()
-
-df = pd.DataFrame(dbpedia_train_wh)
-print('done convert to df')
-
-df.to_csv(r'data/df.csv', index = False)
-print('done written to csv')
+# pickle
+f = open('data/df.pkl', 'wb')
+pickle.dump(dbpedia_train_wh, f)
+f.close()

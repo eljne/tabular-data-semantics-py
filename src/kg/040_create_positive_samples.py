@@ -2,15 +2,35 @@
 # 9th september - ejb
 # may not include this after all - ask Ernesto
 
-# read csv file
-df = pd.read_csv('data/df.csv')
+import pandas as pd
+import pickle
 
-print('done read from csv')
+# unpickle
+pkl_file = open('data/df.pkl', 'rb')
+df_positive = pickle.load(pkl_file)
+pkl_file.close()
+
+df_positive['polarity'] = "1"
 
 '''test different strategies to augment positive samples'''
 
 # query for siblings of target types
+# get questions with different types in them e.g. who coached [athlete]? [coach]
 # siblings of the classes associated with the target types e.g. ‘basketball player’ vs. ‘football player’
-uri_onto = "http://www.cs.ox.ac.uk/isg/ontologies/schema.org.owl"
-onto_access = DBpediaOntology()
-onto_access.loadOntology(True)
+# uri_onto = "http://www.cs.ox.ac.uk/isg/ontologies/schema.org.owl"
+# onto_access = DBpediaOntology()
+# onto_access.loadOntology(True)
+
+training_vector = pd.Series()
+
+for a in df_positive['concatenated_vector']:
+    print(a)
+    b = a.tolist()
+    training_vector.append(b)
+
+# pickle
+f = open('data/positive_samples.pkl', 'wb')
+pickle.dump(df_positive, f)
+f.close()
+
+print('done pickled')

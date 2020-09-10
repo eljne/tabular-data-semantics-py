@@ -35,7 +35,7 @@ test_data = pd.DataFrame(dbpedia_test_final)
 max_pos = 0
 for value in test_data:
     for c in classifiers_pos_cat:
-        pred = c.predict([value])
+        pred = c.predict([value['concatenated vector']])
         if pred > max_pos:
             max_neg = pred
             best_pos_cat = c
@@ -43,7 +43,7 @@ for value in test_data:
 max_neg = 0
 for value in test_data:
     for c in classifiers_all_cat:
-        pred = c.predict([value])
+        pred = c.predict([value['concatenated vector']])
         if pred > max_neg:
             max_neg = pred
             best_all_cat = c
@@ -53,7 +53,7 @@ for value in test_data:
 max_pos = 0
 for value in test_data:
     for c in classifiers_pos_type:
-        pred = c.predict([value])
+        pred = c.predict([value['concatenated vector']])
         if pred > max_pos:
             max_neg = pred
             best_pos_typ = c
@@ -61,7 +61,7 @@ for value in test_data:
 max_neg = 0
 for value in test_data:
     for c in classifiers_all_type:
-        pred = c.predict([value])
+        pred = c.predict([value['concatenated vector']])
         if pred > max_neg:
             max_neg = pred
             best_all_type = c
