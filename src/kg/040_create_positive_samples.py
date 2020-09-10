@@ -7,8 +7,10 @@ import pickle
 
 # unpickle
 pkl_file = open('data/df.pkl', 'rb')
-df_positive = pickle.load(pkl_file)
+load = pickle.load(pkl_file)
 pkl_file.close()
+
+df_positive = pd.DataFrame(load)
 
 df_positive['polarity'] = "1"
 
@@ -20,13 +22,6 @@ df_positive['polarity'] = "1"
 # uri_onto = "http://www.cs.ox.ac.uk/isg/ontologies/schema.org.owl"
 # onto_access = DBpediaOntology()
 # onto_access.loadOntology(True)
-
-training_vector = pd.Series()
-
-for a in df_positive['concatenated_vector']:
-    print(a)
-    b = a.tolist()
-    training_vector.append(b)
 
 # pickle
 f = open('data/positive_samples.pkl', 'wb')

@@ -9,10 +9,13 @@ from ontology.onto_access import DBpediaOntology
 
 # unpickle
 pkl_file = open('data/df.pkl', 'rb')
-df = pickle.load(pkl_file)
+load = pickle.load(pkl_file)
 pkl_file.close()
 
 print('done unpickled')
+
+df = pd.DataFrame(load)
+print(df.shape)
 
 '''test different strategies to augment positive samples to get negative samples'''
 
@@ -24,19 +27,8 @@ onto_access.loadOntology(True)
 
 
 def get_sibling(type):
-    type2 = type.split('\'')
-    types = []
     labels = []
-    for t in type2:
-        type3 = t.replace("[", "")
-        type4 = type3.replace(",", "")
-        type5 = type4.replace("]", "")
-        type6 = type5.replace(" ", "")
-        type7 = type6.replace("\n", "")
-        types.append(type7)
-    for t in types:
-        while "" in types:
-            types.remove("")
+    for t in type:
         t2 = str(t.replace("dbo:", ""))
         # print('t2', t2)
         try:
