@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from sklearn.neural_network import MLPClassifier
 
+# use only original training data
 pkl_file = open('data/positive_samples.pkl', 'rb')
 load = pickle.load(pkl_file)
 pkl_file.close()
@@ -50,20 +51,20 @@ def random_sample_ratioed(datafrm, pos_fraction, ratio_pos, ratio_neg):
     except:
         print('not enough negative data, try diff ratio/fraction')
         return pd.DataFrame()
-    new_df = pd.concat([positive_smples, negative_smples])
-    return new_df
+    new_df = pd.concat([positive_smples, negative_smples])  # append all data together
+    new_df2 = new_df.sample(frac=1)  # shuffle dataframe
+    return new_df2
 
 
 def train_classifier(train, label):
     clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
                         hidden_layer_sizes=(5, 2), random_state=1)
-    # print('label', label)
-    X = []
-    for t in train:
-        X.append(t)
-    # array([[0.038..., 0.961...]])
-    print('train', X[:1])   # something dodgy about the vector shape/type
-    clf.fit(X, label)   # debug from here
+    print('label', label.shape)   # array y of size (n_samples,)
+    # 8814    0
+    # 11152   0
+    # 3949    [[0.0223, 0.0816, 0.0139, -0.0124, -0.0084, -0...
+    print('train', train.shape)   # array X of size (n_samples, n_features)
+    clf.fit(train, label)   # debug from here
     return clf
 
 
@@ -85,12 +86,13 @@ for df in cats_dfs:
     copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label), axis=1)
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
     # print(train_set)
-    X = train_set['concatenated_vector']  # array X of size (n_samples, n_features)
+    # X = train_set['concatenated_vector']
+    X = train_set['',,,,]
     print(len(X))
-    y = train_set["y"]  # array y of size (n_samples,)
+    y = train_set["y"]
     print(len(y))
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    # classifiers_pos_cat[cats_dfs] = classifier
+    classifiers_pos_cat[cats_dfs] = classifier
 
 # for df in types_dfs:
 # train_set, test_set = train_test(df, 0.80)
@@ -100,9 +102,9 @@ for df in cats_dfs:
 # classifiers_pos_typ[type_label] = classifier
 
 
-# f = open('data/classifiers_pos_cat.pkl', 'rb')
-# pickle.dump(classifiers_pos_cat, f)
-# pkl_file.close()
+f = open('data/classifiers_pos_cat.pkl', 'rb')
+pickle.dump(classifiers_pos_cat, f)
+pkl_file.close()
 
 
 #

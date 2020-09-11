@@ -3,6 +3,7 @@
 
 import pickle
 import pandas as pd
+import numpy as np
 
 pkl_file = open('data/dbpedia_train_all_vectors.pkl', 'rb')
 dbpedia_train_wh = pickle.load(pkl_file)
@@ -25,26 +26,82 @@ def write_file(file_to_write, filename):
     return 0
 
 
-def concatenate_vector(entry):
-    cv = [entry['we_wh_vector'],
-          entry['we_nouns_vector'],
-          entry['we_np_vector'],
-          entry['entities_KGE_vector'],
-          entry['we_type_vector']]
-    return cv
+dbpedia_train_wh = pd.DataFrame(dbpedia_train_wh)
+dbpedia_train_wh = dbpedia_train_wh.fillna(0)
+
+# make sure all the same length (if returned zeros, replace with array of zeroes that is correct length)
+for a in range(0, len(dbpedia_train_wh)):
+    try:
+        if len(dbpedia_train_wh['we_wh_vector'][a]) == 1:
+            dbpedia_train_wh['we_wh_vector'][a] = np.zeros(300)
+    except:
+        try:
+            if dbpedia_train_wh['we_wh_vector'][a] == 0:
+                dbpedia_train_wh['we_wh_vector'][a] = np.zeros(300)
+        except:
+            print('1', dbpedia_train_wh['we_wh_vector'][a])
+
+    try:
+        if len(dbpedia_train_wh['we_nouns_vector'][a]) == 1:
+            dbpedia_train_wh['we_nouns_vector'][a] = np.zeros(300)
+    except:
+        try:
+            if dbpedia_train_wh['we_nouns_vector'][a] == 0:
+                dbpedia_train_wh['we_nouns_vector'][a] = np.zeros(300)
+        except:
+            print('2', dbpedia_train_wh['we_nouns_vector'][a])
+
+    try:
+        if len(dbpedia_train_wh['we_np_vector'][a]) == 1:
+            dbpedia_train_wh['we_np_vector'][a] = np.zeros(300)
+    except:
+        try:
+            if dbpedia_train_wh['we_np_vector'][a] == 0:
+                dbpedia_train_wh['we_np_vector'][a] = np.zeros(300)
+        except:
+            print('3', dbpedia_train_wh['we_np_vector'][a])
+
+    try:
+        if len(dbpedia_train_wh['entities_KGE_vector'][a]) == 1:
+            dbpedia_train_wh['entities_KGE_vector'][a] = np.zeros(200)
+    except:
+        try:
+            if dbpedia_train_wh['entities_KGE_vector'][a] == 0:
+                dbpedia_train_wh['entities_KGE_vector'][a] = np.zeros(300)
+        except:
+            print('4', dbpedia_train_wh['entities_KGE_vector'][a])
+
+    try:
+        if len(dbpedia_train_wh['we_type_vector'][a]) == 1:
+            dbpedia_train_wh['we_type_vector'][a] = np.zeros(300)
+    except:
+        try:
+            if dbpedia_train_wh['we_type_vector'][a] == 0:
+                dbpedia_train_wh['we_type_vector'][a] = np.zeros(300)
+        except:
+            print('5', dbpedia_train_wh['we_type_vector'][a])
+
+    # print('we_wh_vector', len(dbpedia_train_wh['we_wh_vector'][a]))   # 300
+    # print('we_nouns_vector', len(dbpedia_train_wh['we_nouns_vector'][a]))  # 300
+    # print('we_np_vector', len(dbpedia_train_wh['we_np_vector'][a]))   # 300
+    # print('entities_KGE_vector', len(dbpedia_train_wh['entities_KGE_vector'][a]))  # 200
+    # print('we_type_vector', len(dbpedia_train_wh['we_type_vector'][a]))  # 300
 
 
-re_list = []
-for entry in dbpedia_train_wh:
-    concatenated_vector = concatenate_vector(entry)
-    entry.update({'concatenated_vector': concatenated_vector})
-    re_list.append(entry)
+dbpedia_train_wh['concatenated_vector'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
+                                                                            x['we_nouns_vector'],
+                                                                            x['we_np_vector'],
+                                                                            x['entities_KGE_vector'],
+                                                                            x['we_type_vector']], axis=1)
 
 print('done concatenate vector')
-dbpedia_train_wh = re_list
-write_file(dbpedia_train_wh, '12_dbpedia_train_wh')
+
+df_sample = dbpedia_train_wh[0:10]
+df_sample.to_csv('data/df_sample.csv')
+print('done sampled to csv')
 
 # pickle
 f = open('data/df.pkl', 'wb')
 pickle.dump(dbpedia_train_wh, f)
 f.close()
+print('done pickled')
