@@ -130,8 +130,8 @@ for a in db_noun_phrase_list_flt:
     question_entities = get_entities(a)
     db_np_ent.append(question_entities)
 
-write_file(db_noun_ent, 'db_noun_ent')
-write_file(db_np_ent, 'db_np_ent')
+# write_file(db_noun_ent, 'db_noun_ent')
+# write_file(db_np_ent, 'db_np_ent')
 
 print('get + write entities done')
 
@@ -189,8 +189,8 @@ for a in db_np_ent:
 
 # print(db_np_types)
 
-write_file(db_noun_types, 'db_noun_typ')
-write_file(db_np_types, 'db_np_typ')
+# write_file(db_noun_types, 'db_noun_typ')
+# write_file(db_np_types, 'db_np_typ')
 
 print('get + write types done')
 
