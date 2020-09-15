@@ -1,13 +1,11 @@
 # Eleanor Bill 4 September 2020
 # concatenate vectors and export to dataframe/csv
 
-import pickle
 import pandas as pd
 import numpy as np
+from kg.EB_classes import unpickle, pickl
+dbpedia_train_wh = unpickle('dbpedia_train_wh')
 
-pkl_file = open('data/dbpedia_train_all_vectors.pkl', 'rb')
-dbpedia_train_wh = pickle.load(pkl_file)
-pkl_file.close()
 
 '''
 we_wh_vector - First position could be for the embedding of the wh question word (we can create our own embedding/encoding).
@@ -16,15 +14,6 @@ we_np_vector - Third position (up to 3 or 4 vector positions? we can play with d
 entities_KGE_vector - Fourth position (up to 3 or 4 vector positions) for noun phrases with a good correspondence in KG (KGE of entity representing noun phrase)
 we_type_vector - Fifth position (up to 3 or 4 vector positions) for the WE of the types of the KG entities above.
 '''
-
-
-def write_file(file_to_write, filename):
-    myFile = open('data/' + filename + '.txt', 'w')
-    myFile.write(str(file_to_write))
-    myFile.write('\n')
-    myFile.close()
-    return 0
-
 
 dbpedia_train_wh = pd.DataFrame(dbpedia_train_wh)
 dbpedia_train_wh = dbpedia_train_wh.fillna(0)
@@ -96,12 +85,9 @@ dbpedia_train_wh['concatenated_vector'] = dbpedia_train_wh.apply(lambda x: [x['w
 
 print('done concatenate vector')
 
-df_sample = dbpedia_train_wh[0:10]
-df_sample.to_csv('data/df_sample.csv')
-print('done sampled to csv')
+# df_sample = dbpedia_train_wh[0:10]
+# df_sample.to_csv('data/df_sample.csv')
+# print('done sampled to csv')
 
-# pickle
-f = open('data/df.pkl', 'wb')
-pickle.dump(dbpedia_train_wh, f)
-f.close()
+pickl('df', dbpedia_train_wh)
 print('done pickled')

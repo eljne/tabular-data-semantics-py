@@ -79,17 +79,25 @@ class OntologyAccess(object):
                 classes.append(cls.iri)
             
         return classes
-    
-    
+
+    def getClassIRIsContainingNameLimit(self, name, limit):
+
+        classes = []
+
+        for cls in list(self.getOntology().classes()):
+            if (name.lower() in cls.name.lower()):
+                classes.append(cls.iri)
+
+        classes = classes[0:limit-1]
+        return classes
+
     def getAncestorsURIsMinusClass(self,cls):
         ancestors_str = self.getAncestorsURIs(cls)
         
         ancestors_str.remove(cls.iri)
         
         return ancestors_str
-    
-    
-    
+
     def getAncestorsURIs(self,cls):
         ancestors_str = set()
         
@@ -97,8 +105,7 @@ class OntologyAccess(object):
             ancestors_str.add(anc_cls.iri)
         
         return ancestors_str    
-    
-    
+
     def getDescendantURIs(self,cls):
         descendants_str = set()
         
@@ -106,8 +113,7 @@ class OntologyAccess(object):
             descendants_str.add(desc_cls.iri)
         
         return descendants_str    
-        
-        
+
     def getDescendantNames(self,cls):
         descendants_str = set()
         
@@ -115,9 +121,7 @@ class OntologyAccess(object):
             descendants_str.add(desc_cls.name)
     
         return descendants_str
-    
-    
-    
+
     def getDescendantNamesForClassName(self, cls_name):
         
         cls = self.getClassByName(cls_name)
@@ -128,16 +132,13 @@ class OntologyAccess(object):
             descendants_str.add(desc_cls.name)
     
         return descendants_str
-    
-    
-    
+
     def isSubClassOf(self, sub_cls1, sup_cls2):
         
         if sup_cls2 in sub_cls1.ancestors():
             return True
         return False
-    
-    
+
     def isSuperClassOf(self, sup_cls1, sub_cls2):
         
         if sup_cls1 in sub_cls2.ancestors():

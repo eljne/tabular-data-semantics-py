@@ -36,10 +36,6 @@ class Endpoint(object):
         triples.append([row[0], row[1], row[2], row[3]])
     return triples
     '''
-
-    
-    
-    
     def __init__(self): 
         '''
         Constructor
@@ -49,9 +45,7 @@ class Endpoint(object):
         self.wikidata_ep = WikidataEndpoint()
         
         self.lookup = Lookup()
-        
-        
-        
+
     def __analyseEntityPredicateStrategy(self, ent, cls_uri):
         '''
         Analyses correctness of cls_uri as type of ent using Predicate types strategy
@@ -629,44 +623,19 @@ if __name__ == '__main__':
     
     
     cls = "http://dbpedia.org/ontology/Country"
-    #cls = "http://dbpedia.org/ontology/Person"
-    
-    
+    print(cls)
     ep = Endpoint()
-    
-
-    # seconds passed since epoch
-    init = time.time()
-    
-    entities=set()
-    #entities = ep.getEntitiesForDBPediaClass(cls, 50)
+    entities = set()
+    entities = ep.getEntitiesForDBPediaClass(cls, 50)
     print("Extracted entities: ", len(entities))
     for ent in entities:
-        print(ent)
-    
-    end = time.time()
-    
-
-    #local_time = time.ctime(seconds)
-    print("Time:", end-init)
-    
-    
-    #query = 'Taylor Swift'
-    #cell = 'Scotland'
-    
-    
-    lookup = Lookup()
-    
-    # seconds passed since epoch
-    init = time.time()
-    cell="Chicago Bulls"
-    print(lookup.getKGEntities(cell, 5))
-    types = lookup.getTypesForEntity('http://dbpedia.org/resource/Chicago_Bulls')
-    
-    end = time.time()
-        #local_time = time.ctime(seconds)
-    print("Time:", end-init)
-    
-    for t in types:
-        print(t)
-    
+        print('ent', ent)
+    #
+    # lookup = Lookup()
+    # cell="Chicago Bulls"
+    # print(lookup.getKGEntities(cell, 5))
+    # types = lookup.getTypesForEntity('http://dbpedia.org/resource/Chicago_Bulls')
+    #
+    # for t in types:
+    #     test = ep.getEntitiesForDBPediaClass(t, 10)
+    #     print('test', test)
