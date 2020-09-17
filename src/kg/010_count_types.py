@@ -4,7 +4,6 @@
 # count types in training data and save in file
 # Eleanor Bill finished 12th August 2020
 
-import json
 from kg.EB_classes import load_json, write_file
 
 

@@ -1,0 +1,2 @@
+,category,id,question,type,flat list,test
+16598,resource,dbpedia_23332,Show me all the breweries in Australia.,"['dbo:Brewery', 'dbo:Company', 'dbo:Organisation', 'dbo:Agent']",['dbo:Brewery' 'dbo:Company' 'dbo:Organisation' 'dbo:Agent'],True

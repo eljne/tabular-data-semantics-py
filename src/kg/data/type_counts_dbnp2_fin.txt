@@ -1,1 +1,0 @@
-{'http://www.wikidata.org/entity/Q24229398': 5, 'http://dbpedia.org/ontology/Building': 2, 'http://dbpedia.org/ontology/Award': 2, 'http://dbpedia.org/ontology/Company': 1}

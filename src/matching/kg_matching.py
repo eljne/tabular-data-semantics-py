@@ -143,7 +143,7 @@ class Endpoint(object):
             
             for ent in db_entities:
                 if len(clean_db_entities)>=limit:
-                    print("%d, %d, %d, %d" %(len(clean_db_entities), filtered_look_up, filtered_predicates, filtered_wikidata))
+                    # print("%d, %d, %d, %d" %(len(clean_db_entities), filtered_look_up, filtered_predicates, filtered_wikidata))
                     return clean_db_entities 
                 
                 results_look_up = self.__analyseEntityLooukStrategy(ent, cls_uri)

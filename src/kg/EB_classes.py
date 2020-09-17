@@ -70,12 +70,34 @@ def nouns(question):
     return nouns
 
 
+# parse and extract nouns using NLTK
+def nouns_list(lst):
+    ns = []
+    for l in lst:
+        tokens = nltk.word_tokenize(l)
+        tags = nltk.pos_tag(tokens)
+        nouns = [word for word, pos in tags if (pos == 'NN' or pos == 'NNP' or pos == 'NNS' or pos == 'NNPS')]
+        ns.append(nouns)
+    return ns
+
+
 # parse and extract noun phrases using TextBlob
 def noun_phrases(question):
     blob = TextBlob(question)
     noun_phrases = blob.noun_phrases
     np2 = list(noun_phrases)  # convert from wordlist to list
     return np2
+
+
+# parse and extract noun phrases using TextBlob
+def noun_phrases_list(lst):
+    nps = []
+    for l in lst:
+        blob = TextBlob(l)
+        noun_phrases = blob.noun_phrases
+        np2 = list(noun_phrases)  # convert from wordlist to list
+        nps.append(np2)
+    return nps
 
 
 # filter out stopwords and special characters from np lists
@@ -106,6 +128,22 @@ def get_entities(phrase):  # question as a list of words
         return ['N/A']  # if no entities, return 'n/a'
 
 
+def get_entities_list(np_list):  # question as a list of words
+    entity_list = []
+    for phrase in np_list:
+        limit = 1
+        if phrase != "''":
+            dbpedia = DBpediaLookup()  # look up in DBP KG
+            entities = dbpedia.getKGEntities(phrase, limit)
+        else:
+            entities = ['N/A']
+        if len(entities) > 0:
+            entity_list.append(entities[0]) # append only first entity
+        else:
+            entity_list.append(['N/A'])  # if no entities, return 'n/a'
+    return entity_list
+
+
 def apply_endpoint(entity):  # find types
     ep = DBpediaEndpoint()  # using ID/int
     ent2 = entity.getIdstr()
@@ -115,6 +153,22 @@ def apply_endpoint(entity):  # find types
         types = entity.getTypes()  # ont
         # print('types using entity', types, '\n')
     return types
+
+
+def apply_endpoint_list(entity_list):  # find types
+    types_list = []
+    ep = DBpediaEndpoint()  # using ID/int
+    for entity in entity_list:
+        ent2 = entity.getIdstr()
+        types = ep.getTypesForEntity(ent2)  # limit to 5
+        # print('types using endpoint id', types)
+        types_list.append(types)
+        if len(types) == 0:  # using entity: back up
+            types = entity.getTypes()  # ont
+            # print('types using entity', types, '\n')
+            types_list.append(types)
+    return types_list
+
 
 
 ''' creating the vectors '''

@@ -1,1 +1,0 @@
-{'http://dbpedia.org/ontology/NaturalPlace': 1, 'http://dbpedia.org/ontology/Agent': 1, 'http://dbpedia.org/ontology/Disease': 2, 'http://schema.org/Person': 1, 'http://dbpedia.org/ontology/Country': 1, 'http://dbpedia.org/ontology/Person': 1, 'http://dbpedia.org/ontology/Software': 1, 'http://dbpedia.org/ontology/Airline': 1}
