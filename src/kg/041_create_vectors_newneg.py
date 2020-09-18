@@ -1,3 +1,4 @@
+''' author: Eleanor Bill @eljne '''
 ''' create vectors for negative samples '''
 
 from kg.EB_classes import pickl, unpickle

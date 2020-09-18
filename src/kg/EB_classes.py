@@ -1,8 +1,10 @@
 ''' stores functions that are used at multiple points throughout the program '''
+'''author: Eleanor Bill @eljne'''
 
 import json
 import re
 import nltk
+from nltk.tokenize import word_tokenize
 import pickle
 import requests
 import numpy as np
@@ -104,11 +106,15 @@ def noun_phrases_list(lst):
 def filter_SW(lst, stopWords):
     wordsFiltered = []
     lst = list(filter(None, lst))  # remove any empty strings
-    for w in lst:  # for word in list of nouns
-        w = re.sub('\[', ' ', w)
-        w = re.sub('[^A-Za-z0-9\' ]+', '', w)
-        if w not in stopWords and w != "''":
-            wordsFiltered.append(w)
+    for item in lst:  # for word in list of nouns
+        phrase = []
+        arr = word_tokenize(item)
+        for w in arr:
+            w = re.sub('\[', ' ', w)
+            w = re.sub('[^A-Za-z0-9\' ]+', '', w)
+            if w not in stopWords and w != "''":
+                phrase.append(w)
+        wordsFiltered.append(phrase)
     return wordsFiltered
 
 
@@ -145,6 +151,7 @@ def get_entities_list(np_list):  # question as a list of words
 
 
 def apply_endpoint(entity):  # find types
+    print(entity)
     ep = DBpediaEndpoint()  # using ID/int
     ent2 = entity.getIdstr()
     types = ep.getTypesForEntity(ent2)  # limit to 5
@@ -159,14 +166,18 @@ def apply_endpoint_list(entity_list):  # find types
     types_list = []
     ep = DBpediaEndpoint()  # using ID/int
     for entity in entity_list:
-        ent2 = entity.getIdstr()
-        types = ep.getTypesForEntity(ent2)  # limit to 5
-        # print('types using endpoint id', types)
-        types_list.append(types)
-        if len(types) == 0:  # using entity: back up
-            types = entity.getTypes()  # ont
-            # print('types using entity', types, '\n')
-            types_list.append(types)
+        print(entity)
+        # ['N/A']
+        # < id: http://dbpedia.org/resource/Ana_Popović, label: Ana Popović, description: None, types: set(), source: DBpedia >
+
+        # ent2 = entity.getIdstr()
+        # types = ep.getTypesForEntity(ent2)  # limit to 5
+        # # print('types using endpoint id', types)
+        # types_list.append(types)
+        # if len(types) == 0:  # using entity: back up
+        #     types = entity.getTypes()  # ont
+        #     # print('types using entity', types, '\n')
+        #     types_list.append(types)
     return types_list
 
 
@@ -216,6 +227,5 @@ def find_vector_kge(word_or_phrase):
         except:
             vector = np.zeros(1)
     return vector
-
 
 

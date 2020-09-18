@@ -1,8 +1,10 @@
-# load json files
-# find category and type in training data
-# save question data to be parsed
-# count types in training data and save in file
-# Eleanor Bill finished 12th August 2020
+''' author: Eleanor Bill @eljne '''
+'''
+load json files
+find category and type in training data
+save question data to be parsed
+count types in training data and save in file
+'''
 
 from kg.EB_classes import load_json, write_file
 

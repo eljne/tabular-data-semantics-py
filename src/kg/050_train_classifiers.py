@@ -1,4 +1,5 @@
-'''train a MLP model for each category and type'''
+''' author: Eleanor Bill @eljne '''
+''' train a MLP model for each category and type '''
 
 import pickle
 import numpy as np

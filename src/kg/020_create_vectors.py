@@ -1,5 +1,5 @@
-# create vectors using word embeddings and knowledge graph embeddings
-# Eleanor Bill 4 September 2020
+''' author: Eleanor Bill @eljne '''
+'''create vectors using word embeddings and knowledge graph embeddings '''
 
 '''
 list of created vectors/steps:
@@ -92,7 +92,6 @@ dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '02_dbpedia_train_wh')
 print('done nouns parsed')
 
-
 re_list = []
 for entry in dbpedia_train_wh:
     question = entry['question']
@@ -103,7 +102,6 @@ for entry in dbpedia_train_wh:
 dbpedia_train_wh = re_list
 write_file(dbpedia_train_wh, '03_dbpedia_train_wh')
 print('done noun phrases parsed')
-
 
 re_list = []
 for entry in dbpedia_train_wh:

@@ -1,5 +1,5 @@
+''' author: Eleanor Bill @eljne '''
 ''' augment positive samples to create more positive sample '''
-# 16th september - ejb
 # takes about 6 hours to run
 
 import pandas as pd

@@ -1,5 +1,5 @@
-# Eleanor Bill 4 September 2020
-# continue creating vectors
+''' author: Eleanor Bill @eljne '''
+''' continue creating vectors '''
 
 from gensim.models import KeyedVectors
 from nltk.corpus import stopwords

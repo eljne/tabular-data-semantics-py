@@ -1,5 +1,5 @@
-# Eleanor Bill 4 September 2020
-# concatenate vectors and export to dataframe/csv
+''' author: Eleanor Bill @eljne '''
+''' concatenate vectors and export to dataframe/csv '''
 
 import pandas as pd
 import numpy as np

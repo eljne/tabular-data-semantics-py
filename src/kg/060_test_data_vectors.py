@@ -1,5 +1,5 @@
-"""create vectors for test data"""
-# 9th sept - ejb
+''' author: Eleanor Bill @eljne '''
+''' create vectors for test data '''
 
 import re
 import json

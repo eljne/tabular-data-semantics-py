@@ -1,4 +1,8 @@
+''' author: Eleanor Bill @eljne '''
+''' calls pre-written evaluation script and returns accuracy/KPIs '''
+
 from kg.evaluation_code import main
+
 '''
 Where
     - `type_hierarchy_tsv` is a TSV file with Type, Depth and Parent columns.

@@ -1,4 +1,5 @@
-'''train a MLP model for each category and type'''
+''' author: Eleanor Bill @eljne '''
+''' train a MLP model for each category and type: only use initial training data'''
 
 import pickle
 import pandas as pd

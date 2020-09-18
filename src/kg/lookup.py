@@ -334,20 +334,18 @@ class GoogleKGLookup(Lookup):
         return self.__extractKGEntities(json, filter) #Optionally filter by URI
     
 
-
 if __name__ == '__main__':
-    
-    #query = 'Taylor Swift'
-    #query = 'Scotland'
-    query = "Prim's algorithm"
-    query = "middle-square method"
+    # query = 'Taylor Swift'
+    query = 'Scotland'
+    # query = "Prim's algorithm"
+    # query = "middle-square method"
     #query = 'http://dbpedia.org/resource/Scotland'
-    query = "Israel Museum Jerusalem artist"
+    # query = "Israel Museum Jerusalem artist"
     #query = "ARTIC artist"
-    query="heaviest player Chicago Bulls?"
-    query="Chicago Bulls"
+    # query="heaviest player Chicago Bulls?"
+    # query="Chicago Bulls"
     #query="player"
-    limit=5
+    limit = 5
     
     #To be checked. Format of json seems to be different
     #kg = GoogleKGLookup()
@@ -355,23 +353,17 @@ if __name__ == '__main__':
     #for ent in  entities:
     #    print(ent)
     
-    
     dbpedia = DBpediaLookup()
     entities = dbpedia.getKGEntities(query, limit)
     print("Entities from DBPedia:")
-    for ent in  entities:
+    for ent in entities:
         print(ent)
-    
-    
-    print("\n")
-    
-    
-    type="item"
-    #type="property"
-    wikidata = WikidataAPI()
-    entities = wikidata.getKGEntities(query, limit, "item")
-    print("Entities from Wikidata:")
-    for ent in  entities:
-        print(ent)
-        
-        
+    # print("\n")
+    #
+    # type="item"
+    # #type="property"
+    # wikidata = WikidataAPI()
+    # entities = wikidata.getKGEntities(query, limit, "item")
+    # print("Entities from Wikidata:")
+    # for ent in  entities:
+    #     print(ent)

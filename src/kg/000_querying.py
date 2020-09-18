@@ -1,3 +1,5 @@
+'''author: Eleanor Bill @eljne'''
+''' queries training data '''
 from kg.EB_classes import load_json
 import pandas as pd
 import numpy as np

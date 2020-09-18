@@ -2,41 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ab58524-2958-407e-af0b-333202ea9e9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/kg/040_create_vectors_newpos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kg/041_create_vectors_newneg.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kg/042_concat_vectors_newsamples.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kg/080_use_evaluation_script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/000_querying.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/000_querying.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/010_count_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/010_count_types.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/010_create_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/020_create_vectors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/011_create_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/021_create_vectors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/030_create_negative_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/031_create_negative_samples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/040_create_positive_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/030_create_positive_samples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/040_create_vectors_newsamples.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/020_create_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/020_create_vectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/021_create_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/021_create_vectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/022_concat_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/022_concat_vectors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/030_create_positive_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/030_create_positive_samples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/031_create_negative_samples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/031_create_negative_samples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/040_create_vectors_newpos.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/040_create_vectors_newpos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/041_create_vectors_newneg.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/041_create_vectors_newneg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/042_concat_vectors_newsamples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/042_concat_vectors_newsamples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/050_train_classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/050_train_classifiers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/050_train_classifiers_no_additional.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/050_train_classifiers_no_additional.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/060_test_data_vectors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/060_test_data_vectors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/070_use_classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/070_use_classifiers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/080_evaluate_import.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/evaluation_code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/090_use_evaluation_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/000_querying.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/080_use_evaluation_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/080_use_evaluation_script.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/EB_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/EB_classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/data/04_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/04_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/06_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/08_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/08_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/10_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/10_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/11_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/11_dbpedia_train_wh.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kg/data/12_dbpedia_train_wh.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/12_dbpedia_train_wh.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/db_arr_q.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/data/db_arr_q.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_db2_fin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_db_fin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_dbnp2_fin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_dbnp_fin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_wd2_fin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_wd_fin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_wdnp2_fin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/type_counts_wdnp_fin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/wd_arr_q.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/wd_noun_ent.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/wd_noun_list.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/wd_nounphrase_list.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kg/data/wd_np_ent.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matching/kg_matching.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/matching/kg_matching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kg/lookup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/kg/lookup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +74,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.040_create_vectors_newsamples">
+  <component name="RunManager" selected="Python.lookup">
     <configuration name="000_querying" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tabular-data-semantics-py" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,7 +96,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="030_create_negative_samples" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="020_create_vectors" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tabular-data-semantics-py" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -118,7 +108,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/031_create_negative_samples.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/020_create_vectors.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -148,27 +138,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="041_create_vectors_newsamples" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tabular-data-semantics-py" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/041_create_vectors_newneg.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="EB_classes" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tabular-data-semantics-py" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -190,13 +159,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="lookup" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tabular-data-semantics-py" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/kg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/kg/lookup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.040_create_vectors_newsamples" />
+        <item itemvalue="Python.lookup" />
         <item itemvalue="Python.EB_classes" />
+        <item itemvalue="Python.020_create_vectors" />
+        <item itemvalue="Python.040_create_vectors_newsamples" />
         <item itemvalue="Python.000_querying" />
-        <item itemvalue="Python.041_create_vectors_newsamples" />
-        <item itemvalue="Python.030_create_negative_samples" />
       </list>
     </recent_temporary>
   </component>
@@ -263,26 +253,26 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="334" y="138" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1280.777@0.23.1280.777" timestamp="1599053392774" />
-    <state width="1239" height="164" key="GridCell.Tab.0.bottom" timestamp="1600353423964">
+    <state width="1239" height="164" key="GridCell.Tab.0.bottom" timestamp="1600428870544">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1597140808223" />
-    <state width="1239" height="164" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1600353423964" />
-    <state width="1239" height="164" key="GridCell.Tab.0.center" timestamp="1600353423963">
+    <state width="1239" height="164" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1600428870544" />
+    <state width="1239" height="164" key="GridCell.Tab.0.center" timestamp="1600428870543">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1597140808221" />
-    <state width="1239" height="164" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1600353423963" />
-    <state width="1239" height="164" key="GridCell.Tab.0.left" timestamp="1600353423962">
+    <state width="1239" height="164" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1600428870543" />
+    <state width="1239" height="164" key="GridCell.Tab.0.left" timestamp="1600428870543">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1597140808220" />
-    <state width="1239" height="164" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1600353423962" />
-    <state width="1239" height="164" key="GridCell.Tab.0.right" timestamp="1600353423963">
+    <state width="1239" height="164" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1600428870543" />
+    <state width="1239" height="164" key="GridCell.Tab.0.right" timestamp="1600428870543">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="74" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1597140808222" />
-    <state width="1239" height="164" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1600353423963" />
+    <state width="1239" height="164" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1600428870543" />
     <state width="1239" height="229" key="GridCell.Tab.1.bottom" timestamp="1600347755101">
       <screen x="0" y="23" width="1280" height="777" />
     </state>

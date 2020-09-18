@@ -1,3 +1,4 @@
+''' author: Eleanor Bill @eljne '''
 ''' join all data '''
 from kg.EB_classes import pickl, unpickle, nouns_list, noun_phrases_list, get_entities, apply_endpoint
 

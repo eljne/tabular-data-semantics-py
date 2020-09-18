@@ -1,5 +1,5 @@
+''' author: Eleanor Bill @eljne '''
 ''' import csv, create negative samples from positive samples'''
-# 9th september - ejb
 
 import pandas as pd
 import numpy as np

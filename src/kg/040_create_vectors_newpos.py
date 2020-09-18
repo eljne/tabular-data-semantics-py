@@ -1,3 +1,4 @@
+''' author: Eleanor Bill @eljne '''
 ''' create vectors for additional training data - +ve '''
 
 from kg.EB_classes import pickl, unpickle, nouns_list, noun_phrases_list, get_entities_list, apply_endpoint_list
@@ -44,6 +45,8 @@ print('done 3')
 df_positive['new entities'] = df_positive['new nps2'].apply(get_entities_list)
 print('done 4')
 print(df_positive['new entities'])
+
+# DEBUG FROM HERE
 
 # get types associated with entities
 df_positive['new entity types'] = df_positive['new entities'].apply(apply_endpoint_list)
