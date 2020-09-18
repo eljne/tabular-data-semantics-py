@@ -1,8 +1,0 @@
-dependencies:
-
-gensim: conda install -c conda-forge gensim
-textblob
-nltk
-wiki-news-300d-1M.vec from fastText
-
-
