@@ -151,7 +151,7 @@ def get_entities_list(np_list):  # question as a list of words
 
 
 def apply_endpoint(entity):  # find types
-    print(entity)
+    # print(entity)
     ep = DBpediaEndpoint()  # using ID/int
     ent2 = entity.getIdstr()
     types = ep.getTypesForEntity(ent2)  # limit to 5
@@ -228,4 +228,16 @@ def find_vector_kge(word_or_phrase):
             vector = np.zeros(1)
     return vector
 
+
+# get last dbpedia entity
+def get_last(list):
+    count = -1
+    try:
+        ret = str(list[count])
+        while "dbpedia" not in ret:
+            count = count - 1
+            ret = str(list[count])
+        return ret
+    except:
+        return None
 

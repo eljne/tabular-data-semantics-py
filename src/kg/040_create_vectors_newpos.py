@@ -101,8 +101,6 @@ df_positive['new_concatenated_vector'] = df_positive.apply(lambda x: [x['we_wh_v
                                                                       x['new avg entities_KGE_vector'],
                                                                       x['new avg we_type_vector']], axis=1)
 
-# df_positive.drop(['concatenated_vector'], axis=0)
-# df_positive.rename(columns={'new_concatenated_vector':'concatenated_vector'}, inplace=True)
 
 pickl('df_positive_fin', df_positive)
 

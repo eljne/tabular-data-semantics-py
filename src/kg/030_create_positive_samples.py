@@ -1,9 +1,9 @@
 ''' author: Eleanor Bill @eljne '''
-''' augment positive samples to create more positive sample '''
+''' augment positive samples to create more positive samples '''
 # takes about 6 hours to run
 
 import pandas as pd
-from kg.EB_classes import pickl, unpickle
+from kg.EB_classes import pickl, unpickle, get_last
 from matching.kg_matching import Endpoint
 from ontology.onto_access import DBpediaOntology
 
@@ -25,20 +25,20 @@ ep = Endpoint()
 def get_alt_entities(entity_typess):
     lis = []
     for ls in entity_typess:
-        for enty in ls:
-            if "dbpedia" in enty:
-                try:
-                    print('entity:', enty)
-                    simty = ep.getEntitiesForDBPediaClass(enty, 1)
-                    lis.append(simty)
-                    print('similar entity', simty)
-                except:
-                    pass
+        enty = ls.apply(get_last) # only get finest entity
+        print('entity:', enty)
+        try:
+            simty = ep.getEntitiesForDBPediaClass(enty, 100)
+            # endpoint getEntitiesForType - quicker
+            lis.append(simty)
+            print('similar entity', simty)
+        except:
+            pass
     return lis
 
 
 df_positive['similar_entities'] = df_positive['entity_types'].apply(get_alt_entities)   # column by column
-print('done got similar entities')
+print('done got similar finest entities')
 
 # separate positive and negative samples
 df_positive_final = df_positive[["category",
