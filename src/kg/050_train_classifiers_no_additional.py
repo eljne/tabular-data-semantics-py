@@ -1,16 +1,12 @@
 ''' author: Eleanor Bill @eljne '''
 ''' train a MLP model for each category and type: only use initial training data'''
 
-import pickle
 import pandas as pd
-import numpy as np
+from kg.EB_classes import unpickle, get_last, pickl
 from sklearn.neural_network import MLPClassifier
 
 # use only original training data
-pkl_file = open('data/positive_samples.pkl', 'rb')
-load = pickle.load(pkl_file)
-pkl_file.close()
-
+load = unpickle('positive_samples')
 positive_samples = pd.DataFrame(load)
 
 '''split on types/categories again'''
@@ -24,13 +20,6 @@ positive_samples = pd.DataFrame(load)
 #             series2.append(item2)
 #     ty = list(set(series2))
 #     return ty
-
-
-def get_last(list):
-    try:
-        return str(list[-1])
-    except:
-        return None
 
 
 categories = positive_samples['category'].unique()
@@ -47,6 +36,7 @@ def get_all(list):
     for t in list:
         types_all.append(t)
     return 0
+
 
 # all types
 types_all = []
@@ -87,6 +77,7 @@ def train_classifier(train, label):
 
 
 '''select positive samples at random from training data'''
+
 
 def label_polarity(row, label, column):
     if row[column] == label or str(row[column]) == label:  # if type/category is current label
@@ -151,13 +142,5 @@ for typ_label in types_all:
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_pos_typ[typ_label] = classifier
 
-
-f = open('data/classifiers_pos_cat.pkl', 'rb')
-pickle.dump(classifiers_pos_cat, f)
-pkl_file.close()
-
-
-f = open('data/classifiers_pos_typ.pkl', 'rb')
-pickle.dump(classifiers_pos_typ,f)
-pkl_file.close()
-
+pickl('classifiers_pos_cat',classifiers_pos_cat)
+pickl('classifiers_pos_typ',classifiers_pos_typ)

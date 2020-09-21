@@ -1,5 +1,6 @@
 ''' author: Eleanor Bill @eljne '''
 '''create vectors using word embeddings and knowledge graph embeddings '''
+'''takes 5ish hours to run'''
 
 '''
 list of created vectors/steps:

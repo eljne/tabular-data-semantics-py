@@ -5,6 +5,8 @@ from gensim.models import KeyedVectors
 from nltk.corpus import stopwords
 from kg.EB_classes import write_file, find_vector_we, cal_average, type_convert, find_vector_kge
 from kg.EB_classes import pickl, unpickle
+import pandas as pd
+
 stopWords = set(stopwords.words('english'))  # load stopwords
 dbpedia_train_wh = unpickle('dbpedia_train_wh')
 
@@ -93,8 +95,11 @@ for entry in dbpedia_train_wh:
     re_list.append(entry)
 
 print('done entities KGE vectors found')
-dbpedia_train_wh = re_list
-write_file(dbpedia_train_wh, '11_dbpedia_train_wh')
+dbpedia_train_wh2 = re_list
+write_file(dbpedia_train_wh2, '11_dbpedia_train_wh')
 
-pickl('dbpedia_train_all_vectors', dbpedia_train_wh)
+df = pd.DataFrame(dbpedia_train_wh2)
+print(df.head())
+
+pickl('dbpedia_train_all_vectors', dbpedia_train_wh2)
 print('ALL done pickled')

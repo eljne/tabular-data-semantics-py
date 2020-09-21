@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 from kg.EB_classes import unpickle, pickl
-dbpedia_train_wh = unpickle('dbpedia_train_wh')
+dbpedia_train_wh = unpickle('dbpedia_train_all_vectors')
 
 
 '''
@@ -16,6 +16,7 @@ we_type_vector - Fifth position (up to 3 or 4 vector positions) for the WE of th
 '''
 
 dbpedia_train_wh = pd.DataFrame(dbpedia_train_wh)
+print(dbpedia_train_wh.head())
 dbpedia_train_wh = dbpedia_train_wh.fillna(0)
 
 # make sure all the same length (if returned zeros, replace with array of zeroes that is correct length)
@@ -54,6 +55,7 @@ for a in range(0, len(dbpedia_train_wh)):
         if len(dbpedia_train_wh['entities_KGE_vector'][a]) == 1:
             dbpedia_train_wh['entities_KGE_vector'][a] = np.zeros(200)
     except:
+        # this needs looking at
         try:
             if dbpedia_train_wh['entities_KGE_vector'][a] == 0:
                 dbpedia_train_wh['entities_KGE_vector'][a] = np.zeros(300)

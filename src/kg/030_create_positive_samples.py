@@ -25,13 +25,14 @@ ep = Endpoint()
 def get_alt_entities(entity_typess):
     lis = []
     for ls in entity_typess:
-        enty = ls.apply(get_last) # only get finest entity
-        print('entity:', enty)
+        # print('ls', ls)
+        enty = get_last(ls)   # only get finest entity
+        # print('entity:', enty)
         try:
             simty = ep.getEntitiesForDBPediaClass(enty, 100)
             # endpoint getEntitiesForType - quicker
             lis.append(simty)
-            print('similar entity', simty)
+            # print('similar entity', simty)
         except:
             pass
     return lis

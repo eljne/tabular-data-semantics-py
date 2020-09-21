@@ -169,15 +169,18 @@ def apply_endpoint_list(entity_list):  # find types
         print(entity)
         # ['N/A']
         # < id: http://dbpedia.org/resource/Ana_Popović, label: Ana Popović, description: None, types: set(), source: DBpedia >
-
-        # ent2 = entity.getIdstr()
-        # types = ep.getTypesForEntity(ent2)  # limit to 5
-        # # print('types using endpoint id', types)
-        # types_list.append(types)
-        # if len(types) == 0:  # using entity: back up
-        #     types = entity.getTypes()  # ont
-        #     # print('types using entity', types, '\n')
-        #     types_list.append(types)
+        if entity != ['N/A']:
+            ent2 = entity.getIdstr()
+            types = ep.getTypesForEntity(ent2)  # limit to 5
+            # print('types using endpoint id', types)
+            types_list.append(types)
+            if len(types) == 0:  # using entity: back up
+                types = entity.getTypes()  # ont
+                # print('types using entity', types, '\n')
+                types_list.append(types)
+        else:
+            types = []
+            types_list.append(types)
     return types_list
 
 
@@ -230,13 +233,14 @@ def find_vector_kge(word_or_phrase):
 
 
 # get last dbpedia entity
-def get_last(list):
+def get_last(ls):
     count = -1
     try:
-        ret = str(list[count])
+        el = list(ls)
+        ret = str(el[count])
         while "dbpedia" not in ret:
             count = count - 1
-            ret = str(list[count])
+            ret = str(el[count])
         return ret
     except:
         return None
