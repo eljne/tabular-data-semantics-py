@@ -58,27 +58,3 @@ print('done 5')
 # pickle
 pickl('df_negative_fin', df_neg_all2)
 print('pickled')
-
-# check columns are correct
-for col in df_neg_all2.columns:
-    print(col)
-
-'''
-category 
-concatenated_vector
-entities_KGE_vector
-id
-new avg we_type_vector - rename
-new we_type_vector - drop
-polarity
-question
-shuffled_category
-shuffled_type
-sibling_type
-type
-we_nouns_vector
-we_np_vector
-we_wh_vector
-wh
-'''
-

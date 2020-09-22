@@ -11,12 +11,13 @@ og_positive = unpickle('df')
 
 '''
 NEGATIVE:
-category 
+
+category
 concatenated_vector
 entities_KGE_vector
 id
-new avg we_type_vector - rename
-new we_type_vector - drop
+new avg we_type_vector
+new we_type_vector
 polarity
 question
 shuffled_category
@@ -29,6 +30,12 @@ we_wh_vector
 wh
 '''
 
+negative_all2 = negative_all.drop(['new we_type_vector'], axis=0)
+
+negative_all3 = negative_all2.rename(columns={'new avg we_type_vector': 'we_type_vector'
+                                              }
+                                     , inplace=True)
+
 '''
 POSITIVE:
 
@@ -38,7 +45,12 @@ new_positive2 = new_positive.drop(['concatenated_vector',
                                    'we_nouns_vector',
                                    'we_np_vector',
                                    'entities_KGE_vector',
-                                   'we_type_vector'], axis=0)
+                                   'we_type_vector',
+                                   'new we_nouns_vector',
+                                   'new we_np_vector',
+                                   'new entities_KGE_vector',
+                                   'new we_type_vector'
+                                   ], axis=0)
 
 new_positive3 = new_positive2.rename(columns={'new_concatenated_vector': 'concatenated_vector',
                                               'new avg we_nouns_vector': 'we_nouns_vector',
