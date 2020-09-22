@@ -6,8 +6,8 @@ import csv
 from kg.EB_classes import unpickle
 
 '''unpickle classifiers'''
-classifiers_pos_cat = unpickle('classifiers_pos_cat')
-classifiers_pos_typ = unpickle('classifiers_pos_typ')
+classifiers_all_cat = unpickle('classifiers_all_cat')
+classifiers_all_typ = unpickle('classifiers_all_typ')
 
 '''load test data vectors'''
 dbpedia_test_final = unpickle('dbpedia_test_final')
@@ -23,7 +23,7 @@ all_typ = []
 '''category'''
 for value in test_data:
     question = value['question']
-    for c, category in classifiers_pos_cat:
+    for c, category in classifiers_all_cat:
         pred_cat = c.predict([value['concatenated vector']])
         # store label and score in dictionary
         category_scores.update({category: pred_cat})
@@ -36,7 +36,7 @@ for question, value in all_cat:
 '''type'''
 for value in test_data:
     question = value['question']
-    for c, typ in classifiers_pos_typ:
+    for c, typ in classifiers_all_typ:
         pred_typ = c.predict([value['concatenated vector']])
         # store label and score in dictionary
         type_scores.update({type: pred_typ})
@@ -53,7 +53,6 @@ df_results_cat = pd.DataFrame(results_cat)
 
 results = df_results_typ.set_index('question').join(df_results_cat.set_index('question'))
 # sorted_x.reverse()
-
 
 ''' REFORMATTING FOR EVAL SCRIPT '''
 ''' export results to be used in evaluation script '''

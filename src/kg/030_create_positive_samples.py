@@ -5,6 +5,7 @@
 import pandas as pd
 from kg.EB_classes import pickl, unpickle, get_last
 from matching.kg_matching import Endpoint
+from kg.endpoints import DBpediaEndpoint
 from ontology.onto_access import DBpediaOntology
 
 # unpickle
@@ -19,18 +20,19 @@ do this by:
 
 onto_access = DBpediaOntology()
 onto_access.loadOntology(True)
-ep = Endpoint()
+# ep = Endpoint() - slower version
+ep = DBpediaEndpoint()    # getEntitiesForType
 
 
-def get_alt_entities(entity_typess):
+def get_alt_entities(entity_types):
     lis = []
-    for ls in entity_typess:
+    for ls in entity_types:
         # print('ls', ls)
-        enty = get_last(ls)   # only get finest entity
+        enty = get_last(ls)  # only get finest entity
         # print('entity:', enty)
         try:
-            simty = ep.getEntitiesForDBPediaClass(enty, 100)
-            # endpoint getEntitiesForType - quicker
+            # simty = ep.getEntitiesForDBPediaClass(enty, 100) - slower version
+            simty = ep.getEntitiesForType(enty, 0, 100)
             lis.append(simty)
             # print('similar entity', simty)
         except:
@@ -38,18 +40,18 @@ def get_alt_entities(entity_typess):
     return lis
 
 
-df_positive['similar_entities'] = df_positive['entity_types'].apply(get_alt_entities)   # column by column
+df_positive['similar_entities'] = df_positive['entity_types'].apply(get_alt_entities)  # column by column
 print('done got similar finest entities')
 
 # separate positive and negative samples
 df_positive_final = df_positive[["category",
-                                  "type",
-                                  "question",
-                                  "wh",
-                                  "id",
-                                  "similar_entities",
+                                 "type",
+                                 "question",
+                                 "wh",
+                                 "id",
+                                 "similar_entities",
                                  "polarity"
-                                  ]]    # subset of df
+                                 ]]  # subset of df
 
 # pickle
 pickl('positive_samples', df_positive_final)

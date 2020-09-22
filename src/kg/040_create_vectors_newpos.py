@@ -5,31 +5,38 @@ from kg.EB_classes import pickl, unpickle, nouns_list, noun_phrases_list, get_en
 from kg.EB_classes import cal_average, find_vector_kge
 from gensim.models import KeyedVectors
 import numpy as np
+import pandas as pd
+from kg.endpoints import DBpediaEndpoint
 
 # unpickle
 pos = unpickle('positive_samples')
+df_positive = pd.DataFrame(pos)
 
 # how do the new samples affect the vector?
 
 # positive - changed entities affect nouns/noun phrases vectors
 # n more sets of +ve data where n is the possible number of changed entities
 # switch out the nouns and noun phrases for the new entities in various combinations
+ep = DBpediaEndpoint()
 
 
 # reformat to return string associated with entity
 def positive(column_row):
     entities = []
     for n in column_row:  # clean entities (just get label)
-        values = list(n.values())
-        for v in values:
-            v2 = np.array(list(v))
-            v3 = str(v2[0])
-            entities.append(v3)
+        for a in n:
+            # get label for entity
+            label = ep.getEnglishLabelsForEntity(a)
+            try:
+                lb = label.pop()
+            except:
+                lb = ''
+            if lb is not None or '':
+                entities.append(lb)
     return entities
 
 
-df_positive = pos.copy()
-df_positive['new nps'] = df_positive['similar_entities'].apply(positive) # reformat to return string associated with entity
+df_positive['new nps'] = df_positive['similar_entities'].apply(positive)    # reformat to return string associated with entity
 print('done 1')
 # print(df_positive['new nps'])
 
@@ -54,7 +61,6 @@ print('done 5')
 print(df_positive['new entity types'])
 
 pickl('df_positive', df_positive)
-
 
 # section 2
 df_positive = unpickle('df_positive')
