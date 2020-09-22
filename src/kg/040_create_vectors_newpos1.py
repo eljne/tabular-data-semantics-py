@@ -10,28 +10,31 @@ df_positive = pd.DataFrame(pos)
 '''reformat to create new positive samples with similar entities'''
 
 # convert similar entities into new samples in dataframe
-new_positive_samples = pd.DataFrame()
+new_positive_samples = pd.DataFrame(columns=['category', 'type', 'question', 'wh', 'id', 'entity', 'polarity'])
 
 
-def new_samples(row_column):
+def new_samples(row_column, df):
     entity_list = row_column['similar_entities']
     for ent in entity_list:
         for e in ent:
-            new_row = {"category": row_column['category'],
-                       "type": row_column['type'],
-                       "question": row_column['question'],
-                       "wh": row_column['wh'],
-                       "id": row_column['id'],
-                       "entity": e,
-                       "polarity": row_column['polarity']
-                       }
-            new_positive_samples.append(new_row, ignore_index=True)
-    return 0
+            new_row = pd.DataFrame({"category": row_column['category'],
+                                    "type": row_column['type'],
+                                    "question": row_column['question'],
+                                    "wh": row_column['wh'],
+                                    "id": row_column['id'],
+                                    "entity": e,
+                                    "polarity": row_column['polarity']
+                                    })
+            df = df.append(new_row, ignore_index=True)
+            # print(df.shape)
+    return df
 
 
-# apply row by row
-df_positive.apply(new_samples, axis=1)
-print('samples creates')
+# apply row by row - work out the loops
+positive_samples = df_positive.apply(lambda x: new_samples(x, new_positive_samples), axis=1)
+print('samples created')
+
+print('test', new_positive_samples)
 
 pickl('new_positive_samples', new_positive_samples)
 print('pickled')

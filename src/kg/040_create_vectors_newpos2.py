@@ -9,6 +9,8 @@ pos = unpickle('new_positive_samples')
 new_positive_samples = pd.DataFrame(pos)
 print('unpickled')
 
+print(new_positive_samples.head)
+
 # how do the new samples affect the vector?
 # changed entities affect nouns/noun phrases vectors
 # n more sets of +ve data where n is the possible number of changed entities
@@ -19,6 +21,7 @@ ep = DBpediaEndpoint()
 # reformat to return string associated with entity
 def positive(column_row):
     entities = []
+    print(column_row)
     for n in column_row:  # clean entities (just get label)
         for a in n:
             # get label for entity
