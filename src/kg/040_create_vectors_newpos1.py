@@ -9,29 +9,36 @@ df_positive = pd.DataFrame(pos)
 
 '''reformat to create new positive samples with similar entities'''
 
-# convert similar entities into new samples in dataframe
-new_positive_samples = pd.DataFrame(columns=['category', 'type', 'question', 'wh', 'id', 'entity', 'polarity'])
 
-
-def new_samples(row_column, df):
+def new_samples(row_column):
+    df = pd.DataFrame()
     entity_list = row_column['similar_entities']
-    for ent in entity_list:
-        for e in ent:
-            new_row = pd.DataFrame({"category": row_column['category'],
-                                    "type": row_column['type'],
-                                    "question": row_column['question'],
-                                    "wh": row_column['wh'],
-                                    "id": row_column['id'],
-                                    "entity": e,
-                                    "polarity": row_column['polarity']
-                                    })
+    if len(entity_list) > 0:
+        entity_list = list(entity_list[0])
+        for indx in range(len(entity_list)):  # iterate through similar entities
+            entity = entity_list[indx]
+            new_row = {"category": row_column['category'],
+                       "type": row_column['type'],
+                       "question": row_column['question'],
+                       "wh": row_column['wh'],
+                       "id": row_column['id'],
+                       "entity": entity,
+                       "polarity": "1"
+                       }
             df = df.append(new_row, ignore_index=True)
-            # print(df.shape)
+    else:
+        return df
     return df
 
 
-# apply row by row - work out the loops
-positive_samples = df_positive.apply(lambda x: new_samples(x, new_positive_samples), axis=1)
+# convert similar entities into new samples in dataframe
+new_positive_samples = pd.DataFrame(columns=['category', 'type', 'question', 'wh', 'id', 'entity', 'polarity'])
+
+for i in range(len(df_positive)):  # iterate through questions
+    positive_samples = new_samples(df_positive.loc[i])  # create new row for each similar entity - df of length 100
+    new_positive_samples = new_positive_samples.append(positive_samples)  # append to overall df
+    print("question", i, "/", len(df_positive), new_positive_samples.shape)
+
 print('samples created')
 
 print('test', new_positive_samples)
