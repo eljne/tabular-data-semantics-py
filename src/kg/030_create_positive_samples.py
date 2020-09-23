@@ -30,7 +30,7 @@ def get_alt_entities(entity_types):
         # print('entity:', enty)
         try:
             # simty = ep.getEntitiesForDBPediaClass(enty, 100) - slower version
-            simty = ep.getEntitiesForType(enty, 0, 100)
+            simty = ep.getEntitiesForType(enty, 0, 10)
             lis.append(simty)
             # print('similar entity', simty)
         except:
@@ -48,7 +48,9 @@ df_positive_final = df_positive[["category",
                                  "wh",
                                  "id",
                                  "similar_entities",
-                                 "polarity"
+                                 "polarity",
+                                 "noun list",
+                                 "np list"
                                  ]]  # subset of df
 
 # pickle

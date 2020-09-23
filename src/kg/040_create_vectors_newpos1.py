@@ -23,7 +23,9 @@ def new_samples(row_column):
                        "wh": row_column['wh'],
                        "id": row_column['id'],
                        "entity": entity,
-                       "polarity": "1"
+                       "polarity": "1",
+                       "noun list": row_column['noun list'],
+                       "np list": row_column['np list']
                        }
             df = df.append(new_row, ignore_index=True)
     else:
@@ -32,7 +34,7 @@ def new_samples(row_column):
 
 
 # convert similar entities into new samples in dataframe
-new_positive_samples = pd.DataFrame(columns=['category', 'type', 'question', 'wh', 'id', 'entity', 'polarity'])
+new_positive_samples = pd.DataFrame(columns=['category', 'type', 'question', 'wh', 'id', 'entity', 'polarity', 'np list', 'noun list'])
 
 for i in range(len(df_positive)):  # iterate through questions
     positive_samples = new_samples(df_positive.loc[i])  # create new row for each similar entity - df of length 100

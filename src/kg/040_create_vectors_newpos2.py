@@ -1,64 +1,48 @@
 ''' author: Eleanor Bill @eljne '''
 ''' create vectors for additional training data - +ve - CONTINUED'''
+''' takes about four-five hours w/10 samples per question - 180,000 '''
 
-from kg.EB_classes import pickl, unpickle, nouns_list, noun_phrases_list, get_entities_list, apply_endpoint_list
+from kg.EB_classes import pickl, unpickle, nouns_list, noun_phrases_list
 import pandas as pd
 from kg.endpoints import DBpediaEndpoint
 
 pos = unpickle('new_positive_samples')
 new_positive_samples = pd.DataFrame(pos)
 print('unpickled')
-
-print(new_positive_samples.head)
-
-# how do the new samples affect the vector?
-# changed entities affect nouns/noun phrases vectors
-# n more sets of +ve data where n is the possible number of changed entities
-# switch out the nouns and noun phrases for the new entities in various combinations
 ep = DBpediaEndpoint()
 
-
-# reformat to return string associated with entity
-def positive(column_row):
-    entities = []
-    print(column_row)
-    for n in column_row:  # clean entities (just get label)
-        for a in n:
-            # get label for entity
-            label = ep.getEnglishLabelsForEntity(a)
-            try:
-                lb = label.pop()
-            except:
-                lb = ''
-            if lb is not None or '':
-                entities.append(lb)
-    return entities
+# print(new_positive_samples.head)
 
 
-new_positive_samples['new nps'] = new_positive_samples['entity'].apply(positive)
-# reformat to return string associated with entity
-print('done 1')
-# print(df_positive['new nps'])
+def get_nouns(entity):
+    labels = ep.getEnglishLabelsForEntity(entity)
+    nouns = nouns_list(labels)
+    print('.')
+    return nouns
 
-# filter entities into nouns and noun phrases
-new_positive_samples['new nouns'] = new_positive_samples['new nps'].apply(nouns_list)
-print('done 2')
-# print(df_positive['new nouns'])
-new_positive_samples['new nps2'] = new_positive_samples['new nps'].apply(noun_phrases_list)
-print('done 3')
-# print(df_positive['new nps2'])
 
-# get entities associated with noun phrases
-new_positive_samples['new entities'] = new_positive_samples['new nps2'].apply(get_entities_list)
-print('done 4')
-print(new_positive_samples['new entities'])
+def get_nps(entity):
+    labels = ep.getEnglishLabelsForEntity(entity)
+    nps = noun_phrases_list(labels)
+    print('..')
+    return nps
 
-# DEBUG FROM HERE
 
-# get types associated with entities
-new_positive_samples['new entity types'] = new_positive_samples['new entities'].apply(apply_endpoint_list)
-print('done 5')
-print(new_positive_samples['new entity types'])
+def apply_endpoint_alt(entity):  # find types
+    types = ep.getTypesForEntity(entity)  # limit to 5
+    # print('types using endpoint id', types)
+    if len(types) == 0:  # using entity: back up
+        types = entity.getTypes()  # ont
+        # print('types using entity', types, '\n')
+    print('...')
+    return types
 
+
+new_positive_samples['additional noun list'] = new_positive_samples['entity'].apply(get_nouns)
+print('done get nouns')
+new_positive_samples['additional np list'] = new_positive_samples['entity'].apply(get_nps)
+print('done get nps')
+new_positive_samples['new entity types'] = new_positive_samples['entity'].apply(apply_endpoint_alt)
+print('done get types')
 pickl('new_positive_samples2', new_positive_samples)
 print('pickled')
