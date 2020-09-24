@@ -3,12 +3,16 @@
 
 from gensim.models import KeyedVectors
 from nltk.corpus import stopwords
+import json
 from kg.EB_classes import write_file, load_json, find_w, nouns, noun_phrases, filter_SW
 from kg.EB_classes import get_entities, apply_endpoint, find_vector_we, cal_average
 from kg.EB_classes import type_convert, find_vector_kge, pickl
 
 stopWords = set(stopwords.words('english'))
-dbpedia_test = load_json("data/smarttask_dbpedia_test_questions.json")  # to list of dictionaries
+
+with open('data/smarttask_dbpedia_test_questions.json') as fp:
+    dbpedia_test = json.load(fp)
+fp.close()
 
 # remove none questions - clean data
 for entry in dbpedia_test:
@@ -52,7 +56,7 @@ print('done noun phrases parsed')
 re_list = []
 for entry in dbpedia_test:
     nps = entry['np list']
-    np_list = filter_SW(nps)
+    np_list = filter_SW(nps, stopWords)
     entry.update({'np list': np_list})
     re_list.append(entry)
 
@@ -63,7 +67,6 @@ print('done nps filtered')
 ''' KG lookup to return set of related entities and closest type for each '''
 folder_ontos = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/"
 uri_onto = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/dbpedia_2014_fix.owl"
-
 
 # run noun phrases through KGE to find entity, type
 re_list = []

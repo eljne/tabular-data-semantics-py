@@ -6,8 +6,9 @@ from kg.EB_classes import unpickle, get_last, pickl
 from sklearn.neural_network import MLPClassifier
 
 # use only original training data
-load = unpickle('positive_samples')
+load = unpickle('df')
 positive_samples = pd.DataFrame(load)
+print(positive_samples.head)
 
 '''split on types/categories again'''
 
@@ -121,14 +122,12 @@ for df in cats_dfs:
 #     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     # classifiers_pos_typ[typ_label] = classifier
 
-
 types_all = set(types_all) # get unique values
 print(len(types_all)) # 310 unique types
 
 # dictionaries in which to store classifiers, arranges by type/category
 classifiers_pos_typ = dict.fromkeys(types)
 print('classifiers_pos_typ', classifiers_pos_typ)
-
 
 # all types: not just last type
 for typ_label in types_all:
@@ -142,5 +141,7 @@ for typ_label in types_all:
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_pos_typ[typ_label] = classifier
 
-pickl('classifiers_pos_cat',classifiers_pos_cat)
-pickl('classifiers_pos_typ',classifiers_pos_typ)
+pickl('classifiers_pos_cat', classifiers_pos_cat)
+pickl('classifiers_pos_typ', classifiers_pos_typ)
+
+print('done pickled')

@@ -1,7 +1,7 @@
 ''' author: Eleanor Bill @eljne '''
 ''' create vectors for additional training data - +ve - CONTINUED'''
+'''quick!'''
 
-# section 2
 from kg.EB_classes import unpickle, pickl
 from kg.EB_classes import cal_average, find_vector_kge
 from gensim.models import KeyedVectors
@@ -31,6 +31,8 @@ def find_vector_we(word_or_phrase):
     return vector
 
 
+new_positive_samples['we_wh_vector'] = new_positive_samples['wh'].apply(find_vector_we)
+print('done 0')
 new_positive_samples['new we_nouns_vector'] = new_positive_samples['new nouns'].apply(find_vector_we)
 print('done 1')
 new_positive_samples['new avg we_nouns_vector'] = new_positive_samples['new we_nouns_vector'].apply(cal_average)
@@ -51,13 +53,16 @@ print('done 7')
 new_positive_samples['new avg entities_KGE_vector'] = new_positive_samples['new entities_KGE_vector'].apply(cal_average)
 print('done 8')
 
+pickl('df_positive_fin1', new_positive_samples)
+print('done pickled 1')
+
 # create positive vectors
-
 new_positive_samples['new_concatenated_vector'] = new_positive_samples.apply(lambda x: [x['we_wh_vector'],
-                                                                      x['new avg we_nouns_vector'],
-                                                                      x['new avg we_np_vector'],
-                                                                      x['new avg entities_KGE_vector'],
-                                                                      x['new avg we_type_vector']], axis=1)
+                                                                                        x['new avg we_nouns_vector'],
+                                                                                        x['new avg we_np_vector'],
+                                                                                        x['new avg entities_KGE_vector'],
+                                                                                        x['new avg we_type_vector']],
+                                                                             axis=1)
 
-pickl('df_positive_fin', new_positive_samples)
-print('done pickled')
+pickl('df_positive_fin2', new_positive_samples)
+print('done pickled 2')

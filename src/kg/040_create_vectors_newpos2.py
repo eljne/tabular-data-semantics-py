@@ -10,7 +10,6 @@ pos = unpickle('new_positive_samples')
 new_positive_samples = pd.DataFrame(pos)
 print('unpickled')
 ep = DBpediaEndpoint()
-
 # print(new_positive_samples.head)
 
 
