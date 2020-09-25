@@ -32,7 +32,9 @@ def cat_scores(value):
     for item in classifiers_pos_cat:
         category = item
         c = classifiers_pos_cat[item]
-        pred_cat = c.predict_proba([value[vector_component]])[:, 1]
+        pred_cat = c.predict_proba([value[vector_component]])
+        p2 = re.split(' ', str(pred_cat[0]))
+        pred_cat = float(p2[1])
         print('pred_cat', pred_cat)
         # store label and score in dictionary
         category_scores.update({category: pred_cat})
@@ -62,17 +64,14 @@ def typ_scores(value):
             pred_typ = float(0)
         # store label and score in dictionary
         type_scores.update({typ: pred_typ})
+        print('pred_typ', pred_typ)
         print('..')
     sorted_typ = sorted(type_scores.items(), key=operator.itemgetter(1), reverse=True)
     sorted_typ_top_ten = list(sorted_typ)[0:9]
     return sorted_typ_top_ten
 
 
-# test_data['category_scores'] = str(test_data.apply(cat_scores, axis=1))
+test_data['category_scores'] = str(test_data.apply(cat_scores, axis=1))
 test_data['type_scores'] = str(test_data.apply(typ_scores, axis=1))
 
 pickl('test_data', test_data)
-
-# for item in test_data.iterrows():
-#     print(item)
-#     pred_cat = cat_scores(item)

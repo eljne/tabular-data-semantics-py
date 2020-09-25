@@ -119,29 +119,29 @@ classifiers_pos_typ = dict.fromkeys(types_all)
 print('classifiers_pos_typ', classifiers_pos_typ)
 
 # just last (theoretically most fine-grained type)
-for df in types_dfs:
-    copy_ds2 = positive_samples.copy()
-    typ_label = df["fine type"].unique()  # get the type associated with this df iteration
-    copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity(row, typ_label, 'fine type'), axis=1)  # label -/+
-    train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-    X = train_set[vector_component]
-    y = train_set["y"]
-    classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_pos_typ[typ_label[0]] = classifier
-    print('..')
-
-# all types: not just last type
-# for typ_label in types_all:
+# for df in types_dfs:
 #     copy_ds2 = positive_samples.copy()
-#     print('type label', typ_label)
-#     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
+#     typ_label = df["fine type"].unique()  # get the type associated with this df iteration
+#     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity(row, typ_label, 'fine type'), axis=1)  # label -/+
 #     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-#     # X = train_set['concatenated_vector']
 #     X = train_set[vector_component]
 #     y = train_set["y"]
 #     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-#     print(classifier)
 #     classifiers_pos_typ[typ_label[0]] = classifier
+#     print('..')
+
+# all types: not just last type
+for typ_label in types_all:
+    copy_ds2 = positive_samples.copy()
+    print('type label', typ_label)
+    copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
+    train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
+    # X = train_set['concatenated_vector']
+    X = train_set[vector_component]
+    y = train_set["y"]
+    classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
+    print(classifier)
+    classifiers_pos_typ[typ_label[0]] = classifier
 
 pickl('classifiers_pos_cat', classifiers_pos_cat)
 pickl('classifiers_pos_typ', classifiers_pos_typ)
