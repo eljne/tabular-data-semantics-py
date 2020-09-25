@@ -14,7 +14,6 @@ vector_component = 'we_wh_vector'
 
 '''split on types/categories again'''
 
-
 # def unique_array_workaround(series):
 #     series2 = []
 #     for item in series:
@@ -29,7 +28,7 @@ categories = positive_samples['category'].unique()
 positive_samples['fine type'] = positive_samples['type'].apply(get_last_2)
 types = positive_samples['fine type'].unique()
 
-types_dfs = [pd.DataFrame(y) for x, y in positive_samples.groupby('fine type', as_index=False)] # just last one
+types_dfs = [pd.DataFrame(y) for x, y in positive_samples.groupby('fine type', as_index=False)]  # just last one
 cats_dfs = [pd.DataFrame(y) for x, y in positive_samples.groupby('category', as_index=False)]
 
 print('done split to types and categories')
@@ -48,40 +47,35 @@ types_all_unique = list(set(types_all))
 print('all types', types_all_unique)
 
 
+# select positive samples at random from training data
 def random_sample_ratioed(datafrm, pos_fraction, ratio_pos, ratio_neg):
-    # fraction is a ratio e.g.
-    positive = datafrm[datafrm['y'] == 1]
-    negative = datafrm[datafrm['y'] == 0]
-    print('len pos', len(positive))
-    print('len neg', len(negative))
+    positive = datafrm[datafrm['y'] == 1]  # get positive data
+    negative = datafrm[datafrm['y'] == 0]  # get negative data
+    # find out how much +ve data we have, how much -ve we want
     positive_smples = positive.sample(frac=pos_fraction, random_state=0)
-    neg_samples_wanted = ((len(positive_smples) / ratio_pos) * ratio_neg)  # make sure this is correct! do some math!
+    neg_samples_wanted = ((len(positive_smples) / ratio_pos) * ratio_neg)
     fraction2 = neg_samples_wanted / len(negative)
-    # print('pos sampled', len(positive_smples))
-    # print('neg wanted', neg_samples_wanted)
     try:
         negative_smples = negative.sample(frac=fraction2, random_state=0)
-        # print('neg sampled', len(negative_smples))
     except:
         print('not enough negative data, try diff ratio/fraction')
         return pd.DataFrame()
+    print('positive samples length', len(positive_smples))
+    print('negative samples length', len(negative_smples))
     new_df = pd.concat([positive_smples, negative_smples])  # append all data together
     new_df2 = new_df.sample(frac=1)  # shuffle dataframe
     return new_df2
 
 
+# trains MLP classifier
 def train_classifier(train, label):
     clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
                         hidden_layer_sizes=(5, 2), random_state=1)
-    # print('label', label.shape)   # array y of size (n_samples,)
-    # print('train', train.shape)   # array X of size (n_samples, n_features)
-    clf.fit(list(train), label)   # debug from here
+    clf.fit(list(train), label)  # debug from here
     return clf
 
 
-'''select positive samples at random from training data'''
-
-
+# assigns polarity based on given category/type
 def label_polarity(row, label, column):
     if row[column] == label or str(row[column]) == label:  # if type/category is current label
         return 1  # positive polarity
@@ -89,6 +83,7 @@ def label_polarity(row, label, column):
         return 0  # negative polarity
 
 
+# same as above except with strings
 def label_polarity_all_typs(row, label, column):
     if label in row[column] or label in str(row[column]):  # if type is in current label
         return 1  # positive polarity
@@ -96,15 +91,17 @@ def label_polarity_all_typs(row, label, column):
         return 0  # negative polarity
 
 
+'''categories'''
 # dictionaries in which to store classifiers, arranges by type/category
 classifiers_pos_cat = dict.fromkeys(categories)
 print('classifiers_pos_cat', classifiers_pos_cat)
 
+# iterate through categories, get training data, train classifiers, store classifiers
 for df in cats_dfs:
     copy_ds = positive_samples.copy()
     cat_label = df["category"].unique()
     # print('cat label', cat_label)
-    copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label, 'category'), axis=1)    # label +ve and -ve
+    copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label, 'category'), axis=1)  # label +ve and -ve
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
     # X = train_set['concatenated_vector']
     X = train_set[vector_component]
@@ -113,8 +110,9 @@ for df in cats_dfs:
     classifiers_pos_cat[cat_label[0]] = classifier
     print('.')
 
-types_all = set(types_all) # get unique values
-print(len(types_all)) # 310 unique types
+'''types'''
+types_all = set(types_all)  # get unique values
+print(len(types_all))  # 310 unique types
 
 # dictionaries in which to store classifiers, arranges by type/category
 classifiers_pos_typ = dict.fromkeys(types_all)
@@ -123,7 +121,7 @@ print('classifiers_pos_typ', classifiers_pos_typ)
 # just last (theoretically most fine-grained type)
 for df in types_dfs:
     copy_ds2 = positive_samples.copy()
-    typ_label = df["fine type"].unique()   # get the type associated with this df iteration
+    typ_label = df["fine type"].unique()  # get the type associated with this df iteration
     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity(row, typ_label, 'fine type'), axis=1)  # label -/+
     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
     X = train_set[vector_component]
@@ -144,8 +142,7 @@ for df in types_dfs:
 #     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
 #     print(classifier)
 #     classifiers_pos_typ[typ_label[0]] = classifier
-#
+
 pickl('classifiers_pos_cat', classifiers_pos_cat)
 pickl('classifiers_pos_typ', classifiers_pos_typ)
-
-# print('done pickled')
+print('done pickled')
