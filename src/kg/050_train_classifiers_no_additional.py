@@ -2,13 +2,15 @@
 ''' train a MLP model for each category and type: only use initial training data'''
 
 import pandas as pd
-from kg.EB_classes import unpickle, get_last, pickl
+from kg.EB_classes import unpickle, get_last_2, pickl
 from sklearn.neural_network import MLPClassifier
 
 # use only original training data
 load = unpickle('df')
 positive_samples = pd.DataFrame(load)
-print(positive_samples.head)
+# print(positive_samples.head)
+
+vector_component = 'we_wh_vector'
 
 '''split on types/categories again'''
 
@@ -24,7 +26,7 @@ print(positive_samples.head)
 
 
 categories = positive_samples['category'].unique()
-positive_samples['fine type'] = positive_samples['type'].apply(get_last)
+positive_samples['fine type'] = positive_samples['type'].apply(get_last_2)
 types = positive_samples['fine type'].unique()
 
 types_dfs = [pd.DataFrame(y) for x, y in positive_samples.groupby('fine type', as_index=False)] # just last one
@@ -105,43 +107,45 @@ for df in cats_dfs:
     copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label, 'category'), axis=1)    # label +ve and -ve
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
     # X = train_set['concatenated_vector']
-    X = train_set['we_np_vector']
+    X = train_set[vector_component]
     y = train_set["y"]
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_pos_cat[cat_label[0]] = classifier
-
-# just last (theoretically most fine-grained type)
-# for df in types_dfs:
-#     copy_ds2 = positive_samples.copy()
-#     typ_label = df["fine type"].unique()   # get the type associated with this df iteration
-#     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity(row, typ_label, 'fine type'), axis=1)  # label -/+
-#     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-#     # X = train_set['concatenated_vector']
-#     X = train_set['we_np_vector']
-#     y = train_set["y"]
-#     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    # classifiers_pos_typ[typ_label] = classifier
+    print('.')
 
 types_all = set(types_all) # get unique values
 print(len(types_all)) # 310 unique types
 
 # dictionaries in which to store classifiers, arranges by type/category
-classifiers_pos_typ = dict.fromkeys(types)
+classifiers_pos_typ = dict.fromkeys(types_all)
 print('classifiers_pos_typ', classifiers_pos_typ)
 
-# all types: not just last type
-for typ_label in types_all:
+# just last (theoretically most fine-grained type)
+for df in types_dfs:
     copy_ds2 = positive_samples.copy()
-    print('type label', typ_label)
-    copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
+    typ_label = df["fine type"].unique()   # get the type associated with this df iteration
+    copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity(row, typ_label, 'fine type'), axis=1)  # label -/+
     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-    # X = train_set['concatenated_vector']
-    X = train_set['we_np_vector']
+    X = train_set[vector_component]
     y = train_set["y"]
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_pos_typ[typ_label] = classifier
+    classifiers_pos_typ[typ_label[0]] = classifier
+    print('..')
 
+# all types: not just last type
+# for typ_label in types_all:
+#     copy_ds2 = positive_samples.copy()
+#     print('type label', typ_label)
+#     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
+#     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
+#     # X = train_set['concatenated_vector']
+#     X = train_set[vector_component]
+#     y = train_set["y"]
+#     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
+#     print(classifier)
+#     classifiers_pos_typ[typ_label[0]] = classifier
+#
 pickl('classifiers_pos_cat', classifiers_pos_cat)
 pickl('classifiers_pos_typ', classifiers_pos_typ)
 
-print('done pickled')
+# print('done pickled')

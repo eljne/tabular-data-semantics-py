@@ -4,8 +4,9 @@
 from gensim.models import KeyedVectors
 from nltk.corpus import stopwords
 import json
-from kg.EB_classes import write_file, load_json, find_w, nouns, noun_phrases, filter_SW
-from kg.EB_classes import get_entities, apply_endpoint, find_vector_we, cal_average
+import numpy as np
+from kg.EB_classes import write_file, find_w, nouns, noun_phrases, filter_SW
+from kg.EB_classes import get_entities, apply_endpoint, cal_average
 from kg.EB_classes import type_convert, find_vector_kge, pickl
 
 stopWords = set(stopwords.words('english'))
@@ -29,7 +30,7 @@ for a in dbpedia_test:
 
 print('done find wh')
 dbpedia_test = re_list
-write_file(dbpedia_test, '01_dbpedia_test')
+pickl('01_dbpedia_test', dbpedia_test)
 
 re_list = []
 for entry in dbpedia_test:
@@ -39,7 +40,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-write_file(dbpedia_test, '02_dbpedia_test')
+pickl('02_dbpedia_test', dbpedia_test)
 print('done nouns parsed')
 
 re_list = []
@@ -50,7 +51,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-write_file(dbpedia_test, '03_dbpedia_test')
+pickl('03_dbpedia_test', dbpedia_test)
 print('done noun phrases parsed')
 
 re_list = []
@@ -61,7 +62,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-write_file(dbpedia_test, '04_dbpedia_test')
+pickl('04_dbpedia_test', dbpedia_test)
 print('done nps filtered')
 
 ''' KG lookup to return set of related entities and closest type for each '''
@@ -87,13 +88,24 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-write_file(dbpedia_test, '05_dbpedia_test')
+pickl('05_dbpedia_test', dbpedia_test)
 print('done types found')
 
 
 ''' word embeddings on wh and nouns '''
 fastTextfile = 'data/wiki-news-300d-1M.vec'
 loaded_model = KeyedVectors.load_word2vec_format(fastTextfile)
+
+
+# find word embedding vector
+def find_vector_we(word_or_phrase):
+    try:
+        vector = loaded_model.word_vec(word_or_phrase)
+    except:
+        vector = np.zeros(1)
+    print('.')
+    return vector
+
 
 # run wh through word embedding
 re_list = []
@@ -105,7 +117,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-write_file(dbpedia_test, '06_dbpedia_test')
+pickl('06_dbpedia_test', dbpedia_test)
 print('done wh WE vectors found')
 
 # run nouns through word embedding
@@ -121,7 +133,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-write_file(dbpedia_test, '07_dbpedia_test')
+pickl('07_dbpedia_test', dbpedia_test)
 print('done noun WE vectors found')
 
 # run nps through word embedding
@@ -137,7 +149,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-write_file(dbpedia_test, '08_dbpedia_test')
+pickl('08_dbpedia_test', dbpedia_test)
 print('done noun phrase WE vectors found')
 
 # run closest type through word embedding
@@ -156,7 +168,7 @@ for entry in dbpedia_test:
 
 del loaded_model  # delete WE model from memory
 dbpedia_test = re_list
-write_file(dbpedia_test, '10_dbpedia_test')
+pickl('09_dbpedia_test', dbpedia_test)
 print('done type WE vectors found')
 
 ''' use kgvec2go KGEs '''
@@ -175,9 +187,9 @@ for entry in dbpedia_test:
     entry.update({'entities_KGE_vector': average_vector})
     re_list.append(entry)
 
-print('done entities KGE vectors found')
 dbpedia_test = re_list
-write_file(dbpedia_test, '11_dbpedia_test')
+pickl('10_dbpedia_test', dbpedia_test)
+print('done entities KGE vectors found')
 
 
 def concatenate_vector(entry):

@@ -9,6 +9,8 @@ from sklearn.neural_network import MLPClassifier
 all_td = unpickle('all_td')
 all_samples = pd.DataFrame(all_td)
 
+vector_component = 'we_wh_vector'
+
 '''split on types/categories again'''
 
 categories = all_samples['category'].unique()

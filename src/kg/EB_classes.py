@@ -1,5 +1,5 @@
-''' stores functions that are used at multiple points throughout the program '''
 '''author: Eleanor Bill @eljne'''
+''' stores functions that are used at multiple points throughout the program '''
 
 import json
 import re
@@ -245,3 +245,11 @@ def get_last(ls):
     except:
         return None
 
+def get_last_2(ls):
+    count = -1
+    try:
+        el = list(ls)
+        ret = str(el[count])
+        return ret
+    except:
+        return None
