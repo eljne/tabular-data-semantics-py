@@ -1,15 +1,13 @@
 ''' author: Eleanor Bill @eljne '''
 ''' join all data - lots of renaming and dropping fields'''
-
 from kg.EB_classes import pickl, unpickle
-import numpy as np
-import pandas as pd
 
 # unpickle all vectors
-negative_all = unpickle('df_negative_fin')
-new_positive = unpickle('df_positive_fin2')
-og_positive = unpickle('df')
+negative_all = unpickle('training_vectors/22_train_new_negative_samples_fin')
+new_positive = unpickle('training_vectors/13_train_new_positive_samples_fin')
+og_positive = unpickle('training_vectors/final_original_training_vectors')
 print('unpickled')
+
 # rejig - renaming etc. to get consistency
 
 ''' NEGATIVE '''
@@ -76,5 +74,5 @@ new_td = negative_all4.append(og_positive2)
 all_td = new_td.append(new_positive3)
 
 # pickle all training data
-pickl('all_td', all_td)
+pickl('training_vectors/30_all_td', all_td)
 print('pickled')

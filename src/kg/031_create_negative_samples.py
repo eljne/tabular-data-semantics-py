@@ -8,7 +8,7 @@ from kg.EB_classes import unpickle, pickl
 from ontology.onto_access import DBpediaOntology
 
 # unpickle
-load = unpickle('df')
+load = unpickle('training_vectors/final_original_training_vectors')
 df = pd.DataFrame(load)
 print('done unpickled')
 
@@ -119,5 +119,5 @@ shuffled_category
 df_negative2 = df_negative[(df_negative.shuffled_type != df_negative.type)]
 df_negative3 = df_negative2[(df_negative2.shuffled_category != df_negative2.category)]
 
-pickl('negative_samples', df_negative3)
+pickl('training_vectors/21_train_new_negative_samples', df_negative3)
 print('done pickled')

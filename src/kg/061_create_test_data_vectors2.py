@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from kg.EB_classes import type_convert, find_vector_kge, pickl, unpickle
 
-dbpedia_test = unpickle('10_dbpedia_test')
+dbpedia_test = unpickle('testing_vectors/09_dbpedia_test')
 
 # check for arrays length 1
 
@@ -74,4 +74,4 @@ def concatenate_vector(entry):
 dbpedia_test['concatenated_vector'] = dbpedia_test.apply(concatenate_vector, axis=1)
 dbpedia_test2 = dbpedia_test.drop(['entities_KGE_vector'], axis=1)
 dbpedia_test3 = dbpedia_test2.rename(columns={'entities_KGE_vector_2': 'entities_KGE_vector'})
-pickl('dbpedia_test_final', dbpedia_test3)
+pickl('testing_vectors/10_dbpedia_test_fin', dbpedia_test3)

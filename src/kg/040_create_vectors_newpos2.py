@@ -6,7 +6,7 @@ from kg.EB_classes import pickl, unpickle, nouns_list, noun_phrases_list
 import pandas as pd
 from kg.endpoints import DBpediaEndpoint
 
-pos = unpickle('new_positive_samples')
+pos = unpickle('training_vectors/11_train_new_positive_samples')
 new_positive_samples = pd.DataFrame(pos)
 print('unpickled')
 ep = DBpediaEndpoint()
@@ -43,5 +43,5 @@ new_positive_samples['additional np list'] = new_positive_samples['entity'].appl
 print('done get nps')
 new_positive_samples['new entity types'] = new_positive_samples['entity'].apply(apply_endpoint_alt)
 print('done get types')
-pickl('new_positive_samples2', new_positive_samples)
+pickl('training_vectors/12_train_new_positive_samples', new_positive_samples)
 print('pickled')

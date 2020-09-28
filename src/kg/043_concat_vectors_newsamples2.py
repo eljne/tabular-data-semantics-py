@@ -5,7 +5,7 @@ from kg.EB_classes import pickl, unpickle
 import numpy as np
 import pandas as pd
 
-all_td = unpickle('all_td')
+all_td = unpickle('training_vectors/30_all_td')
 all_td = pd.DataFrame(all_td).reset_index()
 all_td = all_td.fillna(0)
 all_td['entities_KGE_vector_2'] = all_td['we_wh_vector'].copy()
@@ -57,7 +57,6 @@ for a in range(0, len(all_td)):
 
     # print('we_wh_vector', len(dbpedia_train_wh['we_wh_vector'][a]))   # 300
     # print('we_nouns_vector', len(dbpedia_train_wh['we_nouns_vector'][a]))  # 300
-    # print('we_np_vector', len(dbpedia_train_wh['we_np_vector'][a]))   # 300
     # print('entities_KGE_vector', len(dbpedia_train_wh['entities_KGE_vector_2'][a]))  # 200
     # print('we_type_vector', len(dbpedia_train_wh['we_type_vector'][a]))  # 300
     print(('...'))
@@ -71,5 +70,5 @@ all_td3['concatenated_vector'] = all_td3.apply(lambda x: [x['we_wh_vector'],
                                                           x['entities_KGE_vector'],
                                                           x['we_type_vector']], axis=1)
 
-pickl('all_td2', all_td3)
+pickl('training_vectors/31_all_td_fin', all_td3)
 print('pickled')

@@ -10,7 +10,7 @@ import numpy as np
 #          - sibling type affects type vectors
 # 3 more sets of -ve data:
 
-neg = unpickle('negative_samples')
+neg = unpickle('training_vectors/21_train_new_negative_samples')
 
 df_negative_st = neg.copy()  # - shuffled type - change __ embeddings
 df_negative_sc = neg.copy()  # - shuffled category - change __ embeddings
@@ -55,5 +55,5 @@ df_neg_all2 = df_neg_all.append(df_negative_sc)
 print('done 5')
 
 # pickle
-pickl('df_negative_fin', df_neg_all2)
+pickl('training_vectors/22_train_new_negative_samples_fin', df_neg_all2)
 print('pickled')

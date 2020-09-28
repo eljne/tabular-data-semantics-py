@@ -7,7 +7,7 @@ from kg.EB_classes import cal_average, find_vector_kge
 from gensim.models import KeyedVectors
 import numpy as np
 
-new_positive_samples = unpickle('new_positive_samples2')
+new_positive_samples = unpickle('training_vectors/12_train_new_positive_samples')
 print('unpickled')
 # new_positive_samples = pd.DataFrame(new_positive_samples)
 
@@ -59,5 +59,5 @@ new_positive_samples['new_concatenated_vector'] = new_positive_samples.apply(lam
                                                                                         x['new avg we_type_vector']],
                                                                              axis=1)
 
-pickl('df_positive_fin2', new_positive_samples)
+pickl('training_vectors/13_train_new_positive_samples_fin', new_positive_samples)
 print('done pickled 2')

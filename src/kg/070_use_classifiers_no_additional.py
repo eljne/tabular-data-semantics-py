@@ -6,20 +6,21 @@ import re
 import numpy as np
 from kg.EB_classes import unpickle, pickl
 
-'''unpickle classifiers'''
-classifiers_pos_cat = unpickle('classifiers_pos_cat')
-classifiers_pos_typ = unpickle('classifiers_pos_typ')
-
-'''load test data vectors'''
-dbpedia_test_final = unpickle('dbpedia_test_final')
-test_data = pd.DataFrame(dbpedia_test_final)
-
 '''change depending on vector component to test'''
-vector_component = 'we_nouns_vector'
+vector_component = 'concatenated_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
 # we_type_vector
+# concatenated_vector
+
+'''unpickle classifiers'''
+classifiers_pos_cat = unpickle('classifiers/classifiers_pos_cat_OGTD')
+classifiers_pos_typ = unpickle('classifiers/classifiers_pos_typ_OGTD')
+
+'''load test data vectors'''
+dbpedia_test_final = unpickle('testing_vectors/10_dbpedia_test_fin')
+test_data = pd.DataFrame(dbpedia_test_final)
 
 
 # run through classifiers and store scores
@@ -78,4 +79,4 @@ def typ_scores(value):
 test_data['category_scores'] = str(test_data.apply(cat_scores, axis=1))
 test_data['type_scores'] = str(test_data.apply(typ_scores, axis=1))
 
-pickl('test_data', test_data)
+pickl('results/results_OGTD', test_data)

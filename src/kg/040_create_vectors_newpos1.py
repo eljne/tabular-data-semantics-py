@@ -4,7 +4,7 @@
 from kg.EB_classes import pickl, unpickle, nouns_list, noun_phrases_list, get_entities_list, apply_endpoint_list
 import pandas as pd
 
-pos = unpickle('positive_samples')
+pos = unpickle('training_vectors/final_original_training_vectors')
 df_positive = pd.DataFrame(pos)
 
 '''reformat to create new positive samples with similar entities'''
@@ -45,5 +45,5 @@ print('samples created')
 
 print('test', new_positive_samples)
 
-pickl('new_positive_samples', new_positive_samples)
+pickl('training_vectors/11_train_new_positive_samples', new_positive_samples)
 print('pickled')

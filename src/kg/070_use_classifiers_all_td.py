@@ -5,14 +5,21 @@ import pandas as pd
 from kg.EB_classes import unpickle, pickl
 import re
 import numpy as np
-vector_component = 'we_nouns_vector'
+
+'''change depending on vector component to test'''
+vector_component = 'concatenated_vector'
+# we_wh_vector
+# we_nouns_vector
+# entities_KGE_vector
+# we_type_vector
+# concatenated_vector
 
 '''unpickle classifiers'''
-classifiers_all_cat = unpickle('classifiers_all_cat')
-classifiers_all_typ = unpickle('classifiers_all_typ')
+classifiers_all_cat = unpickle('classifiers/classifiers_all_cat_ALL')
+classifiers_all_typ = unpickle('classifiers/classifiers_all_typ_ALL')
 
 '''load test data vectors'''
-dbpedia_test_final = unpickle('dbpedia_test_final')
+dbpedia_test_final = unpickle('testing_vectors/10_dbpedia_test_fin')
 test_data = pd.DataFrame(dbpedia_test_final)
 print(dbpedia_test_final)
 
@@ -86,4 +93,4 @@ def typ_scores(value):
 test_data['category_scores'] = str(test_data.apply(cat_scores, axis=1))
 test_data['type_scores'] = str(test_data.apply(typ_scores, axis=1))
 
-pickl('test_data', test_data)
+pickl('results/results_ALLTD', test_data)

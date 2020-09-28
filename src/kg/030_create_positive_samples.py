@@ -7,7 +7,7 @@ from kg.endpoints import DBpediaEndpoint
 from ontology.onto_access import DBpediaOntology
 
 # unpickle
-load = unpickle('df')
+load = unpickle('training_vectors/final_original_training_vectors')
 df_positive = pd.DataFrame(load)
 df_positive['polarity'] = "1"
 
@@ -53,5 +53,5 @@ df_positive_final = df_positive[["category",
                                  ]]  # subset of df
 
 # pickle
-pickl('positive_samples', df_positive_final)
+pickl('training_vectors/10_train_new_positive_samples', df_positive_final)
 print('done pickled')

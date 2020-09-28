@@ -1,8 +1,11 @@
 from kg.EB_classes import unpickle
 import csv
 
-test_data = unpickle('test_data')
-results = test_data['type_scores']
+results_OGTD = unpickle('results/results_OGTD')
+results_ALLTD = unpickle('results/results_ALLTD')
+
+results_OGTD = results_OGTD['type_scores']
+results_ALL = results_ALLTD['type_scores']
 
 ''' REFORMATTING FOR EVAL SCRIPT '''
 ''' export results to be used in evaluation script '''

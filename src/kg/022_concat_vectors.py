@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 from kg.EB_classes import unpickle, pickl
-dbpedia_train_wh = unpickle('09_dbpedia_train_wh')
+dbpedia_train_wh = unpickle('training_vectors/09_dbpedia_train_wh')
 
 '''
 we_wh_vector - First position could be for the embedding of the wh question word (we can create our own embedding/encoding).
@@ -77,10 +77,9 @@ dbpedia_train_wh2 = dbpedia_train_wh.drop(['entities_KGE_vector'], axis=1)
 dbpedia_train_wh3 = dbpedia_train_wh2.rename(columns={'entities_KGE_vector_2': 'entities_KGE_vector'})
 print('done concatenate vector')
 
-pickl('df', dbpedia_train_wh3)
+pickl('training_vectors/final_original_training_vectors', dbpedia_train_wh3)
 print('done pickled')
 
 df_sample = dbpedia_train_wh3[0:10]
 df_sample.to_csv('data/test code/concat_initialTD_vectors.csv')
 print('done sampled to csv')
-

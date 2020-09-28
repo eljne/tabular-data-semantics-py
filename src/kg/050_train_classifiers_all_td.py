@@ -1,19 +1,20 @@
 ''' author: Eleanor Bill @eljne '''
 ''' train a MLP model for each category and type '''
-
 import pandas as pd
 from kg.EB_classes import unpickle, get_last, pickl
 from sklearn.neural_network import MLPClassifier
 
-# use all training data
-all_td = unpickle('all_td2')
-all_samples = pd.DataFrame(all_td)
-
-vector_component = 'we_wh_vector'
+'''change depending on vector component to test'''
+vector_component = 'concatenated_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
 # we_type_vector
+# concatenated_vector
+
+# use all training data
+all_td = unpickle('training_vectors/31_all_td_fin')
+all_samples = pd.DataFrame(all_td)
 
 
 '''split on types/categories again'''
@@ -131,6 +132,6 @@ for typ_label in types_all_unique:
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_all_typ[typ_label] = classifier
 
-pickl('classifiers_all_cat', classifiers_all_cat)
-pickl('classifiers_all_typ', classifiers_all_typ)
+pickl('classifiers/classifiers_all_cat_ALL', classifiers_all_cat)
+pickl('classifiers/classifiers_all_typ_ALL', classifiers_all_typ)
 

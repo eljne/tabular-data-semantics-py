@@ -8,7 +8,7 @@ from kg.EB_classes import pickl, unpickle
 import pandas as pd
 
 stopWords = set(stopwords.words('english'))  # load stopwords
-dbpedia_train_wh = unpickle('05_dbpedia_train_wh')
+dbpedia_train_wh = unpickle('training_vectors/05_dbpedia_train_wh')
 
 ''' word embeddings on wh and nouns '''
 fastTextfile = 'data/wiki-news-300d-1M.vec'

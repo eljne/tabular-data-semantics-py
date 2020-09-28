@@ -5,16 +5,18 @@ import pandas as pd
 from kg.EB_classes import unpickle, get_last_2, pickl
 from sklearn.neural_network import MLPClassifier
 
-# use only original training data
-load = unpickle('df')
-positive_samples = pd.DataFrame(load)
-# print(positive_samples.head)
-
-vector_component = 'we_nouns_vector'
+'''change depending on vector component to test'''
+vector_component = 'concatenated_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
 # we_type_vector
+# concatenated_vector
+
+# use only original training data
+load = unpickle('training_vectors/final_original_training_vectors')
+positive_samples = pd.DataFrame(load)
+
 
 '''split on types/categories again'''
 
@@ -124,6 +126,6 @@ for typ_label in types_all:
     print(classifier)
     classifiers_pos_typ[typ_label[0]] = classifier
 
-pickl('classifiers_pos_cat', classifiers_pos_cat)
-pickl('classifiers_pos_typ', classifiers_pos_typ)
+pickl('classifiers/classifiers_pos_cat_OGTD', classifiers_pos_cat)
+pickl('classifiers/classifiers_pos_typ_OGTD', classifiers_pos_typ)
 print('done pickled')
