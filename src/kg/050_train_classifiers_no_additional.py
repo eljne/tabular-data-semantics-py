@@ -49,8 +49,8 @@ print('all types', types_all_unique)
 
 # select positive samples at random from training data
 def random_sample_ratioed(datafrm, pos_fraction, ratio_pos, ratio_neg):
-    positive = datafrm[datafrm['y'] == 1]  # get positive data
-    negative = datafrm[datafrm['y'] == 0]  # get negative data
+    positive = datafrm[datafrm['y'] == "1"]  # get positive data
+    negative = datafrm[datafrm['y'] == "0"]  # get negative data
     # find out how much +ve data we have, how much -ve we want
     positive_smples = positive.sample(frac=pos_fraction, random_state=0)
     neg_samples_wanted = ((len(positive_smples) / ratio_pos) * ratio_neg)
@@ -78,17 +78,17 @@ def train_classifier(train, label):
 # assigns polarity based on given category/type
 def label_polarity(row, label, column):
     if row[column] == label or str(row[column]) == label:  # if type/category is current label
-        return 1  # positive polarity
+        return "1"  # positive polarity
     else:
-        return 0  # negative polarity
+        return "0"  # negative polarity
 
 
 # same as above except with strings
 def label_polarity_all_typs(row, label, column):
     if label in row[column] or label in str(row[column]):  # if type is in current label
-        return 1  # positive polarity
+        return "1"  # positive polarity
     else:
-        return 0  # negative polarity
+        return "0"  # negative polarity
 
 
 '''categories'''

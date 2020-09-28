@@ -38,8 +38,8 @@ print('all types', types_all_unique)
 
 def random_sample_ratioed(datafrm, pos_fraction, ratio_pos, ratio_neg):
     # fraction is a ratio e.g.
-    positive = datafrm[datafrm['y'] == 1]
-    negative = datafrm[datafrm['y'] == 0]
+    positive = datafrm[datafrm['y'] == "1"]
+    negative = datafrm[datafrm['y'] == "0"]
     print('len pos', len(positive))
     print('len neg', len(negative))
     positive_smples = positive.sample(frac=pos_fraction, random_state=0)
@@ -67,30 +67,26 @@ def train_classifier(train, label):
     return clf
 
 
-dict_of_types = dict(iter(all_td.groupby('type')))
-dict_of_categories = dict(iter(all_td.groupby('category')))
-
-
 # choose the number of negative examples trained for each positive example
 
 def label_polarity(row, label, column):
     if row[column] == label or str(row[column]) == label: # if type/category is current label
-        if row['polarity'] == 1:    # and not already a negative sample
-            return 1  # positive polarity
+        if row['polarity'] == 1 or row['polarity'] == "1":    # and not already a negative sample
+            return "1"  # positive polarity
         else:   # if already a negative sample return 0
-            return 0
+            return "0"
     else:
-        return 0  # negative polarity
+        return "0"  # negative polarity
 
 
 def label_polarity_all_typs(row, label, column):
-    if label in row[column] or label in str(row[column]):  # if type is in current label
-        if row['polarity'] == 1:    # and not already a negative sample
-            return 1  # positive polarity
+    if label == str(row[column]) or label in str(row[column]):  # if type is in current label
+        if row['polarity'] == 1 or row['polarity'] == "1":    # and not already a negative sample
+            return "1"  # positive polarity
         else:   # if already a negative sample return 0
-            return 0
+            return "0"
     else:
-        return 0  # negative polarity
+        return "0"  # negative polarity
 
 
 # dictionaries in which to store classifiers, arranges by type/category
@@ -100,12 +96,14 @@ print('classifiers_all_cat', classifiers_all_cat)
 for df in cats_dfs:
     copy_ds = all_samples.copy()
     cat_label = df["category"].unique()
-    # print('cat label', cat_label)
-    copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label, 'category'), axis=1)    # label +ve and -ve
+    cat_label = cat_label[0]
+    copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label, "category"), axis=1)    # label +ve and -ve
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
     # X = train_set['concatenated_vector']
     X = train_set['we_np_vector']
     y = train_set["y"]
+    print(X.head(10))
+    print(y.head(10))
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_all_cat[cat_label[0]] = classifier
 
@@ -122,28 +120,28 @@ for df in cats_dfs:
 #     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     # classifiers_all_typ[typ_label] = classifier
 
-
-types_all = set(types_all) # get unique values
-print(len(types_all)) # 310 unique types
-
-# dictionaries in which to store classifiers, arranges by type/category
-classifiers_all_typ = dict.fromkeys(types)
-print('classifiers_all_typ', classifiers_all_typ)
-
-
-# all types: not just last type
-for typ_label in types_all:
-    copy_ds2 = all_samples.copy()
-    print('type label', typ_label)
-    copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
-    train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-    # X = train_set['concatenated_vector']
-    X = train_set['we_np_vector']
-    y = train_set["y"]
-    classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_all_typ[typ_label] = classifier
-
+#
+# types_all = set(types_all) # get unique values
+# print(len(types_all)) # 310 unique types
+#
+# # dictionaries in which to store classifiers, arranges by type/category
+# classifiers_all_typ = dict.fromkeys(types)
+# print('classifiers_all_typ', classifiers_all_typ)
+#
+#
+# # all types: not just last type
+# for typ_label in types_all:
+#     copy_ds2 = all_samples.copy()
+#     print('type label', typ_label)
+#     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
+#     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
+#     # X = train_set['concatenated_vector']
+#     X = train_set['we_np_vector']
+#     y = train_set["y"]
+#     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
+#     classifiers_all_typ[typ_label] = classifier
+#
 
 pickl('classifiers_all_cat', classifiers_all_cat)
-pickl('classifiers_all_typ',classifiers_all_typ)
+# pickl('classifiers_all_typ',classifiers_all_typ)
 

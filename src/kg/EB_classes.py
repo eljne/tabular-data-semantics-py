@@ -253,3 +253,20 @@ def get_last_2(ls):
         return ret
     except:
         return None
+
+
+
+#
+# def check_lengths(row, column, length):
+#     if len(row[column]) == length:
+#         return row[column]
+#     else:
+#         return np.zeros(length)
+#
+#
+# # make sure all the same length (if returned zeros, replace with array of zeroes that is correct length)
+# all_td['we_wh_vector_2'] = all_td.apply(lambda row: check_lengths(row, 'we_wh_vector', 300), axis=1)
+# all_td['we_nouns_vector_2'] = all_td.apply(lambda row: check_lengths(row, 'we_nouns_vector', 300), axis=1)
+# all_td['we_np_vector_2'] = all_td.apply(lambda row: check_lengths(row, 'we_np_vector', 300), axis=1)
+# all_td['entities_KGE_vector_2'] = all_td.apply(lambda row: check_lengths(row, 'entities_KGE_vector', 200), axis=1)
+# all_td['we_type_vector_2'] = all_td.apply(lambda row: check_lengths(row, 'we_type_vector', 300), axis=1)
