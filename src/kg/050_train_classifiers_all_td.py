@@ -10,6 +10,11 @@ all_td = unpickle('all_td2')
 all_samples = pd.DataFrame(all_td)
 
 vector_component = 'we_wh_vector'
+# we_wh_vector
+# we_nouns_vector
+# entities_KGE_vector
+# we_type_vector
+
 
 '''split on types/categories again'''
 
@@ -102,26 +107,12 @@ for df in cats_dfs:
     cat_label = cat_label[0]
     copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label, "category"), axis=1)    # label +ve and -ve
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
-    # X = train_set['concatenated_vector']
-    X = train_set['we_np_vector']
+    X = train_set[vector_component]
     y = train_set["y"]
     # print(X.head(10))
     # print(y.head(10))
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_all_cat[cat_label[0]] = classifier
-
-
-# just last (theoretically most fine-grained type)
-# for df in types_dfs:
-#     copy_ds2 = all_samples.copy()
-#     typ_label = df["fine type"].unique()   # get the type associated with this df iteration
-#     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity(row, typ_label, 'fine type'), axis=1)  # label -/+
-#     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-#     # X = train_set['concatenated_vector']
-#     X = train_set['we_np_vector']
-#     y = train_set["y"]
-#     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    # classifiers_all_typ[typ_label] = classifier
+    classifiers_all_cat[cat_label[0]] = classifiers
 
 print(len(types_all_unique)) # 310 unique types
 
@@ -135,13 +126,11 @@ for typ_label in types_all_unique:
     print('type label', typ_label)
     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-    # X = train_set['concatenated_vector']
-    X = train_set['we_np_vector']
+    X = train_set[vector_component]
     y = train_set["y"]
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_all_typ[typ_label] = classifier
 
-
 pickl('classifiers_all_cat', classifiers_all_cat)
-# pickl('classifiers_all_typ',classifiers_all_typ)
+pickl('classifiers_all_typ', classifiers_all_typ)
 

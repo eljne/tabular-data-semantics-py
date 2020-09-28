@@ -13,21 +13,10 @@ positive_samples = pd.DataFrame(load)
 vector_component = 'we_nouns_vector'
 # we_wh_vector
 # we_nouns_vector
-# we_np_vector
 # entities_KGE_vector
 # we_type_vector
 
 '''split on types/categories again'''
-
-# def unique_array_workaround(series):
-#     series2 = []
-#     for item in series:
-#         item2 = str(item)
-#         if item2 != '[]' and item2 != []:   # get rid of label = []
-#             series2.append(item2)
-#     ty = list(set(series2))
-#     return ty
-
 
 categories = positive_samples['category'].unique()
 positive_samples['fine type'] = positive_samples['type'].apply(get_last_2)
@@ -121,18 +110,6 @@ print(len(types_all))  # 310 unique types
 # dictionaries in which to store classifiers, arranges by type/category
 classifiers_pos_typ = dict.fromkeys(types_all)
 print('classifiers_pos_typ', classifiers_pos_typ)
-
-# just last (theoretically most fine-grained type)
-# for df in types_dfs:
-#     copy_ds2 = positive_samples.copy()
-#     typ_label = df["fine type"].unique()  # get the type associated with this df iteration
-#     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity(row, typ_label, 'fine type'), axis=1)  # label -/+
-#     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-#     X = train_set[vector_component]
-#     y = train_set["y"]
-#     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-#     classifiers_pos_typ[typ_label[0]] = classifier
-#     print('..')
 
 # all types: not just last type
 for typ_label in types_all:

@@ -3,12 +3,12 @@
 
 from gensim.models import KeyedVectors
 from nltk.corpus import stopwords
-from kg.EB_classes import write_file, find_vector_we, cal_average, type_convert, find_vector_kge
+from kg.EB_classes import find_vector_we, cal_average, type_convert, find_vector_kge
 from kg.EB_classes import pickl, unpickle
 import pandas as pd
 
 stopWords = set(stopwords.words('english'))  # load stopwords
-dbpedia_train_wh = unpickle('dbpedia_train_wh')
+dbpedia_train_wh = unpickle('05_dbpedia_train_wh')
 
 ''' word embeddings on wh and nouns '''
 fastTextfile = 'data/wiki-news-300d-1M.vec'
@@ -24,7 +24,7 @@ for entry in dbpedia_train_wh:
     re_list.append(entry)
 
 dbpedia_train_wh = re_list
-write_file(dbpedia_train_wh, '06_dbpedia_train_wh')
+pickl('training_vectors/06_dbpedia_train_wh', dbpedia_train_wh)
 print('done wh WE vectors found')
 
 # run nouns through word embedding
@@ -40,24 +40,8 @@ for entry in dbpedia_train_wh:
     re_list.append(entry)
 
 dbpedia_train_wh = re_list
-write_file(dbpedia_train_wh, '07_dbpedia_train_wh')
+pickl('training_vectors/07_dbpedia_train_wh', dbpedia_train_wh)
 print('done noun WE vectors found')
-
-# run nps through word embedding
-re_list = []
-for entry in dbpedia_train_wh:
-    we_np = []
-    for n in entry['np list']:
-        we = find_vector_we(n, loaded_model)
-        if len(we) > 0:  # removed zeroed vectors to avoid affecting average
-            we_np.append(we)
-    average_vector = cal_average(we_np)
-    entry.update({'we_np_vector': average_vector})
-    re_list.append(entry)
-
-dbpedia_train_wh = re_list
-write_file(dbpedia_train_wh, '08_dbpedia_train_wh')
-print('done noun phrase WE vectors found')
 
 # run closest type through word embedding
 re_list = []
@@ -75,7 +59,7 @@ for entry in dbpedia_train_wh:
 
 del loaded_model  # delete WE model from memory
 dbpedia_train_wh = re_list
-write_file(dbpedia_train_wh, '10_dbpedia_train_wh')
+pickl('training_vectors/08_dbpedia_train_wh', dbpedia_train_wh)
 print('done type WE vectors found')
 
 ''' use kgvec2go KGEs '''
@@ -96,10 +80,9 @@ for entry in dbpedia_train_wh:
 
 print('done entities KGE vectors found')
 dbpedia_train_wh2 = re_list
-write_file(dbpedia_train_wh2, '11_dbpedia_train_wh')
+pickl('training_vectors/09_dbpedia_train_wh', dbpedia_train_wh)
 
 df = pd.DataFrame(dbpedia_train_wh2)
 print(df.head())
 
-pickl('dbpedia_train_all_vectors', dbpedia_train_wh2)
 print('ALL done pickled')

@@ -18,7 +18,6 @@ do this by:
 
 onto_access = DBpediaOntology()
 onto_access.loadOntology(True)
-# ep = Endpoint() - slower version
 ep = DBpediaEndpoint()    # getEntitiesForType
 
 

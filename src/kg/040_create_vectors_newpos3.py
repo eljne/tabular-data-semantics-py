@@ -37,10 +37,6 @@ new_positive_samples['new we_nouns_vector'] = new_positive_samples['new nouns'].
 print('done 1')
 new_positive_samples['new avg we_nouns_vector'] = new_positive_samples['new we_nouns_vector'].apply(cal_average)
 print('done 2')
-new_positive_samples['new we_np_vector'] = new_positive_samples['new nps2'].apply(find_vector_we)
-print('done 3')
-new_positive_samples['new avg we_np_vector'] = new_positive_samples['new we_np_vector'].apply(cal_average)
-print('done 4')
 new_positive_samples['new we_type_vector'] = new_positive_samples['new entity types'].apply(find_vector_we)
 print('done 5')
 new_positive_samples['new avg we_type_vector'] = new_positive_samples['new we_type_vector'].apply(cal_average)
@@ -59,7 +55,6 @@ print('done pickled 1')
 # create positive vectors
 new_positive_samples['new_concatenated_vector'] = new_positive_samples.apply(lambda x: [x['we_wh_vector'],
                                                                                         x['new avg we_nouns_vector'],
-                                                                                        x['new avg we_np_vector'],
                                                                                         x['new avg entities_KGE_vector'],
                                                                                         x['new avg we_type_vector']],
                                                                              axis=1)

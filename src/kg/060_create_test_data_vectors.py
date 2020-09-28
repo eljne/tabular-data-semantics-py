@@ -30,7 +30,7 @@ for a in dbpedia_test:
 
 print('done find wh')
 dbpedia_test = re_list
-pickl('01_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/01_dbpedia_test', dbpedia_test)
 
 re_list = []
 for entry in dbpedia_test:
@@ -40,7 +40,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-pickl('02_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/02_dbpedia_test', dbpedia_test)
 print('done nouns parsed')
 
 re_list = []
@@ -51,7 +51,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-pickl('03_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/03_dbpedia_test', dbpedia_test)
 print('done noun phrases parsed')
 
 re_list = []
@@ -62,7 +62,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-pickl('04_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/04_dbpedia_test', dbpedia_test)
 print('done nps filtered')
 
 ''' KG lookup to return set of related entities and closest type for each '''
@@ -88,7 +88,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-pickl('05_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/05_dbpedia_test', dbpedia_test)
 print('done types found')
 
 
@@ -117,7 +117,7 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-pickl('06_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/06_dbpedia_test', dbpedia_test)
 print('done wh WE vectors found')
 
 # run nouns through word embedding
@@ -133,24 +133,8 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-pickl('07_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/07_dbpedia_test', dbpedia_test)
 print('done noun WE vectors found')
-
-# run nps through word embedding
-re_list = []
-for entry in dbpedia_test:
-    we_np = []
-    for n in entry['np list']:
-        we = find_vector_we(n)
-        if len(we) > 0:  # removed zeroed vectors to avoid affecting average
-            we_np.append(we)
-    average_vector = cal_average(we_np)
-    entry.update({'we_np_vector': average_vector})
-    re_list.append(entry)
-
-dbpedia_test = re_list
-pickl('08_dbpedia_test', dbpedia_test)
-print('done noun phrase WE vectors found')
 
 # run closest type through word embedding
 re_list = []
@@ -168,7 +152,7 @@ for entry in dbpedia_test:
 
 del loaded_model  # delete WE model from memory
 dbpedia_test = re_list
-pickl('09_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/08_dbpedia_test', dbpedia_test)
 print('done type WE vectors found')
 
 ''' use kgvec2go KGEs '''
@@ -188,6 +172,6 @@ for entry in dbpedia_test:
     re_list.append(entry)
 
 dbpedia_test = re_list
-pickl('10_dbpedia_test', dbpedia_test)
+pickl('testing_vectors/09_dbpedia_test', dbpedia_test)
 print('done entities KGE vectors found')
 

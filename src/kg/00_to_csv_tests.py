@@ -17,38 +17,44 @@ import pandas as pd
 # test_data.to_csv('data/test_data.csv')
 # print(test_data.type_scores)
 
+'''vector tests'''
+
 # checking shape of concatenated vectors
-# og_positive = unpickle('df')
+og_positive = unpickle('df')
 # for a in og_positive['concatenated_vector']:
-    # print(len(a[0]))
-    # print(len(a[1]))
-    # print(len(a[2]))
-    # print(len(a[3]))
-    # print(len(a[4]))
+#     print(len(a[0]))
+#     print(len(a[1]))
+#     print(len(a[2]))
+#     print(len(a[3]))
+#     print(len(a[4]))
+og_positive = og_positive[0:20]
+og_positive.to_csv('data/test code/og_positive.csv')
 
-# # all td
+# all td
 all_td = unpickle('all_td2')
-for a in all_td['entities_KGE_vector']:
-    print(len(a))
-
-for a in all_td['concatenated_vector']:
-    print(len(a))
-    print(len(a[0]))
-    print(len(a[1]))
-    print(len(a[2]))
-    print(len(a[3]))
-    print(len(a[4]))
-
-
-# test vectors
-# tests = unpickle('dbpedia_test_final')
-# tests = pd.DataFrame(tests)
-# for a in tests['we_nouns_vector']:
+# for a in all_td['entities_KGE_vector']:
 #     print(len(a))
-# for a in tests['concatenated_vector']:
+# for a in all_td['concatenated_vector']:
 #     print(len(a))
 #     print(len(a[0]))
 #     print(len(a[1]))
 #     print(len(a[2]))
 #     print(len(a[3]))
 #     print(len(a[4]))
+all_td = all_td[0:20]
+all_td.to_csv('data/test code/all_td.csv')
+
+# test vectors
+test_vectors = unpickle('dbpedia_test_final')
+# test_vectors = pd.DataFrame(test_vectors)
+# for a in test_vectors['we_nouns_vector']:
+#     print(len(a))
+# for a in test_vectors['concatenated_vector']:
+#     print(len(a))
+#     print(len(a[0]))
+#     print(len(a[1]))
+#     print(len(a[2]))
+#     print(len(a[3]))
+#     print(len(a[4]))
+test_vectors = test_vectors[0:20]
+test_vectors.to_csv('data/test code/tests.csv')

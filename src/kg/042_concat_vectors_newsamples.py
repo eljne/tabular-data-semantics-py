@@ -29,7 +29,7 @@ negative_all4 = negative_sibling2.append(negative_shuffle3)
 
 '''
 ['category', 'concatenated_vector', 'entities_KGE_vector', 'id', 'we_type_vector', 'polarity', 'question', 'type', 
-'we_nouns_vector', 'we_np_vector', 'we_wh_vector', 'wh']'''
+'we_nouns_vector', 'we_wh_vector', 'wh']'''
 
 '''ORIGINAL POSITIVE'''
 
@@ -41,7 +41,7 @@ print(list(og_positive2.columns.values))
 
 '''
 ['category', 'concatenated_vector', 'entities_KGE_vector', 'id', 'we_type_vector', 'polarity', 'question', 'type',
-'we_nouns_vector', 'we_np_vector',  'we_wh_vector', 'wh']'''
+'we_nouns_vector', 'we_wh_vector', 'wh']'''
 
 ''' NEW POSITIVE '''
 
@@ -52,7 +52,6 @@ new_positive2 = new_positive.drop(['noun list',
                                    'new nps2',
                                    'new nouns',
                                    'new we_nouns_vector',
-                                   'new we_np_vector',
                                    'new entities_KGE_vector',
                                    'new we_type_vector',
                                    'entity',
@@ -61,7 +60,6 @@ new_positive2 = new_positive.drop(['noun list',
 
 new_positive3 = new_positive2.rename(columns={'new_concatenated_vector': 'concatenated_vector',
                                               'new avg we_nouns_vector': 'we_nouns_vector',
-                                              'new avg we_np_vector': 'we_np_vector',
                                               'new avg entities_KGE_vector': 'entities_KGE_vector',
                                               'new avg we_type_vector': 'we_type_vector'
                                               })
@@ -70,7 +68,7 @@ print(list(new_positive3.columns.values))
 
 '''
 ['category', 'concatenated_vector', 'entities_KGE_vector', 'id', 'we_type_vector', 'polarity', 'question', 'type',
-'we_wh_vector', 'we_nouns_vector', 'we_np_vector', 'wh']
+'we_wh_vector', 'we_nouns_vector', 'wh']
 '''
 
 # append together

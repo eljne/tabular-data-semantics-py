@@ -42,7 +42,6 @@ for col in df_negative_sb.columns:
 
 df_negative_sb['concatenated_vector'] = df_negative_sb.apply(lambda x: [x['we_wh_vector'],
                                                                       x['we_nouns_vector'],
-                                                                      x['we_np_vector'],
                                                                       x['entities_KGE_vector'],
                                                                       x['new avg we_type_vector']], axis=1)
 print('done 3')

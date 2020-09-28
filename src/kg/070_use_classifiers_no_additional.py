@@ -18,7 +18,6 @@ test_data = pd.DataFrame(dbpedia_test_final)
 vector_component = 'we_nouns_vector'
 # we_wh_vector
 # we_nouns_vector
-# we_np_vector
 # entities_KGE_vector
 # we_type_vector
 

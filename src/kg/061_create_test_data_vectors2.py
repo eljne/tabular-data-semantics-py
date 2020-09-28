@@ -36,16 +36,6 @@ for a in range(0, len(dbpedia_test)):
             print('2', dbpedia_test['we_nouns_vector'][a])
 
     try:
-        if len(dbpedia_test['we_np_vector'][a]) == 1:
-            dbpedia_test['we_np_vector'][a] = np.zeros(300)
-    except:
-        try:
-            if dbpedia_test['we_np_vector'][a] == 0:
-                dbpedia_test['we_np_vector'][a] = np.zeros(300)
-        except:
-            print('3', dbpedia_test['we_np_vector'][a])
-
-    try:
         if len(dbpedia_test['entities_KGE_vector'][a]) == 200:
             dbpedia_test['entities_KGE_vector_2'][a] = dbpedia_test['entities_KGE_vector'][a]
         else:
@@ -65,11 +55,10 @@ for a in range(0, len(dbpedia_test)):
             if dbpedia_test['we_type_vector'][a] == 0:
                 dbpedia_test['we_type_vector'][a] = np.zeros(300)
         except:
-            print('5', dbpedia_test['we_type_vector'][a])
+            print('4', dbpedia_test['we_type_vector'][a])
 
     # print(len(dbpedia_test['we_wh_vector'][a]))
     # print(len(dbpedia_test['we_nouns_vector'][a]))
-    # print(len(dbpedia_test['we_np_vector'][a]))
     # print(len(dbpedia_test['entities_KGE_vector_2'][a]))
     # print(len(dbpedia_test['we_type_vector'][a]))
 
@@ -77,7 +66,6 @@ for a in range(0, len(dbpedia_test)):
 def concatenate_vector(entry):
     cv = [entry['we_wh_vector'],
           entry['we_nouns_vector'],
-          entry['we_np_vector'],
           entry['entities_KGE_vector_2'],
           entry['we_type_vector']]
     return cv
