@@ -10,7 +10,12 @@ load = unpickle('df')
 positive_samples = pd.DataFrame(load)
 # print(positive_samples.head)
 
-vector_component = 'we_wh_vector'
+vector_component = 'we_nouns_vector'
+# we_wh_vector
+# we_nouns_vector
+# we_np_vector
+# entities_KGE_vector
+# we_type_vector
 
 '''split on types/categories again'''
 
@@ -103,7 +108,6 @@ for df in cats_dfs:
     # print('cat label', cat_label)
     copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label, 'category'), axis=1)  # label +ve and -ve
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
-    # X = train_set['concatenated_vector']
     X = train_set[vector_component]
     y = train_set["y"]
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix

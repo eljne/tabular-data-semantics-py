@@ -191,20 +191,3 @@ dbpedia_test = re_list
 pickl('10_dbpedia_test', dbpedia_test)
 print('done entities KGE vectors found')
 
-
-def concatenate_vector(entry):
-    cv = [entry['we_wh_vector'],
-          entry['we_nouns_vector'],
-          entry['we_np_vector'],
-          entry['entities_KGE_vector'],
-          entry['we_type_vector']]
-    return cv
-
-
-re_list = []
-for entry in dbpedia_test:
-    concatenated_vector = concatenate_vector(entry)
-    entry.update({'concatenated_vector': concatenated_vector})
-    re_list.append(entry)
-
-pickl('dbpedia_test_final', dbpedia_test)

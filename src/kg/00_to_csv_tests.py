@@ -18,17 +18,19 @@ import pandas as pd
 # print(test_data.type_scores)
 
 # checking shape of concatenated vectors
-og_positive = unpickle('df')
-for a in og_positive['concatenated_vector']:
-    print(len(a))
-    print(len(a[0]))
-    print(len(a[1]))
-    print(len(a[2]))
-    print(len(a[3]))
-    print(len(a[4]))
+# og_positive = unpickle('df')
+# for a in og_positive['concatenated_vector']:
+    # print(len(a[0]))
+    # print(len(a[1]))
+    # print(len(a[2]))
+    # print(len(a[3]))
+    # print(len(a[4]))
 
-# all td
-all_td = unpickle('all_td')
+# # all td
+all_td = unpickle('all_td2')
+for a in all_td['entities_KGE_vector']:
+    print(len(a))
+
 for a in all_td['concatenated_vector']:
     print(len(a))
     print(len(a[0]))
@@ -36,3 +38,17 @@ for a in all_td['concatenated_vector']:
     print(len(a[2]))
     print(len(a[3]))
     print(len(a[4]))
+
+
+# test vectors
+# tests = unpickle('dbpedia_test_final')
+# tests = pd.DataFrame(tests)
+# for a in tests['we_nouns_vector']:
+#     print(len(a))
+# for a in tests['concatenated_vector']:
+#     print(len(a))
+#     print(len(a[0]))
+#     print(len(a[1]))
+#     print(len(a[2]))
+#     print(len(a[3]))
+#     print(len(a[4]))

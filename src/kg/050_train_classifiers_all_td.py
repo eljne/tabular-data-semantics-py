@@ -6,7 +6,7 @@ from kg.EB_classes import unpickle, get_last, pickl
 from sklearn.neural_network import MLPClassifier
 
 # use all training data
-all_td = unpickle('all_td')
+all_td = unpickle('all_td2')
 all_samples = pd.DataFrame(all_td)
 
 vector_component = 'we_wh_vector'
@@ -25,7 +25,10 @@ print('done split to types and categories')
 
 def get_all(list):
     for t in list:
-        types_all.append(t)
+        if t.startswith('dbo:'):
+            types_all.append(t)
+        else:
+            pass
     return 0
 
 
@@ -40,8 +43,8 @@ def random_sample_ratioed(datafrm, pos_fraction, ratio_pos, ratio_neg):
     # fraction is a ratio e.g.
     positive = datafrm[datafrm['y'] == "1"]
     negative = datafrm[datafrm['y'] == "0"]
-    print('len pos', len(positive))
-    print('len neg', len(negative))
+    # print('len pos', len(positive))
+    # print('len neg', len(negative))
     positive_smples = positive.sample(frac=pos_fraction, random_state=0)
     neg_samples_wanted = ((len(positive_smples) / ratio_pos) * ratio_neg)  # make sure this is correct! do some math!
     fraction2 = neg_samples_wanted / len(negative)
@@ -102,8 +105,8 @@ for df in cats_dfs:
     # X = train_set['concatenated_vector']
     X = train_set['we_np_vector']
     y = train_set["y"]
-    print(X.head(10))
-    print(y.head(10))
+    # print(X.head(10))
+    # print(y.head(10))
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_all_cat[cat_label[0]] = classifier
 
@@ -120,27 +123,24 @@ for df in cats_dfs:
 #     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     # classifiers_all_typ[typ_label] = classifier
 
-#
-# types_all = set(types_all) # get unique values
-# print(len(types_all)) # 310 unique types
-#
-# # dictionaries in which to store classifiers, arranges by type/category
-# classifiers_all_typ = dict.fromkeys(types)
-# print('classifiers_all_typ', classifiers_all_typ)
-#
-#
+print(len(types_all_unique)) # 310 unique types
+
+# dictionaries in which to store classifiers, arranges by type/category
+classifiers_all_typ = dict.fromkeys(types_all_unique)
+print('classifiers_all_typ', classifiers_all_typ)
+
 # # all types: not just last type
-# for typ_label in types_all:
-#     copy_ds2 = all_samples.copy()
-#     print('type label', typ_label)
-#     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
-#     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-#     # X = train_set['concatenated_vector']
-#     X = train_set['we_np_vector']
-#     y = train_set["y"]
-#     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-#     classifiers_all_typ[typ_label] = classifier
-#
+for typ_label in types_all_unique:
+    copy_ds2 = all_samples.copy()
+    print('type label', typ_label)
+    copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
+    train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
+    # X = train_set['concatenated_vector']
+    X = train_set['we_np_vector']
+    y = train_set["y"]
+    classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
+    classifiers_all_typ[typ_label] = classifier
+
 
 pickl('classifiers_all_cat', classifiers_all_cat)
 # pickl('classifiers_all_typ',classifiers_all_typ)
