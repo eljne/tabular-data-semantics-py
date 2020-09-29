@@ -36,13 +36,16 @@ def reformat(row_column):
 # run through classifiers and store scores
 def cat_scores(value):
     category_scores = {}
-    predict = reformat(value[vector_component])
+    predict = np.array(reformat(value[vector_component]))
     for item in classifiers_all_cat:    # for each classifier
         category = item # get category
         c = classifiers_all_cat[item]   # get classifier
         pred_cat = c.predict_proba([predict])   # use vector component and classifier to predict
         p2 = re.split(' ', str(pred_cat[0]))    # get probability of it being that class
-        pred_cat = float(p2[1])
+        try:
+            pred_cat = float(p2[1])
+        except:
+            pred_cat = 0.00000000
         category_scores.update({category: pred_cat})    # store label and score in dictionary
     sorted_cat = sorted(category_scores.items(), key=operator.itemgetter(1), reverse=True)
     sorted_cat_top = list(sorted_cat)[0]
@@ -52,15 +55,16 @@ def cat_scores(value):
 
 def typ_scores(value):
     type_scores = {}
-    # predict = reformat(value[vector_component])
-    predict = np.random.rand(300)
-    # print([predict])    # always different
+    predict = np.array(reformat(value[vector_component]))
     for item in classifiers_all_typ:    # for each classifier
         typ = item  # get type
         c = classifiers_all_typ[item]   # get classifier
         pred_typ = c.predict_proba([predict])
         p2 = re.split(' ', str(pred_typ[0]))
-        pred_typ = float(p2[1])
+        try:
+            pred_typ = float(p2[1])
+        except:
+            pred_typ = 0.00000000
         type_scores.update({typ: pred_typ})  # store label and score in dictionary
     sorted_typ = sorted(type_scores.items(), key=operator.itemgetter(1), reverse=True)
     sorted_typ_top_ten = list(sorted_typ)[0:9]
