@@ -32,8 +32,8 @@ negative_all4 = negative_sibling2.append(negative_shuffle3)
 '''ORIGINAL POSITIVE'''
 
 og_positive['polarity'] = "1"
-og_positive2 = og_positive.drop(['found category', 'found type', 'noun list', 'np list', 'entities', 'entity_types'
-                                                                                                     ''],
+og_positive2 = og_positive.drop(['noun list', 'np list', 'entities', 'entity_types'
+                                                                     ''],
                                 axis=1)
 print(list(og_positive2.columns.values))
 

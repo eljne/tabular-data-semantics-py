@@ -73,7 +73,7 @@ df['shuffled_category'][pick_new_rows] = shuffled_values
 print('done category shuffle')
 
 df_csv_test = df[0:20]
-df_csv_test.to_csv('data/test data/negative_samples.csv')
+df_csv_test.to_csv('data/test code/negative_samples.csv')
 print('done read extract to csv')
 
 # separate positive and negative samples

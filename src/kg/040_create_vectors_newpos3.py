@@ -49,9 +49,6 @@ print('done 7')
 new_positive_samples['new avg entities_KGE_vector'] = new_positive_samples['new entities_KGE_vector'].apply(cal_average)
 print('done 8')
 
-pickl('df_positive_fin1', new_positive_samples)
-print('done pickled 1')
-
 # create positive vectors
 new_positive_samples['new_concatenated_vector'] = new_positive_samples.apply(lambda x: [x['we_wh_vector'],
                                                                                         x['new avg we_nouns_vector'],

@@ -16,9 +16,9 @@ Where
       category, and ranked list of up to 10 types, respectively.
 '''
 
-type_hierarchy_tsv = 'data/type_hierarchy_tsv.tsv'
-ground_truth_json = 'data/ground_truth_json.json'
-system_output_json = 'data/system_output_json.json'
+type_hierarchy_tsv = 'data/results/for_evaluation/type_hierarchy_tsv.tsv'
+ground_truth_json = 'data/results/for_evaluation/ground_truth_json.json'
+system_output_json = 'data/results/for_evaluation/system_output_json.json'
 
 # should print results in terminal
 main(type_hierarchy_tsv, ground_truth_json, system_output_json)
