@@ -96,14 +96,14 @@ print('classifiers_pos_cat', classifiers_pos_cat)
 for df in cats_dfs:
     copy_ds = positive_samples.copy()
     cat_label = df["category"].unique()
-    # print('cat label', cat_label)
+    cat_label = cat_label[0]
+    print('cat_label', cat_label)
     copy_ds["y"] = copy_ds.apply(lambda row: label_polarity(row, cat_label, 'category'), axis=1)  # label +ve and -ve
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
     X = train_set[vector_component]
     y = train_set["y"]
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_pos_cat[cat_label[0]] = classifier
-    print('.')
+    classifiers_pos_cat[cat_label] = classifier
 
 '''types'''
 types_all = set(types_all)  # get unique values
@@ -119,12 +119,10 @@ for typ_label in types_all:
     print('type label', typ_label)
     copy_ds2["y"] = copy_ds2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
     train_set = random_sample_ratioed(copy_ds2, 0.80, 1, 1)  # split differently according to pos/neg balance
-    # X = train_set['concatenated_vector']
     X = train_set[vector_component]
     y = train_set["y"]
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    print(classifier)
-    classifiers_pos_typ[typ_label[0]] = classifier
+    classifiers_pos_typ[typ_label] = classifier
 
 pickl('classifiers/classifiers_pos_cat_OGTD', classifiers_pos_cat)
 pickl('classifiers/classifiers_pos_typ_OGTD', classifiers_pos_typ)

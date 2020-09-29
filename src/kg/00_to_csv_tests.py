@@ -38,19 +38,24 @@ import pandas as pd
 # all_td = all_td[0:20]
 # all_td.to_csv('data/test code/all_td.csv')
 
+# test reformatting concatenated vectors
+# all_td = unpickle('training_vectors/31_all_td_fin')
+# all_td = pd.DataFrame(all_td)
+# all_td = all_td[0:20]
+#
+#
+# def reformat(row_column):
+#     concatenated_vector_2 = []
+#     for component in row_column:
+#         component_list = component.tolist()
+#         concatenated_vector_2.append(component_list)
+#     return concatenated_vector_2
+#
+#
+# all_td['concatenated_vector_2'] = all_td['concatenated_vector'].apply(reformat)
+# all_td.to_csv('data/test code/reformat_concatvec.csv')
 
-all_td = unpickle('training_vectors/31_all_td_fin')
-all_td = pd.DataFrame(all_td)
-all_td = all_td[0:20]
-
-
-def reformat(row_column):
-    concatenated_vector_2 = []
-    for component in row_column:
-        component_list = component.tolist()
-        concatenated_vector_2.append(component_list)
-    return concatenated_vector_2
-
-
-all_td['concatenated_vector_2'] = all_td['concatenated_vector'].apply(reformat)
-all_td.to_csv('data/test code/reformat_concatvec.csv')
+# check results formatting
+results = unpickle('results/results_ALLTD')
+results = results[0:10]
+results.to_csv('data/test code/results.csv')

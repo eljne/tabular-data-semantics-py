@@ -14,6 +14,7 @@ vector_component = 'we_nouns_vector'
 # concatenated_vector
 
 # use all training data
+# all_td = unpickle('training_vectors/32_all_td_justconcat')
 all_td = unpickle('training_vectors/31_all_td_fin')
 all_samples = pd.DataFrame(all_td)
 
@@ -111,14 +112,8 @@ for df in cats_dfs:
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
     X = train_set[vector_component]
     y = train_set["y"]
-    # X0 = []
-    # for x in X:
-    #     x2 = np.array(x)
-    #     X0.append(x2)
-    # print(X0[0:10])
-    # print(y[0:10])
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_all_cat[cat_label[0]] = classifier
+    classifiers_all_cat[cat_label] = classifier
 
 print(len(types_all_unique)) # 310 unique types
 
@@ -126,7 +121,7 @@ print(len(types_all_unique)) # 310 unique types
 classifiers_all_typ = dict.fromkeys(types_all_unique)
 print('classifiers_all_typ', classifiers_all_typ)
 
-# # all types: not just last type
+# all types: not just last type
 for typ_label in types_all_unique:
     copy_ds2 = all_samples.copy()
     print('type label', typ_label)
@@ -137,6 +132,9 @@ for typ_label in types_all_unique:
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_all_typ[typ_label] = classifier
 
+# print('classifiers_all_cat', classifiers_all_cat)
 pickl('classifiers/classifiers_all_cat_ALL', classifiers_all_cat)
+
+print('classifiers_all_typ', classifiers_all_typ)
 pickl('classifiers/classifiers_all_typ_ALL', classifiers_all_typ)
 
