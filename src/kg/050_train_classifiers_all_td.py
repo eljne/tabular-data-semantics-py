@@ -95,8 +95,11 @@ def label_polarity_all_typs(row, label, column):
 
 
 def train_classifier(train, label):
-    length = len(label)
-    train = np.random.rand(length, 300)
+    # print(np.array(list(train)))
+    train = np.array(list(train))
+    # length = len(label)
+    # train = np.random.rand(length, 300)
+    # print('train', train)  [[ 0.03091027, ....][][][][][]]
     clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
                         hidden_layer_sizes=(5, 2), random_state=1)
     clf.fit(train, label)
