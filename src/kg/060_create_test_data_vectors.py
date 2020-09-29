@@ -157,7 +157,7 @@ print('done type WE vectors found')
 
 ''' use kgvec2go KGEs '''
 ''' link to kg embeddings using nouns and nps to find types '''
-'''# Use pre-trained kg embeddings and concatenate or average them to create the vector for the question.'''
+''' Use pre-trained kg embeddings and concatenate or average them to create the vector for the question.'''
 
 # run noun phrases through kg embedding to get vectors
 re_list = []

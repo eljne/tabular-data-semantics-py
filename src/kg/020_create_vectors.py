@@ -74,7 +74,6 @@ print('done nps filtered')
 folder_ontos = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/"
 uri_onto = "/home/GitHub/tabular-data-semantics-py/TabularSemantics/ontologies/dbpedia_2014_fix.owl"
 
-# this isn't really working
 # run noun phrases through KGE to find entity, type
 re_list = []
 for entry in dbpedia_train_wh:

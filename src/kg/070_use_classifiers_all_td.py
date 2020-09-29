@@ -7,7 +7,7 @@ import re
 import numpy as np
 
 '''change depending on vector component to test'''
-vector_component = 'concatenated_vector'
+vector_component = 'we_nouns_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector

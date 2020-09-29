@@ -7,7 +7,7 @@ import numpy as np
 from kg.EB_classes import unpickle, pickl
 
 '''change depending on vector component to test'''
-vector_component = 'concatenated_vector'
+vector_component = 'we_nouns_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector

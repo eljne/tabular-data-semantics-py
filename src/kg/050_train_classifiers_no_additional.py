@@ -6,7 +6,7 @@ from kg.EB_classes import unpickle, get_last_2, pickl
 from sklearn.neural_network import MLPClassifier
 
 '''change depending on vector component to test'''
-vector_component = 'concatenated_vector'
+vector_component = 'we_nouns_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector

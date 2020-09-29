@@ -1,11 +1,12 @@
 ''' author: Eleanor Bill @eljne '''
 ''' train a MLP model for each category and type '''
 import pandas as pd
+import numpy as np
 from kg.EB_classes import unpickle, get_last, pickl
 from sklearn.neural_network import MLPClassifier
 
 '''change depending on vector component to test'''
-vector_component = 'concatenated_vector'
+vector_component = 'we_nouns_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
@@ -110,10 +111,14 @@ for df in cats_dfs:
     train_set = random_sample_ratioed(copy_ds, 0.80, 1, 1)  # split differently according to pos/neg balance
     X = train_set[vector_component]
     y = train_set["y"]
-    # print(X.head(10))
-    # print(y.head(10))
+    # X0 = []
+    # for x in X:
+    #     x2 = np.array(x)
+    #     X0.append(x2)
+    # print(X0[0:10])
+    # print(y[0:10])
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_all_cat[cat_label[0]] = classifiers
+    classifiers_all_cat[cat_label[0]] = classifier
 
 print(len(types_all_unique)) # 310 unique types
 
