@@ -65,10 +65,7 @@ def typ_scores(value):
     return str(sorted_typ_top_ten)
 
 
-print(len(test_data))
 test_data = test_data.drop_duplicates(subset=['id'])
-print(len(test_data))
-
 test_data['category_scores'] = test_data.apply(cat_scores, axis=1)
 test_data['type_scores'] = test_data.apply(typ_scores, axis=1)
 pickl('results/results_ALLTD', test_data)

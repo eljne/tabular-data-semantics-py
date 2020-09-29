@@ -26,6 +26,7 @@ types_dfs = [pd.DataFrame(y) for x, y in all_samples.groupby('fine type', as_ind
 cats_dfs = [pd.DataFrame(b) for a, b in all_samples.groupby('category', as_index=False)]
 print('done split to types and categories')
 
+
 # get all relevant types from list of them
 def get_all(list):
     for t in list:
@@ -39,13 +40,14 @@ def get_all(list):
 # get list of all types
 types_all = []
 all_samples['type'].apply(get_all)
-types_all_unique = list(set(types_all)) #make unique
+types_all_unique = list(set(types_all)) # make unique
 
 # dictionaries in which to store classifiers, arranges by type/category
 classifiers_all_cat = dict.fromkeys(categories)
 print('classifiers_all_cat', classifiers_all_cat)
 classifiers_all_typ = dict.fromkeys(types_all_unique)
 print('classifiers_all_typ', classifiers_all_typ)
+
 
 def random_sample_ratioed(datafrm, pos_fraction, ratio_pos, ratio_neg):
     # fraction is a ratio e.g.
