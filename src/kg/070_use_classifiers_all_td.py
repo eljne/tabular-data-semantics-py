@@ -1,6 +1,7 @@
 ''' author: Eleanor Bill @eljne '''
 ''' classify test data '''
 import operator
+import numpy as np
 import pandas as pd
 from kg.EB_classes import unpickle, pickl
 import re
@@ -36,7 +37,6 @@ def reformat(row_column):
 def cat_scores(value):
     category_scores = {}
     predict = reformat(value[vector_component])
-    # print([predict])    # always different
     for item in classifiers_all_cat:    # for each classifier
         category = item # get category
         c = classifiers_all_cat[item]   # get classifier
@@ -46,12 +46,14 @@ def cat_scores(value):
         category_scores.update({category: pred_cat})    # store label and score in dictionary
     sorted_cat = sorted(category_scores.items(), key=operator.itemgetter(1), reverse=True)
     sorted_cat_top = list(sorted_cat)[0]
+    print('.')
     return str(sorted_cat_top)
 
 
 def typ_scores(value):
     type_scores = {}
-    predict = reformat(value[vector_component])
+    # predict = reformat(value[vector_component])
+    predict = np.random.rand(300)
     # print([predict])    # always different
     for item in classifiers_all_typ:    # for each classifier
         typ = item  # get type
@@ -62,6 +64,7 @@ def typ_scores(value):
         type_scores.update({typ: pred_typ})  # store label and score in dictionary
     sorted_typ = sorted(type_scores.items(), key=operator.itemgetter(1), reverse=True)
     sorted_typ_top_ten = list(sorted_typ)[0:9]
+    print('..')
     return str(sorted_typ_top_ten)
 
 

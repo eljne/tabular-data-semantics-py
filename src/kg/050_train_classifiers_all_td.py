@@ -3,6 +3,7 @@
 import pandas as pd
 from kg.EB_classes import unpickle, get_last, pickl
 from sklearn.neural_network import MLPClassifier
+import numpy as np
 
 '''change depending on vector component to test'''
 vector_component = 'we_nouns_vector'
@@ -94,9 +95,12 @@ def label_polarity_all_typs(row, label, column):
 
 
 def train_classifier(train, label):
+    length = len(label)
+    train = np.random.rand(length,300)
     clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
                         hidden_layer_sizes=(5, 2), random_state=1)
-    clf.fit(list(train), label)
+    clf.fit(train, label)
+    # clf.fit(list(train), label)
     return clf
 
 
@@ -110,8 +114,6 @@ for df in cats_dfs:
     train_set = random_sample_ratioed(copy_df, 0.80, 1, 1)  # split differently according to pos/neg balance
     X = train_set[vector_component]
     y = train_set["y"]
-    # print(len(X))   # these lengths differ so can't be the same data the classifier is trained on every time
-    # print(len(y))
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_all_cat[cat_label] = classifier
 
