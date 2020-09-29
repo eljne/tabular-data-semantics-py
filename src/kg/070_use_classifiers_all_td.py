@@ -24,19 +24,26 @@ test_data = pd.DataFrame(dbpedia_test_final)
 ''' run through classifiers and store scores'''
 
 
+def reformat(row_column):
+    concatenated_vector_2 = []
+    for component in row_column:
+        component_list = component.tolist()
+        concatenated_vector_2.append(component_list)
+    return concatenated_vector_2
+
+
 # run through classifiers and store scores
 def cat_scores(value):
     category_scores = {}
+    predict = reformat(value[vector_component])
+    # print([predict])    # always different
     for item in classifiers_all_cat:    # for each classifier
         category = item # get category
         c = classifiers_all_cat[item]   # get classifier
-        try:
-            pred_cat = c.predict_proba([value[vector_component]])   # use vector component and classifier to predict
-            p2 = re.split(' ', str(pred_cat[0]))    # get probability of it being that class
-            pred_cat = float(p2[1])
-            category_scores.update({category: pred_cat})    # store label and score in dictionary
-        except:
-            pass
+        pred_cat = c.predict_proba([predict])   # use vector component and classifier to predict
+        p2 = re.split(' ', str(pred_cat[0]))    # get probability of it being that class
+        pred_cat = float(p2[1])
+        category_scores.update({category: pred_cat})    # store label and score in dictionary
     sorted_cat = sorted(category_scores.items(), key=operator.itemgetter(1), reverse=True)
     sorted_cat_top = list(sorted_cat)[0]
     return str(sorted_cat_top)
@@ -44,21 +51,23 @@ def cat_scores(value):
 
 def typ_scores(value):
     type_scores = {}
+    predict = reformat(value[vector_component])
+    # print([predict])    # always different
     for item in classifiers_all_typ:    # for each classifier
         typ = item  # get type
         c = classifiers_all_typ[item]   # get classifier
-        try:
-            pred_typ = c.predict_proba([value[vector_component]])
-            p2 = re.split(' ', str(pred_typ[0]))
-            pred_typ = float(p2[1])
-            type_scores.update({typ: pred_typ})  # store label and score in dictionary
-        except:
-            pass
-        print('..')
+        pred_typ = c.predict_proba([predict])
+        p2 = re.split(' ', str(pred_typ[0]))
+        pred_typ = float(p2[1])
+        type_scores.update({typ: pred_typ})  # store label and score in dictionary
     sorted_typ = sorted(type_scores.items(), key=operator.itemgetter(1), reverse=True)
     sorted_typ_top_ten = list(sorted_typ)[0:9]
     return str(sorted_typ_top_ten)
 
+
+print(len(test_data))
+test_data = test_data.drop_duplicates(subset=['id'])
+print(len(test_data))
 
 test_data['category_scores'] = test_data.apply(cat_scores, axis=1)
 test_data['type_scores'] = test_data.apply(typ_scores, axis=1)

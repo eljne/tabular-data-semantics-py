@@ -59,3 +59,8 @@ import pandas as pd
 results = unpickle('results/results_ALLTD')
 results = results[0:10]
 results.to_csv('data/test code/results.csv')
+
+# testing_vectors = unpickle('testing_vectors/11_dbpedia_test_fin')
+# testing_vectors = testing_vectors[0:10]
+# testing_vectors.to_csv('data/test code/testing_vectors.csv')
+
