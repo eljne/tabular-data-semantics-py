@@ -3,6 +3,7 @@
 import pandas as pd
 from kg.EB_classes import unpickle, get_last, pickl
 from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import GridSearchCV
 import numpy as np
 
 '''change depending on vector component to test'''
@@ -95,14 +96,17 @@ def label_polarity_all_typs(row, label, column):
 
 
 def train_classifier(train, label):
-    # print(np.array(list(train)))
+    parameter_space = {
+        'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
+        'activation': ['tanh', 'relu'],
+        'solver': ['sgd', 'adam'],
+        'alpha': [0.0001, 0.05],
+        'learning_rate': ['constant', 'adaptive'],
+    }
     train = np.array(list(train))
-    # length = len(label)
-    # train = np.random.rand(length, 300)
-    # print('train', train)  [[ 0.03091027, ....][][][][][]]
-    clf = MLPClassifier(random_state=1, max_iter=300)
+    mlp = MLPClassifier(max_iter=100)
+    clf = GridSearchCV(mlp, parameter_space, n_jobs=-1, cv=3)
     clf.fit(train, label)
-    # clf.fit(list(train), label)
     return clf
 
 

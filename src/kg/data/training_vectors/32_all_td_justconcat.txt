@@ -1,0 +1,316 @@
+        index  category             id polarity  \
+0           0   boolean   dbpedia_1177        0   
+1           1  resource  dbpedia_14427        0   
+2           2   literal  dbpedia_16615        0   
+3           3   boolean  dbpedia_23480        0   
+4           4  resource   dbpedia_3681        0   
+5           7   boolean  dbpedia_15023        0   
+6           9  resource  dbpedia_10315        0   
+7          10   literal  dbpedia_14847        0   
+8          13   boolean  dbpedia_21017        0   
+9          14  resource   dbpedia_3432        0   
+10         15  resource  dbpedia_16006        0   
+11         17  resource   dbpedia_7661        0   
+12         18   literal   dbpedia_6806        0   
+13         19  resource  dbpedia_11196        0   
+14         21   boolean   dbpedia_3518        0   
+15         22   literal   dbpedia_4531        0   
+16         24  resource   dbpedia_6019        0   
+17         27   literal   dbpedia_6988        0   
+18         28  resource  dbpedia_20525        0   
+19         31  resource  dbpedia_22649        0   
+20         32   boolean  dbpedia_15589        0   
+21         38  resource   dbpedia_5165        0   
+22         39  resource  dbpedia_16157        0   
+23         41   literal  dbpedia_10291        0   
+24         43   literal   dbpedia_7920        0   
+25         44   boolean   dbpedia_2257        0   
+26         46   literal  dbpedia_19477        0   
+27         48   literal   dbpedia_9838        0   
+28         52  resource   dbpedia_6797        0   
+29         53   literal   dbpedia_9944        0   
+...       ...       ...            ...      ...   
+232792      0  resource    dbpedia_505        1   
+232793      1  resource    dbpedia_505        1   
+232794      2  resource    dbpedia_505        1   
+232795      3  resource    dbpedia_505        1   
+232796      4  resource    dbpedia_505        1   
+232797      5  resource    dbpedia_505        1   
+232798      6  resource    dbpedia_505        1   
+232799      7  resource    dbpedia_505        1   
+232800      8  resource    dbpedia_505        1   
+232801      9  resource    dbpedia_505        1   
+232802      0  resource  dbpedia_18989        1   
+232803      1  resource  dbpedia_18989        1   
+232804      2  resource  dbpedia_18989        1   
+232805      3  resource  dbpedia_18989        1   
+232806      4  resource  dbpedia_18989        1   
+232807      5  resource  dbpedia_18989        1   
+232808      6  resource  dbpedia_18989        1   
+232809      7  resource  dbpedia_18989        1   
+232810      8  resource  dbpedia_18989        1   
+232811      9  resource  dbpedia_18989        1   
+232812      0   literal  dbpedia_11517        1   
+232813      1   literal  dbpedia_11517        1   
+232814      2   literal  dbpedia_11517        1   
+232815      3   literal  dbpedia_11517        1   
+232816      4   literal  dbpedia_11517        1   
+232817      5   literal  dbpedia_11517        1   
+232818      6   literal  dbpedia_11517        1   
+232819      7   literal  dbpedia_11517        1   
+232820      8   literal  dbpedia_11517        1   
+232821      9   literal  dbpedia_11517        1   
+
+                                                 question shuffled_category  \
+0       Was Jacqueline Kennedy Onassis a follower of M...          resource   
+1       What is the name of the opera based on Twelfth...           literal   
+2       When did Lena Horne receive the Grammy Award f...          resource   
+3       Do Prince Harry and Prince William have the sa...           literal   
+4       What is the subsidiary company working for Leo...           literal   
+5       Did Buddhism was named after the immigration o...          resource   
+6        What are the opera which start with the letter z           boolean   
+7                How often are the Paralympic games held?          resource   
+8       Did Steve Sampson manage a club of Santa Clara...           literal   
+9       What is the god worshipped by Jehovah's Witnes...           literal   
+10                 Who follows the member of Victor Hugo?           literal   
+11      Who is the pupil of the tutor Miguel Ángel Est...           literal   
+12      In what year did Tim Hunt give a Croonian Lect...          resource   
+13      Who is {famous for} of {writers} of {To the Ch...           boolean   
+14      Is the number of injured in the Newhall massac...           literal   
+15        When was Bibi Andersson married to Per Ahlmark?          resource   
+16      Where does the holder of the position of Lech ...           literal   
+17                When was Carl Sagan married Ann Druyan?          resource   
+18       Wringer (novel) and Maniac Magee is the notab...           boolean   
+19      Which footballers did their high school in wes...           literal   
+20      Was frederick_douglass is a child of charles r...           literal   
+21                      What is affiliation for Rostock ?           literal   
+22      Who is nominated for Lee Grant that for work i...           literal   
+23                  Which is the trunk prefix for Jordan?          resource   
+24      When did Białystok and Eindhoven become twinne...          resource   
+25      Is it true that the number of survivors of Sep...          resource   
+26      How many organizations work for Environmentalism?          resource   
+27      When did Francisco Morales Bermúdez become Pre...          resource   
+28      Name the underground station with the most tra...           literal   
+29                What is in the category of Thomas Mann?          resource   
+...                                                   ...               ...   
+232792  Who replaced Charles Evans Hughes as the Chief...                 0   
+232793  Who replaced Charles Evans Hughes as the Chief...                 0   
+232794  Who replaced Charles Evans Hughes as the Chief...                 0   
+232795  Who replaced Charles Evans Hughes as the Chief...                 0   
+232796  Who replaced Charles Evans Hughes as the Chief...                 0   
+232797  Who replaced Charles Evans Hughes as the Chief...                 0   
+232798  Who replaced Charles Evans Hughes as the Chief...                 0   
+232799  Who replaced Charles Evans Hughes as the Chief...                 0   
+232800  Who replaced Charles Evans Hughes as the Chief...                 0   
+232801  Who replaced Charles Evans Hughes as the Chief...                 0   
+232802  Name the river with source as Columbia Lake an...                 0   
+232803  Name the river with source as Columbia Lake an...                 0   
+232804  Name the river with source as Columbia Lake an...                 0   
+232805  Name the river with source as Columbia Lake an...                 0   
+232806  Name the river with source as Columbia Lake an...                 0   
+232807  Name the river with source as Columbia Lake an...                 0   
+232808  Name the river with source as Columbia Lake an...                 0   
+232809  Name the river with source as Columbia Lake an...                 0   
+232810  Name the river with source as Columbia Lake an...                 0   
+232811  Name the river with source as Columbia Lake an...                 0   
+232812  When will Selma Lagerlöf start their membershi...                 0   
+232813  When will Selma Lagerlöf start their membershi...                 0   
+232814  When will Selma Lagerlöf start their membershi...                 0   
+232815  When will Selma Lagerlöf start their membershi...                 0   
+232816  When will Selma Lagerlöf start their membershi...                 0   
+232817  When will Selma Lagerlöf start their membershi...                 0   
+232818  When will Selma Lagerlöf start their membershi...                 0   
+232819  When will Selma Lagerlöf start their membershi...                 0   
+232820  When will Selma Lagerlöf start their membershi...                 0   
+232821  When will Selma Lagerlöf start their membershi...                 0   
+
+                                            shuffled_type sibling_type  \
+0                                                [number]            0   
+1                                                [string]            0   
+2                                                [string]            0   
+3                                                [string]            0   
+4                                                  [date]            0   
+5                                                [number]            0   
+6                                          [dbo:Currency]            0   
+7       [dbo:University, dbo:EducationalInstitution, d...            0   
+8                                 [dbo:Person, dbo:Agent]            0   
+9                                             [dbo:Award]            0   
+10                                                 [date]            0   
+11                                               [string]            0   
+12                                               [string]            0   
+13                                [dbo:Person, dbo:Agent]            0   
+14                                               [number]            0   
+15                                              [boolean]            0   
+16                                          [dbo:Country]            0   
+17                              [dbo:AnatomicalStructure]            0   
+18      [dbo:Mosque, dbo:Church, dbo:ReligiousBuilding...            0   
+19      [dbo:Country, dbo:Settlement, dbo:PopulatedPla...            0   
+20          [dbo:SportsTeam, dbo:Organisation, dbo:Agent]            0   
+21                                              [boolean]            0   
+22                                              [boolean]            0   
+23                                               [number]            0   
+24                                              [boolean]            0   
+25      [dbo:Newspaper, dbo:PeriodicalLiterature, dbo:...            0   
+26                                [dbo:Person, dbo:Agent]            0   
+27                         [dbo:TelevisionShow, dbo:Work]            0   
+28                                            [dbo:Award]            0   
+29                                              [boolean]            0   
+...                                                   ...          ...   
+232792                                                  0            0   
+232793                                                  0            0   
+232794                                                  0            0   
+232795                                                  0            0   
+232796                                                  0            0   
+232797                                                  0            0   
+232798                                                  0            0   
+232799                                                  0            0   
+232800                                                  0            0   
+232801                                                  0            0   
+232802                                                  0            0   
+232803                                                  0            0   
+232804                                                  0            0   
+232805                                                  0            0   
+232806                                                  0            0   
+232807                                                  0            0   
+232808                                                  0            0   
+232809                                                  0            0   
+232810                                                  0            0   
+232811                                                  0            0   
+232812                                                  0            0   
+232813                                                  0            0   
+232814                                                  0            0   
+232815                                                  0            0   
+232816                                                  0            0   
+232817                                                  0            0   
+232818                                                  0            0   
+232819                                                  0            0   
+232820                                                  0            0   
+232821                                                  0            0   
+
+                                                     type  \
+0                                                      []   
+1                                   [Book, LineOfFashion]   
+2                                                      []   
+3                                                      []   
+4                              [Q156362, DisneyCharacter]   
+5                                                      []   
+6                                 [Resume, Q571, Comment]   
+7                                                      []   
+8                                                      []   
+9                                                [Q82799]   
+10                               [PoliticalParty, Dancer]   
+11                                      [Chef, Biologist]   
+12                                                     []   
+13                                      [MusicAlbum, Law]   
+14                                                     []   
+15                                                     []   
+16            [Airport, Castle, HistoricalCountry, Q8072]   
+17                                                     []   
+18                                      [Farmer, Cyclist]   
+19      [Q842606, AthleticsPlayer, SoccerPlayer, Q3730...   
+20                                                     []   
+21                                     [VideogamesLeague]   
+22                                                [Award]   
+23                                                     []   
+24                                                     []   
+25                                                     []   
+26                                                     []   
+27                                                     []   
+28      [MetroStation, FillingStation, Tunnel, Populat...   
+29                                                     []   
+...                                                   ...   
+232792                            [dbo:Person, dbo:Agent]   
+232793                            [dbo:Person, dbo:Agent]   
+232794                            [dbo:Person, dbo:Agent]   
+232795                            [dbo:Person, dbo:Agent]   
+232796                            [dbo:Person, dbo:Agent]   
+232797                            [dbo:Person, dbo:Agent]   
+232798                            [dbo:Person, dbo:Agent]   
+232799                            [dbo:Person, dbo:Agent]   
+232800                            [dbo:Person, dbo:Agent]   
+232801                            [dbo:Person, dbo:Agent]   
+232802  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232803  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232804  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232805  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232806  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232807  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232808  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232809  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232810  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232811  [dbo:River, dbo:Stream, dbo:BodyOfWater, dbo:N...   
+232812                                             [date]   
+232813                                             [date]   
+232814                                             [date]   
+232815                                             [date]   
+232816                                             [date]   
+232817                                             [date]   
+232818                                             [date]   
+232819                                             [date]   
+232820                                             [date]   
+232821                                             [date]   
+
+                                      concatenated_vector  
+0       [[0.015599999576807022, 0.07519999891519547, -...  
+1       [[-0.07540000230073929, -0.0020000000949949026...  
+2       [[0.02319999970495701, 0.039400000125169754, -...  
+3       [[-0.007000000216066837, 0.02280000038444996, ...  
+4       [[-0.07540000230073929, -0.0020000000949949026...  
+5       [[0.012600000016391277, -0.05820000171661377, ...  
+6       [[0.06300000101327896, -0.007499999832361937, ...  
+7       [[-0.0812000036239624, 0.03959999978542328, -0...  
+8       [[0.012600000016391277, -0.05820000171661377, ...  
+9       [[-0.07540000230073929, -0.0020000000949949026...  
+10      [[0.10859999805688858, 0.009600000455975533, -...  
+11      [[0.10859999805688858, 0.009600000455975533, -...  
+12      [[-0.07540000230073929, -0.0020000000949949026...  
+13      [[0.10859999805688858, 0.009600000455975533, -...  
+14      [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+15      [[0.02319999970495701, 0.039400000125169754, -...  
+16      [[0.05040000006556511, 0.03370000049471855, 0....  
+17      [[0.02319999970495701, 0.039400000125169754, -...  
+18      [[0.06300000101327896, -0.007499999832361937, ...  
+19      [[0.06300000101327896, -0.007499999832361937, ...  
+20      [[0.015599999576807022, 0.07519999891519547, -...  
+21      [[-0.07540000230073929, -0.0020000000949949026...  
+22      [[0.10859999805688858, 0.009600000455975533, -...  
+23      [[0.06300000101327896, -0.007499999832361937, ...  
+24      [[0.02319999970495701, 0.039400000125169754, -...  
+25      [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+26      [[-0.0812000036239624, 0.03959999978542328, -0...  
+27      [[0.02319999970495701, 0.039400000125169754, -...  
+28      [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+29      [[-0.07540000230073929, -0.0020000000949949026...  
+...                                                   ...  
+232792  [[0.10859999805688858, 0.009600000455975533, -...  
+232793  [[0.10859999805688858, 0.009600000455975533, -...  
+232794  [[0.10859999805688858, 0.009600000455975533, -...  
+232795  [[0.10859999805688858, 0.009600000455975533, -...  
+232796  [[0.10859999805688858, 0.009600000455975533, -...  
+232797  [[0.10859999805688858, 0.009600000455975533, -...  
+232798  [[0.10859999805688858, 0.009600000455975533, -...  
+232799  [[0.10859999805688858, 0.009600000455975533, -...  
+232800  [[0.10859999805688858, 0.009600000455975533, -...  
+232801  [[0.10859999805688858, 0.009600000455975533, -...  
+232802  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232803  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232804  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232805  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232806  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232807  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232808  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232809  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232810  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232811  [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,...  
+232812  [[0.02319999970495701, 0.039400000125169754, -...  
+232813  [[0.02319999970495701, 0.039400000125169754, -...  
+232814  [[0.02319999970495701, 0.039400000125169754, -...  
+232815  [[0.02319999970495701, 0.039400000125169754, -...  
+232816  [[0.02319999970495701, 0.039400000125169754, -...  
+232817  [[0.02319999970495701, 0.039400000125169754, -...  
+232818  [[0.02319999970495701, 0.039400000125169754, -...  
+232819  [[0.02319999970495701, 0.039400000125169754, -...  
+232820  [[0.02319999970495701, 0.039400000125169754, -...  
+232821  [[0.02319999970495701, 0.039400000125169754, -...  
+
+[232822 rows x 10 columns]

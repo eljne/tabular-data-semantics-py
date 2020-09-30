@@ -24,6 +24,13 @@ def write_file(file_to_write, filename):
     return 0
 
 
+def read_file(filename):
+    myFile = open('data/' + filename + '.txt', 'r')
+    load = myFile.read()
+    myFile.close()
+    return load
+
+
 # load training data
 def load_json(filename):
     with open(filename + ".json") as json_file:

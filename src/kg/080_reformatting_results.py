@@ -1,26 +1,52 @@
 from kg.EB_classes import unpickle
-import csv
+import re
 
-# results_OGTD = unpickle('results/results_OGTD')
+# results = unpickle('results/results_OGTD')
 results = unpickle('results/results_ALLTD')
-
-# results_OGTD = results_OGTD['type_scores']
-# results = results_ALLTD['type_scores']
 
 ''' REFORMATTING FOR EVAL SCRIPT '''
 ''' export results to be used in evaluation script '''
-
-'''    - `ground_truth_json` is a JSON file containing the input questions and the
-      ground truth category and list of types (following the format of the
-      training data files).'''
-
-results = results[results['question', 'category', 'types']]
-results.to_json(r'data/ground_truth_json.json')
 
 '''    - `system_output_json` is a JSON file with the (participating) system's
       category and type predictions. The format is a list of dictionaries with
       keys `id`, `category`, and `type`, holding the question ID, predicted
       category, and ranked list of up to 10 types, respectively.'''
 
-results = results[results['id', 'category', 'type']]
-results.to_json(r'data/ground_truth_json.json')
+
+def get_first(value):
+    val = value['category_scores']
+    val = val.split(',')
+    val = val[0]
+    re.sub('[^A-Za-z0-9]+', '', val)
+    val = val.replace("'", "")
+    val = val.replace("(", "")
+    return str(val)
+
+
+def get_first_list(value):
+    val_list = []
+    val = value['type_scores']
+    val = val.split(',')
+    for v in val:
+        re.sub('[^A-Za-z0-9]+', '', v)
+        v = v.replace("'", "")
+        v = v.replace("(", "")
+        v = v.replace(")", "")
+        v = v.replace("[", "")
+        v = v.replace("]", "")
+        v = v.replace(".", "")
+        v = v.replace(" ", "")
+        for i in range(10):
+            v = v.replace(str(i), '')
+        if v != '':
+            val_list.append(v)
+    return val_list
+
+
+results['category'] = results.apply(get_first, axis=1)
+results['types'] = results.apply(get_first_list, axis=1)
+
+results2 = results[['id', 'category', 'types']]
+results_dict = results2.to_dict('records')
+print(results_dict)
+results2.to_json(r'data/results/for_evaluation/system_output_json.json')

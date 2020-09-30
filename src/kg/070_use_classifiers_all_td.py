@@ -22,7 +22,7 @@ classifiers_all_typ = unpickle('classifiers/classifiers_all_typ_ALL')
 dbpedia_test_final = unpickle('testing_vectors/11_dbpedia_test_fin')
 test_data = pd.DataFrame(dbpedia_test_final)
 
-''' run through classifiers and store scores'''
+'''run through classifiers and store scores'''
 
 
 def reformat(row_column):
@@ -33,7 +33,6 @@ def reformat(row_column):
     return concatenated_vector_2
 
 
-# run through classifiers and store scores
 def cat_scores(value):
     category_scores = {}
     predict = np.array(reformat(value[vector_component]))
@@ -67,7 +66,7 @@ def typ_scores(value):
             pred_typ = 0.00000000
         type_scores.update({typ: pred_typ})  # store label and score in dictionary
     sorted_typ = sorted(type_scores.items(), key=operator.itemgetter(1), reverse=True)
-    sorted_typ_top_ten = list(sorted_typ)[0:9]
+    sorted_typ_top_ten = list(sorted_typ)[0:10]
     print('..')
     return str(sorted_typ_top_ten)
 
