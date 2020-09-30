@@ -4,6 +4,7 @@
 import json
 import re
 import nltk
+import os
 from nltk.tokenize import word_tokenize
 import pickle
 import requests
@@ -51,6 +52,23 @@ def unpickle(filename):
     return_file = pickle.load(pkl_file)
     pkl_file.close()
     return return_file
+
+
+def try_to_load_as_pickled_object_or_None(filepath):
+    """
+    This is a defensive way to write pickle.load, allowing for very large files on all platforms
+    """
+    max_bytes = 2**31 - 1
+    try:
+        input_size = os.path.getsize(filepath)
+        bytes_in = bytearray(0)
+        with open(filepath, 'rb') as f_in:
+            for _ in range(0, input_size, max_bytes):
+                bytes_in += f_in.read(max_bytes)
+        obj = pickle.loads(bytes_in)
+    except:
+        return None
+    return obj
 
 
 '''PARSING AND EXTRACTION FUNCTIONS'''

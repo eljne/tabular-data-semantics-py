@@ -1,7 +1,7 @@
 ''' author: Eleanor Bill @eljne '''
 ''' train a MLP model for each category and type '''
 import pandas as pd
-from kg.EB_classes import unpickle, get_last, pickl
+from kg.EB_classes import unpickle, get_last, pickl, try_to_load_as_pickled_object_or_None
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import GridSearchCV
 import numpy as np
@@ -14,8 +14,8 @@ vector_component = 'we_nouns_vector'
 # we_type_vector
 # concatenated_vector
 
-# all_td = unpickle('training_vectors/32_all_td_justconcat') # for using the concatenated vector
-all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
+all_td = try_to_load_as_pickled_object_or_None('data/training_vectors/32_all_td_justconcat') # for using the concatenated vector
+# all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
 all_samples = pd.DataFrame(all_td)
 
 '''split on types/categories again'''
