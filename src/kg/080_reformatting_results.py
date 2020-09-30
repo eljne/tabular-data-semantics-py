@@ -1,5 +1,6 @@
 from kg.EB_classes import unpickle
 import re
+import json
 
 # results = unpickle('results/results_OGTD')
 results = unpickle('results/results_ALLTD')
@@ -44,9 +45,25 @@ def get_first_list(value):
 
 
 results['category'] = results.apply(get_first, axis=1)
-results['types'] = results.apply(get_first_list, axis=1)
+results['type'] = results.apply(get_first_list, axis=1)
+results2 = results[['id', 'category', 'type']]
+results_list = []
 
-results2 = results[['id', 'category', 'types']]
-results_dict = results2.to_dict('records')
-print(results_dict)
-results2.to_json(r'data/results/for_evaluation/system_output_json.json')
+
+def reform(value):
+    i = value['id']
+    c = value['category']
+    t = value['type']
+    dict = {"id": i, "category": c, "type": t}
+    results_list.append(dict)
+    print(dict)
+    return 0
+
+
+results.apply(reform, axis=1)
+# print(results_list)
+json_string = json.dumps(results_list)
+print(json_string)
+
+with open('data/results/for_evaluation/system_output_json.json', 'w') as write_file:
+    write_file.write(json_string)
