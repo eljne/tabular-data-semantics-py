@@ -7,14 +7,14 @@ from sklearn.model_selection import GridSearchCV
 import numpy as np
 
 '''change depending on vector component to test'''
-vector_component = 'we_nouns_vector'
+vector_component = 'concatenated_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
 # we_type_vector
 # concatenated_vector
 
-all_td = try_to_load_as_pickled_object_or_None('data/training_vectors/32_all_td_justconcat') # for using the concatenated vector
+all_td = try_to_load_as_pickled_object_or_None('data/training_vectors/32_all_td_justconcat')
 # all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
 all_samples = pd.DataFrame(all_td)
 
@@ -96,17 +96,18 @@ def label_polarity_all_typs(row, label, column):
 
 
 def train_classifier(train, label):
-    parameter_space = {
-        'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
-        'activation': ['tanh', 'relu'],
-        'solver': ['sgd', 'adam'],
-        'alpha': [0.0001, 0.05],
-        'learning_rate': ['constant', 'adaptive'],
-    }
-    train = np.array(list(train))
-    mlp = MLPClassifier(max_iter=100)
-    clf = GridSearchCV(mlp, parameter_space, n_jobs=-1, cv=3)
-    clf.fit(train, label)
+    # parameter_space = {
+    #     'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
+    #     'activation': ['tanh', 'relu'],
+    #     'solver': ['sgd', 'adam'],
+    #     'alpha': [0.0001, 0.05],
+    #     'learning_rate': ['constant', 'adaptive'],
+    # }
+    training_data = np.array(list(train))
+    print('..')
+    clf = MLPClassifier(max_iter=100)
+    # clf = GridSearchCV(mlp, parameter_space, n_jobs=-1, cv=3)
+    clf.fit(training_data, label)
     return clf
 
 

@@ -10,17 +10,13 @@ all_td = pd.DataFrame(all_td)
 
 
 def reformat(row_column):
-    concatenated_vector_2 = []
-    for component in row_column:
-        component_list = component.tolist()
-        concatenated_vector_2.append(component_list)
-    print('..')
-    return concatenated_vector_2
+    row_concatv = row_column['concatenated_vector']
+    flat_array = [item for sublist in row_concatv for item in sublist]
+    return flat_array
 
 
-all_td['concatenated_vector_2'] = all_td['concatenated_vector'].apply(reformat)
-all_td2 = all_td.drop(['concatenated_vector'], axis=1)
-all_td3 = all_td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+all_td['concatenated_vector_2'] = all_td.apply(reformat, axis=1)
+print('done')
 
 
 def save_as_pickled_object(obj, filepath):
@@ -35,5 +31,7 @@ def save_as_pickled_object(obj, filepath):
             f_out.write(bytes_out[idx:idx+max_bytes])
 
 
+all_td2 = all_td.drop(['concatenated_vector'], axis=1)
+all_td3 = all_td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
 save_as_pickled_object(all_td3, 'data/training_vectors/32_all_td_justconcat')
 
