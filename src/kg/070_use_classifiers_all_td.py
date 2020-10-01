@@ -3,11 +3,11 @@
 import operator
 import numpy as np
 import pandas as pd
-from kg.EB_classes import unpickle, pickl
+from kg.EB_classes import unpickle, pickl, reformat
 import re
 
 '''change depending on vector component to test'''
-vector_component = 'we_nouns_vector'
+vector_component = 'concatenated_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
@@ -18,24 +18,25 @@ vector_component = 'we_nouns_vector'
 classifiers_all_cat = unpickle('classifiers/classifiers_all_cat_ALL')
 classifiers_all_typ = unpickle('classifiers/classifiers_all_typ_ALL')
 
+
 '''load test data vectors'''
-dbpedia_test_final = unpickle('testing_vectors/11_dbpedia_test_fin')
+dbpedia_test_final = unpickle('testing_vectors/10_dbpedia_test_fin')
 test_data = pd.DataFrame(dbpedia_test_final)
+test_data['concatenated_vector_2'] = test_data.apply(reformat, axis=1)
+test_data2 = test_data.drop(['concatenated_vector'], axis=1)
+test_data = test_data2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+print('done reformat cc v')
 
 '''run through classifiers and store scores'''
 
 
-def reformat(row_column):
-    concatenated_vector_2 = []
-    for component in row_column:
-        component_list = component.tolist()
-        concatenated_vector_2.append(component_list)
-    return concatenated_vector_2
-
-
 def cat_scores(value):
     category_scores = {}
-    predict = np.array(reformat(value[vector_component]))
+    test = value[vector_component]
+    predict = list(test)
+    # predict = np.array(list(test))
+    # print('predict', predict)
+    # predict = np.array(reformat(value[vector_component]))
     for item in classifiers_all_cat:    # for each classifier
         category = item # get category
         c = classifiers_all_cat[item]   # get classifier
@@ -54,7 +55,9 @@ def cat_scores(value):
 
 def typ_scores(value):
     type_scores = {}
-    predict = np.array(reformat(value[vector_component]))
+    test = value[vector_component]
+    predict = list(test)
+    # predict = value[vector_component]
     for item in classifiers_all_typ:    # for each classifier
         typ = item  # get type
         c = classifiers_all_typ[item]   # get classifier

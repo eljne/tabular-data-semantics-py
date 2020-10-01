@@ -103,7 +103,7 @@ def label_polarity_all_typs(row, label, column):
 def train_classifier(train, label):
     training_data = np.array(list(train))
     print('..')
-    clf = MLPClassifier(max_iter=100)
+    clf = MLPClassifier(random_state=1, max_iter=300)
     # parameter_space = {
     #     'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
     #     'activation': ['tanh', 'relu'],
