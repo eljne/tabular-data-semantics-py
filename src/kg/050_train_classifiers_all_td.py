@@ -1,10 +1,11 @@
 ''' author: Eleanor Bill @eljne '''
 ''' train a MLP model for each category and type '''
 import pandas as pd
-from kg.EB_classes import unpickle, get_last, pickl, try_to_load_as_pickled_object_or_None
+from kg.EB_classes import unpickle, get_last, pickl, reformat
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import GridSearchCV
 import numpy as np
+
 
 '''change depending on vector component to test'''
 vector_component = 'concatenated_vector'
@@ -14,9 +15,13 @@ vector_component = 'concatenated_vector'
 # we_type_vector
 # concatenated_vector
 
-all_td = try_to_load_as_pickled_object_or_None('data/training_vectors/32_all_td_justconcat')
-# all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
+all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
 all_samples = pd.DataFrame(all_td)
+all_td['concatenated_vector_2'] = all_td.apply(reformat, axis=1)
+all_td2 = all_td.drop(['concatenated_vector'], axis=1)
+all_samples = all_td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+print('done reformat cc v')
+
 
 '''split on types/categories again'''
 categories = all_samples['category'].unique()
@@ -96,6 +101,9 @@ def label_polarity_all_typs(row, label, column):
 
 
 def train_classifier(train, label):
+    training_data = np.array(list(train))
+    print('..')
+    clf = MLPClassifier(max_iter=100)
     # parameter_space = {
     #     'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
     #     'activation': ['tanh', 'relu'],
@@ -103,9 +111,6 @@ def train_classifier(train, label):
     #     'alpha': [0.0001, 0.05],
     #     'learning_rate': ['constant', 'adaptive'],
     # }
-    training_data = np.array(list(train))
-    print('..')
-    clf = MLPClassifier(max_iter=100)
     # clf = GridSearchCV(mlp, parameter_space, n_jobs=-1, cv=3)
     clf.fit(training_data, label)
     return clf
