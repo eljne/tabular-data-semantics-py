@@ -83,3 +83,4 @@ print('done pickled')
 df_sample = dbpedia_train_wh3[0:10]
 df_sample.to_csv('data/test code/concat_initialTD_vectors.csv')
 print('done sampled to csv')
+

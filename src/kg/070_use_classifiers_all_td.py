@@ -1,7 +1,6 @@
 ''' author: Eleanor Bill @eljne '''
 ''' classify test data '''
 import operator
-import numpy as np
 import pandas as pd
 from kg.EB_classes import unpickle, pickl, reformat
 import re
@@ -20,7 +19,9 @@ classifiers_all_typ = unpickle('classifiers/classifiers_all_typ_ALL')
 
 
 '''load test data vectors'''
-dbpedia_test_final = unpickle('testing_vectors/10_dbpedia_test_fin')
+# dbpedia_test_final = unpickle('testing_vectors/10_dbpedia_test_fin')    # when using provided by task
+dbpedia_test_final = unpickle('testing_vectors/11_testing_vectors_from_og_training_data')    # when using og training
+# data split
 test_data = pd.DataFrame(dbpedia_test_final)
 test_data['concatenated_vector_2'] = test_data.apply(reformat, axis=1)
 test_data2 = test_data.drop(['concatenated_vector'], axis=1)
