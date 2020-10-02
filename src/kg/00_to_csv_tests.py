@@ -64,3 +64,10 @@ results.to_csv('data/test code/results.csv')
 # testing_vectors = testing_vectors[0:10]
 # testing_vectors.to_csv('data/test code/testing_vectors.csv')
 
+# results = unpickle('training_vectors/final_original_training_vectors')
+# results = results[0:10]
+# results.to_csv('data/test code/final_original_training_vectors.csv')
+#
+# results = unpickle('training_vectors/final_original_training_vectors_minus_tests')
+# results = results[0:10]
+# results.to_csv('data/test code/final_original_training_vectors_minus_tests.csv')

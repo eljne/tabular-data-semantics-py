@@ -8,7 +8,8 @@ from kg.EB_classes import unpickle, pickl
 from ontology.onto_access import DBpediaOntology
 
 # unpickle
-load = unpickle('training_vectors/final_original_training_vectors')
+# load = unpickle('training_vectors/final_original_training_vectors') # when we have training data from task to eval
+load = unpickle('training_vectors/final_original_training_vectors_minus_tests') # created own testing data from splitting train
 df = pd.DataFrame(load)
 print('done unpickled')
 

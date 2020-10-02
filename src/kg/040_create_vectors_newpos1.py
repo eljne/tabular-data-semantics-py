@@ -37,7 +37,8 @@ def new_samples(row_column):
 new_positive_samples = pd.DataFrame(columns=['category', 'type', 'question', 'wh', 'id', 'entity', 'polarity', 'np list', 'noun list'])
 
 for i in range(len(df_positive)):  # iterate through questions
-    positive_samples = new_samples(df_positive.loc[i])  # create new row for each similar entity - df of length 100
+    t = df_positive.iloc[i] # might need to change back to loc
+    positive_samples = new_samples(t)  # create new row for each similar entity - df of length 100
     new_positive_samples = new_positive_samples.append(positive_samples)  # append to overall df
     print("question", i, "/", len(df_positive), new_positive_samples.shape)
 

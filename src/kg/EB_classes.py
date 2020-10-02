@@ -285,3 +285,32 @@ def reformat(row_column):
     flat_array = [item for sublist in row_concatv for item in sublist]
     return flat_array
 
+'''Also for boolean, numerical or date questions, the key may be in the type of questions or Wh questions. 
+We can train a specific classifier for them, or apply heuristics (or both).  e.g. Is x greater than y? 
+When x happened? Does x is y? Ho many...? Seem to have a clear type with independence of the content.
+    '''
+
+# ['why', 'where', 'when', 'how', 'which', 'what', 'who', 'whose', 'whom', 'does', 'is it true', 'name a',
+#                 'name the', 'tell me', 'did', 'give', 'is the', 'is', 'was', 'are']
+
+# def heuristics(row):
+#     if row['wh'] in ():
+#     if row['wh'] in ():
+#     if row['wh'] in ():
+#     return
+
+
+def final_heuristics(row):
+    new_row = row.copy()
+    if row['category'] == 'boolean':
+        new_row['type'] = 'dbo: Boolean'    # If the category is "boolean" the answer type is always "boolean".
+    if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date", "string" or "boolean" answer type.
+        new_types_list = [] # prioritize more likely
+        for a in row['type']:
+            if a in ('dbo: Number', 'dbo: Date', 'dbo: String', 'dbo: Boolean'):
+                new_types_list.append(a)
+        for a in row['type']:
+            if a not in ('dbo: Number', 'dbo: Date', 'dbo: String', 'dbo: Boolean'):
+                new_types_list.append(a)
+        new_row['type'] = new_types_list[0:10]
+    return new_row
