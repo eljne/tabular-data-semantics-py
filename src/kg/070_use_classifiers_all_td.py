@@ -2,7 +2,7 @@
 ''' classify test data '''
 import operator
 import pandas as pd
-from kg.EB_classes import unpickle, pickl, reformat
+from kg.EB_classes import unpickle, pickl, reformat, heuristics
 import re
 
 '''change depending on vector component to test'''
@@ -34,6 +34,7 @@ print('done reformat cc v')
 def cat_scores(value):
     category_scores = {}
     test = value[vector_component]
+    wh = value['wh']
     predict = list(test)
     # predict = np.array(list(test))
     # print('predict', predict)
@@ -48,8 +49,10 @@ def cat_scores(value):
         except:
             pred_cat = 0.00000000
         category_scores.update({category: pred_cat})    # store label and score in dictionary
-    sorted_cat = sorted(category_scores.items(), key=operator.itemgetter(1), reverse=True)
-    sorted_cat_top = list(sorted_cat)[0]
+    print('category_scores', category_scores)
+    sorted_cat = heuristics(category_scores, wh, 'category')
+    sorted_cat2 = sorted(sorted_cat.items(), key=operator.itemgetter(1), reverse=True)
+    sorted_cat_top = list(sorted_cat2)[0]
     print('.')
     return str(sorted_cat_top)
 
@@ -57,6 +60,7 @@ def cat_scores(value):
 def typ_scores(value):
     type_scores = {}
     test = value[vector_component]
+    wh = value['wh']
     predict = list(test)
     # predict = value[vector_component]
     for item in classifiers_all_typ:    # for each classifier
@@ -69,8 +73,9 @@ def typ_scores(value):
         except:
             pred_typ = 0.00000000
         type_scores.update({typ: pred_typ})  # store label and score in dictionary
-    sorted_typ = sorted(type_scores.items(), key=operator.itemgetter(1), reverse=True)
-    sorted_typ_top_ten = list(sorted_typ)[0:10]
+    sorted_typ = heuristics(type_scores, wh, 'type')
+    sorted_typ2 = sorted(sorted_typ.items(), key=operator.itemgetter(1), reverse=True)
+    sorted_typ_top_ten = list(sorted_typ2)[0:10]
     print('..')
     return str(sorted_typ_top_ten)
 

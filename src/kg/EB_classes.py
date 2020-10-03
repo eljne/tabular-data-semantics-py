@@ -289,28 +289,46 @@ def reformat(row_column):
 We can train a specific classifier for them, or apply heuristics (or both).  e.g. Is x greater than y? 
 When x happened? Does x is y? Ho many...? Seem to have a clear type with independence of the content.
     '''
+# apply before getting top ten / top category/type
 
-# ['why', 'where', 'when', 'how', 'which', 'what', 'who', 'whose', 'whom', 'does', 'is it true', 'name a',
-#                 'name the', 'tell me', 'did', 'give', 'is the', 'is', 'was', 'are']
 
-# def heuristics(row):
-#     if row['wh'] in ():
-#     if row['wh'] in ():
-#     if row['wh'] in ():
-#     return
+def heuristics(dct, wh, lb):
+    if lb == 'type':
+        print('dict', dct)
+        if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are'):
+            dct["boolean"] = 1.00
+        if wh == 'when':
+            dct["date"] = 1.00
+        if wh == 'where':
+            dct['dbo:Location'] = 1.00
+            dct['dbo:Place'] = 1.00
+        if wh in ('who', 'whose', 'whom'):
+            dct['dbo:Person'] = 1.00
+    if lb == 'category':
+        if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are'):
+            dct["boolean"] = 1.00
+        if wh == 'when':
+            dct["literal"] = 1.00
+        if wh == 'where':
+            dct["boolean"] = 0.00
+        if wh in ('who', 'whose', 'whom'):
+            dct["boolean"] = 0.00
+        if wh in ('why', 'how', 'which', 'what', 'name a', 'name the', 'tell me', 'give'):
+            dct["boolean"] = 0.00
+    return dct
 
 
 def final_heuristics(row):
     new_row = row.copy()
     if row['category'] == 'boolean':
-        new_row['type'] = 'dbo: Boolean'    # If the category is "boolean" the answer type is always "boolean".
+        new_row['type'] = 'dbo:Boolean'    # If the category is "boolean" the answer type is always "boolean".
     if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date", "string" or "boolean" answer type.
         new_types_list = [] # prioritize more likely
         for a in row['type']:
-            if a in ('dbo: Number', 'dbo: Date', 'dbo: String', 'dbo: Boolean'):
+            if a in ('dbo:Number', 'dbo:Date', 'dbo: String', 'dbo: Boolean'):
                 new_types_list.append(a)
         for a in row['type']:
-            if a not in ('dbo: Number', 'dbo: Date', 'dbo: String', 'dbo: Boolean'):
+            if a not in ('number', 'date', 'string', 'boolean'):
                 new_types_list.append(a)
         new_row['type'] = new_types_list[0:10]
     return new_row

@@ -1,24 +1,28 @@
 ''' author: Eleanor Bill @eljne '''
-''' calls pre-written evaluation script and returns accuracy/KPIs '''
+''' reformat test data to evaluate '''
+from kg.EB_classes import unpickle
+import json
 
-from kg.evaluation_code import main
+test_truth = unpickle('testing_vectors/11_testing_vectors_from_og_training_data')
+test_truth = test_truth[['question', 'category', 'type', 'id']]
+test_truth_json = []
 
-'''
-Where
-    - `type_hierarchy_tsv` is a TSV file with Type, Depth and Parent columns.
-      The file is assumed to contain a header row.
-    - `ground_truth_json` is a JSON file containing the input questions and the
-      ground truth category and list of types (following the format of the
-      training data files).
-    - `system_output_json` is a JSON file with the (participating) system's
-      category and type predictions. The format is a list of dictionaries with
-      keys `id`, `category`, and `type`, holding the question ID, predicted
-      category, and ranked list of up to 10 types, respectively.
-'''
 
-type_hierarchy_tsv = 'data/results/for_evaluation/type_hierarchy_tsv.tsv'
-ground_truth_json = 'data/results/for_evaluation/ground_truth_json.json'
-system_output_json = 'data/results/for_evaluation/system_output_json.json'
+def reform(value):
+    i = value['id']
+    c = value['category']
+    t = value['type']
+    q = value['question']
+    dict = {"id": i, "category": c, "type": t, "question": q}
+    test_truth_json.append(dict)
+    print(dict)
+    return 0
 
-# should print results in terminal
-main(type_hierarchy_tsv, ground_truth_json, system_output_json)
+
+test_truth.apply(reform, axis=1)
+json_string = json.dumps(test_truth_json)
+
+with open('data/results/for_evaluation/ground_truth_json.json', 'w') as write_file:
+    write_file.write(json_string)
+
+'''in terminal use: python evaluate.py type_hierarchy_tsv.tsv ground_truth_json.json system_output_json.json'''
