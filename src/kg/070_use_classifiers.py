@@ -14,8 +14,15 @@ vector_component = 'concatenated_vector'
 # concatenated_vector
 
 '''unpickle classifiers'''
-classifiers_all_cat = unpickle('classifiers/classifiers_all_cat_ALL')
-classifiers_all_typ = unpickle('classifiers/classifiers_all_typ_ALL')
+# use classifiers trained on all training data
+classifiers_cat = unpickle('classifiers/classifiers_all_cat_ALL')
+classifiers_typ = unpickle('classifiers/classifiers_all_typ_ALL')
+results_path = 'results/results_ALLTD'
+
+# use classifiers trained on original training data
+# classifiers_cat = unpickle('classifiers/classifiers_pos_cat_OGTD')
+# classifiers_typ = unpickle('classifiers/classifiers_pos_typ_OGTD')
+# results_path = 'results/results_OGTD'
 
 
 '''load test data vectors'''
@@ -39,9 +46,9 @@ def cat_scores(value):
     # predict = np.array(list(test))
     # print('predict', predict)
     # predict = np.array(reformat(value[vector_component]))
-    for item in classifiers_all_cat:    # for each classifier
+    for item in classifiers_cat:    # for each classifier
         category = item # get category
-        c = classifiers_all_cat[item]   # get classifier
+        c = classifiers_cat[item]   # get classifier
         pred_cat = c.predict_proba([predict])   # use vector component and classifier to predict
         p2 = re.split(' ', str(pred_cat[0]))    # get probability of it being that class
         try:
@@ -62,9 +69,9 @@ def typ_scores(value):
     wh = value['wh']
     predict = list(test)
     # predict = value[vector_component]
-    for item in classifiers_all_typ:    # for each classifier
+    for item in classifiers_typ:    # for each classifier
         typ = item  # get type
-        c = classifiers_all_typ[item]   # get classifier
+        c = classifiers_typ[item]   # get classifier
         pred_typ = c.predict_proba([predict])
         p2 = re.split(' ', str(pred_typ[0]))
         try:
@@ -82,4 +89,5 @@ def typ_scores(value):
 test_data = test_data.drop_duplicates(subset=['id'])
 test_data['category_scores'] = test_data.apply(cat_scores, axis=1)
 test_data['type_scores'] = test_data.apply(typ_scores, axis=1)
-pickl('results/results_ALLTD', test_data)
+
+pickl(results_path, test_data)

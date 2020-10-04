@@ -15,22 +15,34 @@ vector_component = 'concatenated_vector'
 # we_type_vector
 # concatenated_vector
 
+'''load training data'''
+# use all training data
+file_path_cat = 'classifiers/classifiers_all_cat_ALL'
+file_path_typ = 'classifiers/classifiers_all_typ_ALL'
 all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
-all_samples = pd.DataFrame(all_td)
-all_td['concatenated_vector_2'] = all_td.apply(reformat, axis=1)
-all_td2 = all_td.drop(['concatenated_vector'], axis=1)
-all_samples = all_td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+td = pd.DataFrame(all_td)
+
+# use only original training data
+# file_path_cat = 'classifiers/classifiers_all_cat_OGTD'
+# file_path_typ = 'classifiers/classifiers_all_typ_OGTD'
+# og_td = unpickle('training_vectors/final_original_training_vectors')
+# td = pd.DataFrame(og_td)
+
+td['concatenated_vector_2'] = td.apply(reformat, axis=1)
+td2 = td.drop(['concatenated_vector'], axis=1)
+training_data = td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+
 print('done reformat cc v')
 
 
 '''split on types/categories again'''
-categories = all_samples['category'].unique()
-all_samples['fine type'] = all_samples['type'].apply(get_last)
-types = all_samples['fine type'].unique()
+categories = training_data['category'].unique()
+training_data['fine type'] = training_data['type'].apply(get_last)
+types = training_data['fine type'].unique()
 
 # lists to store the dataframes in
-types_dfs = [pd.DataFrame(y) for x, y in all_samples.groupby('fine type', as_index=False)] # just last type
-cats_dfs = [pd.DataFrame(b) for a, b in all_samples.groupby('category', as_index=False)]
+types_dfs = [pd.DataFrame(y) for x, y in training_data.groupby('fine type', as_index=False)] # just last type
+cats_dfs = [pd.DataFrame(b) for a, b in training_data.groupby('category', as_index=False)]
 print('done split to types and categories')
 
 
@@ -46,14 +58,14 @@ def get_all(list):
 
 # get list of all types
 types_all = []
-all_samples['type'].apply(get_all)
+training_data['type'].apply(get_all)
 types_all_unique = list(set(types_all)) # make unique
 
 # dictionaries in which to store classifiers, arranges by type/category
-classifiers_all_cat = dict.fromkeys(categories)
-print('classifiers_all_cat', classifiers_all_cat)
-classifiers_all_typ = dict.fromkeys(types_all_unique)
-print('classifiers_all_typ', classifiers_all_typ)
+classifiers_cat = dict.fromkeys(categories)
+print('classifiers_all_cat', classifiers_cat)
+classifiers_typ = dict.fromkeys(types_all_unique)
+print('classifiers_all_typ', classifiers_typ)
 
 
 def random_sample_ratioed(datafrm, pos_fraction, ratio_pos, ratio_neg):
@@ -120,7 +132,7 @@ def train_classifier(train, label):
 ''' train and store classifiers '''
 # categories
 for df in cats_dfs:
-    copy_df = all_samples.copy()
+    copy_df = training_data.copy()
     cat_label = df["category"].unique()
     cat_label = cat_label[0]
     copy_df["y"] = copy_df.apply(lambda row: label_polarity(row, cat_label, "category"), axis=1)    # label +ve and -ve
@@ -128,23 +140,23 @@ for df in cats_dfs:
     X = train_set[vector_component]
     y = train_set["y"]
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_all_cat[cat_label] = classifier
+    classifiers_cat[cat_label] = classifier
 
 
 # all types
 for typ_label in types_all_unique:
-    copy_df2 = all_samples.copy()
+    copy_df2 = training_data.copy()
     print('type label', typ_label)
     copy_df2["y"] = copy_df2.apply(lambda row: label_polarity_all_typs(row, typ_label, 'type'), axis=1)  # label -/+
     train_set = random_sample_ratioed(copy_df2, 0.80, 1, 1)  # split differently according to pos/neg balance
     X = train_set[vector_component]
     y = train_set["y"]
     classifier = train_classifier(X, y)  # need to convert vector from list of arrays to matrix
-    classifiers_all_typ[typ_label] = classifier
+    classifiers_typ[typ_label] = classifier
 
-print('classifiers_all_cat', classifiers_all_cat)
-pickl('classifiers/classifiers_all_cat_ALL', classifiers_all_cat)
+print('classifiers_cat', classifiers_cat)
+pickl(file_path_cat, classifiers_cat)
 
-print('classifiers_all_typ', classifiers_all_typ)
-pickl('classifiers/classifiers_all_typ_ALL', classifiers_all_typ)
+print('classifiers_typ', classifiers_typ)
+pickl(file_path_typ, classifiers_typ)
 

@@ -321,11 +321,12 @@ def heuristics(dct, wh, lb):
     return dct
 
 
-def final_heuristics(row):
+def heuristics_2(row):
     new_row = row.copy()
     if row['category'] == 'boolean':
         new_row['type'] = 'boolean'    # If the category is "boolean" the answer type is always "boolean".
-    if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date", "string" or "boolean" answer type.
+    if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date",
+        # "string" or "boolean" answer type.
         new_types_list = [] # prioritize more likely
         for a in row['type']:
             if a in ('number', 'date', 'string', 'boolean'):
