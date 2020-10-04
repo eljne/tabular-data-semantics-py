@@ -1,3 +1,4 @@
+''' author: Eleanor Bill @eljne '''
 ''' require splitting original training data into training and test data as it's the
 data we have with correct types + categories, can measure accuracy '''
 from kg.EB_classes import unpickle, pickl

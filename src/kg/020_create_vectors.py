@@ -1,5 +1,6 @@
 ''' author: Eleanor Bill @eljne '''
-'''create vectors using word embeddings and knowledge graph embeddings '''
+'''create vectors from training data using word embeddings and knowledge graph embeddings '''
+'''PART 1: parses parts of the question for embedding and finds entities using SPARQL endpoint'''
 '''takes 4ish hours to run'''
 
 '''

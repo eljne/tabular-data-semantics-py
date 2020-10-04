@@ -1,3 +1,6 @@
+''' author: Eleanor Bill @eljne '''
+''' reformats results to be run through evaluation script'''
+
 from kg.EB_classes import unpickle
 import re
 import json

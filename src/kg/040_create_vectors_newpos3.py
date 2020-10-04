@@ -1,6 +1,5 @@
 ''' author: Eleanor Bill @eljne '''
 ''' create vectors for additional training data - +ve - CONTINUED'''
-'''quick!'''
 
 from kg.EB_classes import unpickle, pickl
 from kg.EB_classes import cal_average, find_vector_kge

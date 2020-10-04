@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 from kg.EB_classes import type_convert, find_vector_kge, pickl, unpickle
 
-
 dbpedia_test = unpickle('testing_vectors/09_dbpedia_test')
 
 # check for arrays length 1

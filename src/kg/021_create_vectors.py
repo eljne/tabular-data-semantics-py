@@ -1,5 +1,6 @@
 ''' author: Eleanor Bill @eljne '''
 ''' continue creating vectors '''
+''' PART 2: put parts of q through embeddings'''
 
 from gensim.models import KeyedVectors
 from nltk.corpus import stopwords
