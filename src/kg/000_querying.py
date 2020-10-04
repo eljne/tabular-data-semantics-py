@@ -16,7 +16,7 @@ def flat(val):
 
 
 df['flat list'] = df['type'].apply(flat)
-df['test'] = df['flat list'].str.contains('Brewery')
+df['test'] = df['flat list'].str.contains('Location')
 df2 = df[df['test'] == True]
-
+print(df2)
 df2.to_csv('data/query.csv')

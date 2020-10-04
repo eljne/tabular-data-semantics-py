@@ -294,21 +294,24 @@ When x happened? Does x is y? Ho many...? Seem to have a clear type with indepen
 
 def heuristics(dct, wh, lb):
     if lb == 'type':
-        print('dict', dct)
         if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are'):
             dct["boolean"] = 1.00
         if wh == 'when':
             dct["date"] = 1.00
+            dct["boolean"] = 0.00
         if wh == 'where':
             dct['dbo:Location'] = 1.00
             dct['dbo:Place'] = 1.00
+            dct["boolean"] = 0.00
         if wh in ('who', 'whose', 'whom'):
             dct['dbo:Person'] = 1.00
+            dct["boolean"] = 0.00
     if lb == 'category':
         if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are'):
             dct["boolean"] = 1.00
         if wh == 'when':
             dct["literal"] = 1.00
+            dct["boolean"] = 0.00
         if wh == 'where':
             dct["boolean"] = 0.00
         if wh in ('who', 'whose', 'whom'):
@@ -321,11 +324,11 @@ def heuristics(dct, wh, lb):
 def final_heuristics(row):
     new_row = row.copy()
     if row['category'] == 'boolean':
-        new_row['type'] = 'dbo:Boolean'    # If the category is "boolean" the answer type is always "boolean".
+        new_row['type'] = 'boolean'    # If the category is "boolean" the answer type is always "boolean".
     if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date", "string" or "boolean" answer type.
         new_types_list = [] # prioritize more likely
         for a in row['type']:
-            if a in ('dbo:Number', 'dbo:Date', 'dbo: String', 'dbo: Boolean'):
+            if a in ('number', 'date', 'string', 'boolean'):
                 new_types_list.append(a)
         for a in row['type']:
             if a not in ('number', 'date', 'string', 'boolean'):

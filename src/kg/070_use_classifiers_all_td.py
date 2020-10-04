@@ -49,7 +49,6 @@ def cat_scores(value):
         except:
             pred_cat = 0.00000000
         category_scores.update({category: pred_cat})    # store label and score in dictionary
-    print('category_scores', category_scores)
     sorted_cat = heuristics(category_scores, wh, 'category')
     sorted_cat2 = sorted(sorted_cat.items(), key=operator.itemgetter(1), reverse=True)
     sorted_cat_top = list(sorted_cat2)[0]

@@ -14,8 +14,8 @@ def reform(value):
     t = value['type']
     q = value['question']
     dict = {"id": i, "category": c, "type": t, "question": q}
-    test_truth_json.append(dict)
     print(dict)
+    test_truth_json.append(dict)
     return 0
 
 
