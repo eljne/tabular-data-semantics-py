@@ -1,11 +1,17 @@
 ''' author: Eleanor Bill @eljne '''
 ''' reformat test data to evaluate '''
 
-from kg.EB_classes import unpickle
+from kg.EB_classes import unpickle, replace_Location_2
 import json
+import pandas as pd
 
 test_truth = unpickle('testing_vectors/11_testing_vectors_from_og_training_data')
-test_truth = test_truth[['question', 'category', 'type', 'id']]
+test_truth = pd.DataFrame(test_truth)
+
+test_truth['type2'] = test_truth['type'].apply(replace_Location_2)
+test_truth2 = test_truth.drop(['type'], axis=1)
+test_truth3 = test_truth2.rename(columns={'type2': 'type'})
+test_truth3 = test_truth3[['question', 'category', 'type', 'id']]
 test_truth_json = []
 
 

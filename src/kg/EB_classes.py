@@ -289,7 +289,27 @@ def reformat(row_column):
 We can train a specific classifier for them, or apply heuristics (or both).  e.g. Is x greater than y? 
 When x happened? Does x is y? Ho many...? Seem to have a clear type with independence of the content.
     '''
+
+
 # apply before getting top ten / top category/type
+def replace_Location(l):
+    new_l = []
+    for item in l:
+        if item[0] == 'dbo:Location':
+            item2 = ('dbo:Place', item[1])
+        else:
+            new_l.append(item)
+    return new_l
+
+
+def replace_Location_2(l):
+    new_l = []
+    for item in l:
+        if item == 'dbo:Location':
+            new_l.append('dbo:Place')
+        else:
+            new_l.append(item)
+    return new_l
 
 
 def heuristics(dct, wh, lb):
@@ -300,7 +320,6 @@ def heuristics(dct, wh, lb):
             dct["date"] = 1.00
             dct["boolean"] = 0.00
         if wh == 'where':
-            dct['dbo:Location'] = 1.00
             dct['dbo:Place'] = 1.00
             dct["boolean"] = 0.00
         if wh in ('who', 'whose', 'whom'):

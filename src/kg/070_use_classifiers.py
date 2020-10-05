@@ -2,7 +2,7 @@
 ''' classify test data '''
 import operator
 import pandas as pd
-from kg.EB_classes import unpickle, pickl, reformat, heuristics
+from kg.EB_classes import unpickle, pickl, reformat, heuristics, replace_Location
 import re
 
 '''change depending on vector component to test'''
@@ -82,6 +82,7 @@ def typ_scores(value):
     sorted_typ = heuristics(type_scores, wh, 'type')
     sorted_typ2 = sorted(sorted_typ.items(), key=operator.itemgetter(1), reverse=True)
     sorted_typ_top_ten = list(sorted_typ2)[0:10]
+    sorted_typ_top_ten = replace_Location(sorted_typ_top_ten)
     print('..')
     return str(sorted_typ_top_ten)
 
