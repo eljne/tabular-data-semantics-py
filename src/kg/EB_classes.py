@@ -297,8 +297,12 @@ def replace_Location(l):
     for item in l:
         if item[0] == 'dbo:Location':
             item2 = ('dbo:Place', item[1])
+            new_l.append(item2)
         else:
-            new_l.append(item)
+            if item[0] == 'dbo:MedicalSpecialty':
+                pass
+            else:
+                new_l.append(item)
     return new_l
 
 
@@ -308,7 +312,10 @@ def replace_Location_2(l):
         if item == 'dbo:Location':
             new_l.append('dbo:Place')
         else:
-            new_l.append(item)
+            if item == 'dbo:MedicalSpecialty':
+                pass
+            else:
+                new_l.append(item)
     return new_l
 
 

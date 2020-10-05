@@ -81,8 +81,8 @@ def typ_scores(value):
         type_scores.update({typ: pred_typ})  # store label and score in dictionary
     sorted_typ = heuristics(type_scores, wh, 'type')
     sorted_typ2 = sorted(sorted_typ.items(), key=operator.itemgetter(1), reverse=True)
-    sorted_typ_top_ten = list(sorted_typ2)[0:10]
-    sorted_typ_top_ten = replace_Location(sorted_typ_top_ten)
+    sorted_typ3 = replace_Location(list(sorted_typ2))
+    sorted_typ_top_ten = sorted_typ3[0:10]
     print('..')
     return str(sorted_typ_top_ten)
 

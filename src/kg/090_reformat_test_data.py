@@ -26,7 +26,7 @@ def reform(value):
     return 0
 
 
-test_truth.apply(reform, axis=1)
+test_truth3.apply(reform, axis=1)
 json_string = json.dumps(test_truth_json)
 
 with open('data/results/for_evaluation/ground_truth_json.json', 'w') as write_file:
