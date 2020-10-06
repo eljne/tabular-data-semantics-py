@@ -5,7 +5,7 @@ from gensim.models import KeyedVectors
 from nltk.corpus import stopwords
 import json
 import numpy as np
-from kg.EB_classes import write_file, find_w, nouns, noun_phrases, filter_SW
+from kg.EB_classes import find_w, nouns, noun_phrases, filter_SW
 from kg.EB_classes import get_entities, apply_endpoint, cal_average
 from kg.EB_classes import type_convert, find_vector_kge, pickl
 

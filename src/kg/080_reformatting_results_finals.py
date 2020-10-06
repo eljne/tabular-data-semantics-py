@@ -3,9 +3,11 @@
 
 from kg.EB_classes import unpickle, heuristics_2
 import re
+import pandas as pd
 import json
 
-results = unpickle('results/results_OGTD')
+results_concat = unpickle('results/finals/results_OGTD_concat')
+results_KGE = unpickle('results/finals/results_OGTD_KGE')
 
 # results = unpickle('results/results_ALLTD')
 
@@ -48,12 +50,20 @@ def get_first_list(value):
     return val_list
 
 
-results['category'] = results.apply(get_first, axis=1)
-results['type'] = results.apply(get_first_list, axis=1)
-results = results.apply(heuristics_2, axis=1)
-results = results[['id', 'category', 'type']]
-results_list = []
+results_concat['category'] = results_concat.apply(get_first, axis=1)
+results_concat['type'] = results_concat.apply(get_first_list, axis=1)
+results_concat = results_concat.apply(heuristics_2, axis=1)
+results_concat = results_concat[['id', 'type', 'category']]
 
+results_KGE['category'] = results_KGE.apply(get_first, axis=1)
+results_KGE['type'] = results_KGE.apply(get_first_list, axis=1)
+results_KGE = results_KGE.apply(heuristics_2, axis=1)
+results_KGE = results_KGE[['id', 'category', 'type']]
+
+# results = pd.merge(results_concat, results_KGE, how='inner', on='id')
+results = results_concat
+
+results_list = []
 
 def reform(value):
     i = value['id']
@@ -67,6 +77,7 @@ def reform(value):
 
 results.apply(reform, axis=1)
 json_string = json.dumps(results_list)
+print(json_string)
 
-with open('data/results/for_evaluation/system_output_json.json', 'w') as write_file:
+with open('data/results/for_evaluation/system_output_json2.json', 'w') as write_file:
     write_file.write(json_string)

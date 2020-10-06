@@ -2,27 +2,34 @@
 ''' classify test data '''
 import operator
 import pandas as pd
-from kg.EB_classes import unpickle, pickl, reformat, heuristics, replace_Location
+from kg.EB_classes import unpickle, pickl, heuristics, replace_Location
+from kg.EB_classes import reformat, reformat_2, reformat_3, reformat_4, reformat_5, reformat_6
 import re
 
 '''change depending on vector component to test'''
-vector_component = 'concatenated_vector'
+vector_component_category = 'con_wh_nouns'
+vector_component_type = 'con_wh_nouns'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
 # we_type_vector
 # concatenated_vector
+# con_wh_nouns
+# con_wh_kge
+# con_nouns_KGE
+# con_wh_nouns_kge
+# con_wh_kge_types
 
 '''unpickle classifiers'''
 # use classifiers trained on all training data
-classifiers_cat = unpickle('classifiers/classifiers_all_cat_ALL')
-classifiers_typ = unpickle('classifiers/classifiers_all_typ_ALL')
-results_path = 'results/results_ALLTD'
+# classifiers_cat = unpickle('classifiers/classifiers_all_cat_ALL')
+# classifiers_typ = unpickle('classifiers/classifiers_all_typ_ALL')
+# results_path = 'results/results_ALLTD'
 
 # use classifiers trained on original training data
-# classifiers_cat = unpickle('classifiers/classifiers_pos_cat_OGTD')
-# classifiers_typ = unpickle('classifiers/classifiers_pos_typ_OGTD')
-# results_path = 'results/results_OGTD'
+classifiers_cat = unpickle('classifiers/classifiers_all_cat_OGTD')
+classifiers_typ = unpickle('classifiers/classifiers_all_typ_OGTD')
+results_path = 'results/results_OGTD'
 
 
 '''load test data vectors'''
@@ -33,6 +40,27 @@ test_data = pd.DataFrame(dbpedia_test_final)
 test_data['concatenated_vector_2'] = test_data.apply(reformat, axis=1)
 test_data2 = test_data.drop(['concatenated_vector'], axis=1)
 test_data = test_data2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+
+test_data['con_wh_nouns_2'] = test_data.apply(reformat_2, axis=1)
+td2 = test_data.drop(['con_wh_nouns'], axis=1)
+test_data = td2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
+
+test_data['con_wh_kge_2'] = test_data.apply(reformat_3, axis=1)
+td2 = test_data.drop(['con_wh_kge'], axis=1)
+test_data = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
+
+test_data['con_nouns_KGE_2'] = test_data.apply(reformat_4, axis=1)
+td2 = test_data.drop(['con_nouns_KGE'], axis=1)
+test_data = td2.rename(columns={'con_nouns_KGE_2': 'con_nouns_KGE'})
+
+test_data['con_wh_nouns_kge_2'] = test_data.apply(reformat_5, axis=1)
+td2 = test_data.drop(['con_wh_nouns_kge'], axis=1)
+test_data = td2.rename(columns={'con_wh_nouns_kge_2': 'con_wh_nouns_kge'})
+
+test_data['con_wh_kge_types_2'] = test_data.apply(reformat_6, axis=1)
+td2 = test_data.drop(['con_wh_kge_types'], axis=1)
+test_data = td2.rename(columns={'con_wh_kge_types_2': 'con_wh_kge_types'})
+
 print('done reformat cc v')
 
 '''run through classifiers and store scores'''
@@ -40,7 +68,7 @@ print('done reformat cc v')
 
 def cat_scores(value):
     category_scores = {}
-    test = value[vector_component]
+    test = value[vector_component_category]
     wh = value['wh']
     predict = list(test)
     # predict = np.array(list(test))
@@ -65,7 +93,7 @@ def cat_scores(value):
 
 def typ_scores(value):
     type_scores = {}
-    test = value[vector_component]
+    test = value[vector_component_type]
     wh = value['wh']
     predict = list(test)
     # predict = value[vector_component]
@@ -90,5 +118,7 @@ def typ_scores(value):
 test_data = test_data.drop_duplicates(subset=['id'])
 test_data['category_scores'] = test_data.apply(cat_scores, axis=1)
 test_data['type_scores'] = test_data.apply(typ_scores, axis=1)
-
 pickl(results_path, test_data)
+
+
+

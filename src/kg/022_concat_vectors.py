@@ -4,6 +4,7 @@
 import pandas as pd
 import numpy as np
 from kg.EB_classes import unpickle, pickl
+
 dbpedia_train_wh = unpickle('training_vectors/09_dbpedia_train_wh')
 
 '''
@@ -71,7 +72,18 @@ dbpedia_train_wh['concatenated_vector'] = dbpedia_train_wh.apply(lambda x: [x['w
                                                                             x['we_nouns_vector'],
                                                                             x['entities_KGE_vector_2'],
                                                                             x['we_type_vector']], axis=1)
-
+dbpedia_train_wh['con_wh_nouns'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
+                                                                     x['we_nouns_vector']], axis=1)
+dbpedia_train_wh['con_wh_kge'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
+                                                                   x['entities_KGE_vector']], axis=1)
+dbpedia_train_wh['con_nouns_KGE'] = dbpedia_train_wh.apply(lambda x: [x['we_nouns_vector'],
+                                                                      x['entities_KGE_vector']], axis=1)
+dbpedia_train_wh['con_wh_nouns_kge'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
+                                                                         x['we_nouns_vector'],
+                                                                         x['entities_KGE_vector']], axis=1)
+dbpedia_train_wh['con_wh_kge_types'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
+                                                                         x['entities_KGE_vector'],
+                                                                         x['we_type_vector']], axis=1)
 
 dbpedia_train_wh2 = dbpedia_train_wh.drop(['entities_KGE_vector'], axis=1)
 dbpedia_train_wh3 = dbpedia_train_wh2.rename(columns={'entities_KGE_vector_2': 'entities_KGE_vector'})
@@ -83,4 +95,3 @@ print('done pickled')
 df_sample = dbpedia_train_wh3[0:10]
 df_sample.to_csv('data/test code/concat_initialTD_vectors.csv')
 print('done sampled to csv')
-

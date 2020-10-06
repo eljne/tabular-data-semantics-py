@@ -285,6 +285,42 @@ def reformat(row_column):
     flat_array = [item for sublist in row_concatv for item in sublist]
     return flat_array
 
+def reformat(row_column):
+    row_concatv = row_column['concatenated_vector']
+    flat_array = [item for sublist in row_concatv for item in sublist]
+    return flat_array
+
+
+def reformat_2(row_column):
+    row_concatv = row_column['con_wh_nouns']
+    flat_array = [item for sublist in row_concatv for item in sublist]
+    return flat_array
+
+
+def reformat_3(row_column):
+    row_concatv = row_column['con_wh_kge']
+    flat_array = [item for sublist in row_concatv for item in sublist]
+    return flat_array
+
+
+def reformat_4(row_column):
+    row_concatv = row_column['con_nouns_KGE']
+    flat_array = [item for sublist in row_concatv for item in sublist]
+    return flat_array
+
+
+def reformat_5(row_column):
+    row_concatv = row_column['con_wh_nouns_kge']
+    flat_array = [item for sublist in row_concatv for item in sublist]
+    return flat_array
+
+
+def reformat_6(row_column):
+    row_concatv = row_column['con_wh_kge_types']
+    flat_array = [item for sublist in row_concatv for item in sublist]
+    return flat_array
+
+
 '''Also for boolean, numerical or date questions, the key may be in the type of questions or Wh questions. 
 We can train a specific classifier for them, or apply heuristics (or both).  e.g. Is x greater than y? 
 When x happened? Does x is y? Ho many...? Seem to have a clear type with independence of the content.
@@ -348,17 +384,17 @@ def heuristics(dct, wh, lb):
 
 
 def heuristics_2(row):
-    new_row = row.copy()
     if row['category'] == 'boolean':
-        new_row['type'] = 'boolean'    # If the category is "boolean" the answer type is always "boolean".
-    if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date",
-        # "string" or "boolean" answer type.
-        new_types_list = [] # prioritize more likely
-        for a in row['type']:
-            if a in ('number', 'date', 'string', 'boolean'):
-                new_types_list.append(a)
-        for a in row['type']:
-            if a not in ('number', 'date', 'string', 'boolean'):
-                new_types_list.append(a)
-        new_row['type'] = new_types_list[0:10]
-    return new_row
+        row['type'][0] = 'boolean'    # If the category is "boolean" the answer type is always "boolean".
+    else:
+        if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date",
+            # "string" or "boolean" answer type.
+            new_types_list = [] # prioritize more likely
+            for a in row['type']:
+                if a[0] in ('number', 'date', 'string', 'boolean'):
+                    new_types_list.append(a)
+            for a in row['type']:
+                if a[0] not in ('number', 'date', 'string', 'boolean'):
+                    new_types_list.append(a)
+            row['type'] = new_types_list[0:10]
+    return row
