@@ -75,14 +75,14 @@ dbpedia_train_wh['concatenated_vector'] = dbpedia_train_wh.apply(lambda x: [x['w
 dbpedia_train_wh['con_wh_nouns'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
                                                                      x['we_nouns_vector']], axis=1)
 dbpedia_train_wh['con_wh_kge'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
-                                                                   x['entities_KGE_vector']], axis=1)
+                                                                   x['entities_KGE_vector_2']], axis=1)
 dbpedia_train_wh['con_nouns_KGE'] = dbpedia_train_wh.apply(lambda x: [x['we_nouns_vector'],
-                                                                      x['entities_KGE_vector']], axis=1)
+                                                                      x['entities_KGE_vector_2']], axis=1)
 dbpedia_train_wh['con_wh_nouns_kge'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
                                                                          x['we_nouns_vector'],
-                                                                         x['entities_KGE_vector']], axis=1)
+                                                                         x['entities_KGE_vector_2']], axis=1)
 dbpedia_train_wh['con_wh_kge_types'] = dbpedia_train_wh.apply(lambda x: [x['we_wh_vector'],
-                                                                         x['entities_KGE_vector'],
+                                                                         x['entities_KGE_vector_2'],
                                                                          x['we_type_vector']], axis=1)
 
 dbpedia_train_wh2 = dbpedia_train_wh.drop(['entities_KGE_vector'], axis=1)

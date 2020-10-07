@@ -8,8 +8,8 @@ import numpy as np
 
 
 '''change depending on vector component to test'''
-vector_component_category = 'con_wh_nouns'
-vector_component_type = 'con_wh_nouns'
+vector_component_category = 'concatenated_vector'
+vector_component_type = 'concatenated_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
@@ -23,43 +23,46 @@ vector_component_type = 'con_wh_nouns'
 
 '''load training data'''
 # use all training data
-file_path_cat = 'classifiers/classifiers_all_cat_ALL'
-file_path_typ = 'classifiers/classifiers_all_typ_ALL'
-all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
-td = pd.DataFrame(all_td)
+# file_path_cat = 'classifiers/classifiers_all_cat_ALL'
+# file_path_typ = 'classifiers/classifiers_all_typ_ALL'
+# all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
+# td = pd.DataFrame(all_td)
 
 # use only original training data
-# file_path_cat = 'classifiers/classifiers_all_cat_OGTD'
-# file_path_typ = 'classifiers/classifiers_all_typ_OGTD'
-# og_td = unpickle('training_vectors/final_original_training_vectors')
-# td = pd.DataFrame(og_td)
-# td['polarity'] = "1"
+file_path_cat = 'classifiers/classifiers_all_cat_OGTD'
+file_path_typ = 'classifiers/classifiers_all_typ_OGTD'
+og_td = unpickle('training_vectors/final_original_training_vectors')
+td = pd.DataFrame(og_td)
+td['polarity'] = "1"
 
 td['concatenated_vector_2'] = td.apply(reformat, axis=1)
 td2 = td.drop(['concatenated_vector'], axis=1)
 td = td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
 
-td['con_wh_nouns_2'] = td.apply(reformat_2, axis=1)
-td2 = td.drop(['con_wh_nouns'], axis=1)
-td = td2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
+# td['con_wh_nouns_2'] = td.apply(reformat_2, axis=1)
+# td2 = td.drop(['con_wh_nouns'], axis=1)
+# td = td2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
+#
+# td['con_wh_kge_2'] = td.apply(reformat_3, axis=1)
+# td2 = td.drop(['con_wh_kge'], axis=1)
+# td = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
+#
+# td['con_nouns_KGE_2'] = td.apply(reformat_4, axis=1)
+# td2 = td.drop(['con_nouns_KGE'], axis=1)
+# td = td2.rename(columns={'con_nouns_KGE_2': 'con_nouns_KGE'})
+#
+# td['con_wh_nouns_kge_2'] = td.apply(reformat_5, axis=1)
+# td2 = td.drop(['con_wh_nouns_kge'], axis=1)
+# td = td2.rename(columns={'con_wh_nouns_kge_2': 'con_wh_nouns_kge'})
+#
+# td['con_wh_kge_types_2'] = td.apply(reformat_6, axis=1)
+# td2 = td.drop(['con_wh_kge_types'], axis=1)
+# training_data = td2.rename(columns={'con_wh_kge_types_2': 'con_wh_kge_types'})
 
-td['con_wh_kge_2'] = td.apply(reformat_3, axis=1)
-td2 = td.drop(['con_wh_kge'], axis=1)
-td = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
-
-td['con_nouns_KGE_2'] = td.apply(reformat_4, axis=1)
-td2 = td.drop(['con_nouns_KGE'], axis=1)
-td = td2.rename(columns={'con_nouns_KGE_2': 'con_nouns_KGE'})
-
-td['con_wh_nouns_kge_2'] = td.apply(reformat_5, axis=1)
-td2 = td.drop(['con_wh_nouns_kge'], axis=1)
-td = td2.rename(columns={'con_wh_nouns_kge_2': 'con_wh_nouns_kge'})
-
-td['con_wh_kge_types_2'] = td.apply(reformat_6, axis=1)
-td2 = td.drop(['con_wh_kge_types'], axis=1)
-training_data = td2.rename(columns={'con_wh_kge_types_2': 'con_wh_kge_types'})
-
+training_data = td
 print('done reformat cc v')
+# pickl('train_data', training_data[0:10])
+# print('pickled')
 
 
 '''split on types/categories again'''
@@ -136,19 +139,15 @@ def label_polarity_all_typs(row, label, column):
 
 def train_classifier_category(train, label):
     training_data = np.array(list(train))
-    print('category train')
     clf = MLPClassifier(max_iter=300)
     clf.fit(training_data, label)
-    print('category training complete')
     return clf
 
 
 def train_classifier(train, label):
     training_data = np.array(list(train))
-    print('type train')
     clf = MLPClassifier(max_iter=300)
     clf.fit(training_data, label)
-    print('type training complete')
     return clf
 
 
@@ -158,6 +157,7 @@ for df in cats_dfs:
     copy_df = training_data.copy()
     cat_label = df["category"].unique()
     cat_label = cat_label[0]
+    print('cat label', cat_label)
     copy_df["y"] = copy_df.apply(lambda row: label_polarity(row, cat_label, "category"), axis=1)    # label +ve and -ve
     train_set = random_sample_ratioed(copy_df, 0.80, 1, 1)  # split differently according to pos/neg balance
     X = train_set[vector_component_category]

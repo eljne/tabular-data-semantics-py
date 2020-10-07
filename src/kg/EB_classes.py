@@ -285,11 +285,6 @@ def reformat(row_column):
     flat_array = [item for sublist in row_concatv for item in sublist]
     return flat_array
 
-def reformat(row_column):
-    row_concatv = row_column['concatenated_vector']
-    flat_array = [item for sublist in row_concatv for item in sublist]
-    return flat_array
-
 
 def reformat_2(row_column):
     row_concatv = row_column['con_wh_nouns']

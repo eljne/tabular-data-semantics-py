@@ -92,3 +92,30 @@ results.to_csv('data/test code/results.csv')
 # results = unpickle('training_vectors/final_original_training_vectors_minus_tests')
 # results = results[0:10]
 # results.to_csv('data/test code/final_original_training_vectors_minus_tests.csv')
+
+# all training data
+all_td = unpickle('test_data')
+all_td = pd.DataFrame(all_td)
+for a in all_td['con_wh_nouns']:
+    print(len(a))
+all_td = all_td[0:20]
+all_td.to_csv('data/test code/all_td.csv')
+
+# all_td = unpickle('train_data')
+# all_td = pd.DataFrame(all_td)
+# for a in all_td['con_wh_nouns']:
+#     print(len(a))
+# all_td = all_td[0:20]
+# all_td.to_csv('data/test code/all_td.csv')
+
+
+# all_td = unpickle('test_data')
+# all_td = pd.DataFrame(all_td)
+# for a in all_td['con_wh_nouns']:
+#     print(len(a))
+#     print(len(a[0]))
+#     print(len(a[1]))
+#     print(len(a[2]))
+#     print(len(a[3]))
+# all_td = all_td[0:20]
+# all_td.to_csv('data/test code/all_td.csv')
