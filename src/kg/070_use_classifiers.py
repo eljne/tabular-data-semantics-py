@@ -8,8 +8,8 @@ import re
 import numpy as np
 
 '''change depending on vector component to test'''
-vector_component_category = 'concatenated_vector'
-vector_component_type = 'concatenated_vector'
+vector_component_category = 'we_wh_vector'
+vector_component_type = 'we_wh_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
@@ -38,28 +38,28 @@ dbpedia_test_final = unpickle('testing_vectors/11_testing_vectors_from_og_traini
 # data split
 test_data = pd.DataFrame(dbpedia_test_final)
 
-test_data['concatenated_vector_2'] = test_data.apply(reformat, axis=1)
-test_data2 = test_data.drop(['concatenated_vector'], axis=1)
-test_data = test_data2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
-# print(test_data['concatenated_vector'])
+# test_data['concatenated_vector_2'] = test_data.apply(reformat, axis=1)
+# test_data2 = test_data.drop(['concatenated_vector'], axis=1)
+# test_data = test_data2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+# print(len(test_data['concatenated_vector'][0]))
 
-test_data['con_wh_nouns_2'] = test_data.apply(reformat_2, axis=1)
-test_data2 = test_data.drop(['con_wh_nouns'], axis=1)
-test_data = test_data2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
-# print(test_data['con_wh_nouns'])
+# test_data['con_wh_nouns_2'] = test_data.apply(reformat_2, axis=1)
+# test_data2 = test_data.drop(['con_wh_nouns'], axis=1)
+# test_data = test_data2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
+# print(len(test_data['con_wh_nouns'][0]))
 
 # test_data['con_wh_kge_2'] = test_data.apply(reformat_3, axis=1)
 # test_data2 = test_data.drop(['con_wh_kge'], axis=1)
 # test_data = test_data2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
-#
+
 # test_data['con_nouns_KGE_2'] = test_data.apply(reformat_4, axis=1)
 # test_data2 = test_data.drop(['con_nouns_KGE'], axis=1)
 # test_data = test_data2.rename(columns={'con_nouns_KGE_2': 'con_nouns_KGE'})
-#
+
 # test_data['con_wh_nouns_kge_2'] = test_data.apply(reformat_5, axis=1)
 # test_data2 = test_data.drop(['con_wh_nouns_kge'], axis=1)
 # test_data = test_data2.rename(columns={'con_wh_nouns_kge_2': 'con_wh_nouns_kge'})
-#
+
 # test_data['con_wh_kge_types_2'] = test_data.apply(reformat_6, axis=1)
 # test_data2 = test_data.drop(['con_wh_kge_types'], axis=1)
 # test_data = test_data2.rename(columns={'con_wh_kge_types_2': 'con_wh_kge_types'})
@@ -76,8 +76,6 @@ def cat_scores(value):
     test = value[vector_component_category]
     wh = value['wh']
     predict = list(test)
-    # predict = np.array(list(test))
-    # predict = np.array(reformat(value[vector_component]))
     for item in classifiers_cat:  # for each classifier
         category = item  # get category
         c = classifiers_cat[item]  # get classifier
@@ -100,7 +98,6 @@ def typ_scores(value):
     test = value[vector_component_type]
     wh = value['wh']
     predict = list(test)
-    # predict = value[vector_component]
     for item in classifiers_typ:  # for each classifier
         typ = item  # get type
         c = classifiers_typ[item]  # get classifier

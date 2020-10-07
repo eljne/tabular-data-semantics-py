@@ -77,7 +77,7 @@ def try_to_load_as_pickled_object_or_None(filepath):
 # search questions for given wh words
 def find_w(question):
     # in order of how important they are e.g. only use those near end of list if those closer to the front aren't found
-    wh_words = ['why', 'where', 'when', 'how', 'which', 'what', 'who', 'whose', 'whom', 'does', 'is it true', 'name a',
+    wh_words = ['why', 'where', 'when', 'how', 'which', 'what', 'who', 'whose', 'whom', 'how many', 'does', 'is it true', 'name a',
                 'name the', 'tell me', 'did', 'give', 'is the', 'is', 'was', 'are']
     # lowercase
     wh = []
@@ -354,6 +354,9 @@ def heuristics(dct, wh, lb):
     if lb == 'type':
         if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are'):
             dct["boolean"] = 1.00
+        if wh == 'how many':
+            dct["number"] = 1.00
+            dct["boolean"] = 0.00
         if wh == 'when':
             dct["date"] = 1.00
             dct["boolean"] = 0.00
@@ -365,16 +368,35 @@ def heuristics(dct, wh, lb):
             dct["boolean"] = 0.00
     if lb == 'category':
         if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are'):
+            dct["literal"] = 0.00
             dct["boolean"] = 1.00
-        if wh == 'when':
-            dct["literal"] = 1.00
+            dct["resource"] = 0.00
+        if wh == 'how many':
+            dct["literal"] = 1.00   # more specifically, a number
             dct["boolean"] = 0.00
+            dct["resource"] = 0.00
+        if wh == 'when':
+            dct["literal"] = 1.00   # more specifically, a date
+            dct["boolean"] = 0.00
+            dct["resource"] = 0.00
         if wh == 'where':
             dct["boolean"] = 0.00
+            dct["literal"] = 0.00
+            dct["resource"] = 1.00
         if wh in ('who', 'whose', 'whom'):
             dct["boolean"] = 0.00
-        if wh in ('why', 'how', 'which', 'what', 'name a', 'name the', 'tell me', 'give'):
+            dct["literal"] = 0.00
+            dct["resource"] = 1.00
+        if wh in ('what', 'why', 'give', 'which'):
             dct["boolean"] = 0.00
+        if wh == 'how':
+            dct["boolean"] = 0.00
+            dct["literal"] = 1.00
+            dct["resource"] = 0.00
+        if wh in ('name a', 'tell me', 'name the'):
+            dct["boolean"] = 0.00
+            dct["literal"] = 0.00
+            dct["resource"] = 1.00
     return dct
 
 
@@ -383,13 +405,13 @@ def heuristics_2(row):
         row['type'][0] = 'boolean'    # If the category is "boolean" the answer type is always "boolean".
     else:
         if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date",
-            # "string" or "boolean" answer type.
+            # or "string" answer type.
             new_types_list = [] # prioritize more likely
             for a in row['type']:
-                if a[0] in ('number', 'date', 'string', 'boolean'):
+                if a[0] in ('number', 'date', 'string'):
                     new_types_list.append(a)
             for a in row['type']:
-                if a[0] not in ('number', 'date', 'string', 'boolean'):
+                if a[0] not in ('number', 'date', 'string'):
                     new_types_list.append(a)
             row['type'] = new_types_list[0:10]
     return row

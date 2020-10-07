@@ -8,8 +8,8 @@ import numpy as np
 
 
 '''change depending on vector component to test'''
-vector_component_category = 'concatenated_vector'
-vector_component_type = 'concatenated_vector'
+vector_component_category = 'we_wh_vector'
+vector_component_type = 'we_wh_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
@@ -35,14 +35,16 @@ og_td = unpickle('training_vectors/final_original_training_vectors')
 td = pd.DataFrame(og_td)
 td['polarity'] = "1"
 
-td['concatenated_vector_2'] = td.apply(reformat, axis=1)
-td2 = td.drop(['concatenated_vector'], axis=1)
-td = td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+# td['concatenated_vector_2'] = td.apply(reformat, axis=1)
+# td2 = td.drop(['concatenated_vector'], axis=1)
+# td = td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
+# # print(td['concatenated_vector'])
 
 # td['con_wh_nouns_2'] = td.apply(reformat_2, axis=1)
 # td2 = td.drop(['con_wh_nouns'], axis=1)
 # td = td2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
-#
+# print(td['con_wh_nouns'])
+
 # td['con_wh_kge_2'] = td.apply(reformat_3, axis=1)
 # td2 = td.drop(['con_wh_kge'], axis=1)
 # td = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
@@ -50,11 +52,11 @@ td = td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
 # td['con_nouns_KGE_2'] = td.apply(reformat_4, axis=1)
 # td2 = td.drop(['con_nouns_KGE'], axis=1)
 # td = td2.rename(columns={'con_nouns_KGE_2': 'con_nouns_KGE'})
-#
+
 # td['con_wh_nouns_kge_2'] = td.apply(reformat_5, axis=1)
 # td2 = td.drop(['con_wh_nouns_kge'], axis=1)
 # td = td2.rename(columns={'con_wh_nouns_kge_2': 'con_wh_nouns_kge'})
-#
+
 # td['con_wh_kge_types_2'] = td.apply(reformat_6, axis=1)
 # td2 = td.drop(['con_wh_kge_types'], axis=1)
 # training_data = td2.rename(columns={'con_wh_kge_types_2': 'con_wh_kge_types'})
@@ -162,6 +164,8 @@ for df in cats_dfs:
     train_set = random_sample_ratioed(copy_df, 0.80, 1, 1)  # split differently according to pos/neg balance
     X = train_set[vector_component_category]
     y = train_set["y"]
+    print(X.shape)
+    print(y.shape)
     classifier = train_classifier_category(X, y)  # need to convert vector from list of arrays to matrix
     classifiers_cat[cat_label] = classifier
 
