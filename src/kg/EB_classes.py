@@ -77,8 +77,9 @@ def try_to_load_as_pickled_object_or_None(filepath):
 # search questions for given wh words
 def find_w(question):
     # in order of how important they are e.g. only use those near end of list if those closer to the front aren't found
-    wh_words = ['why', 'where', 'when', 'how', 'which', 'what', 'who', 'whose', 'whom', 'how many', 'does', 'is it true', 'name a',
-                'name the', 'tell me', 'did', 'give', 'is the', 'is', 'was', 'are']
+    wh_words = ['why', 'where', 'when', 'how many', 'enumerate', 'what', 'how', 'which', 'who', 'whose', 'whom', 'can',
+                'does', 'is it true', 'name a', 'name the', 'tell me', 'were', 'did', 'give', 'is the', 'list', 'is',
+                'was', 'are', 'do you know', 'can you', 'has', 'tell', 'mention', 'count', 'do the', 'does']
     # lowercase
     wh = []
     for a in wh_words:  # search for each word in above array
@@ -352,9 +353,10 @@ def replace_Location_2(l):
 
 def heuristics(dct, wh, lb):
     if lb == 'type':
-        if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are'):
+        if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are', 'can', 'do you know', 'can you', 'has',
+                  'do the'):
             dct["boolean"] = 1.00
-        if wh == 'how many':
+        if wh in ('how many', 'count', 'enumerate'):
             dct["number"] = 1.00
             dct["boolean"] = 0.00
         if wh == 'when':
@@ -367,11 +369,12 @@ def heuristics(dct, wh, lb):
             dct['dbo:Person'] = 1.00
             dct["boolean"] = 0.00
     if lb == 'category':
-        if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are'):
+        if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are', 'can', 'do you know', 'can you', 'has',
+                  'do the'):
             dct["literal"] = 0.00
             dct["boolean"] = 1.00
             dct["resource"] = 0.00
-        if wh == 'how many':
+        if wh in ('how many', 'count', 'enumerate'):
             dct["literal"] = 1.00   # more specifically, a number
             dct["boolean"] = 0.00
             dct["resource"] = 0.00
@@ -379,7 +382,7 @@ def heuristics(dct, wh, lb):
             dct["literal"] = 1.00   # more specifically, a date
             dct["boolean"] = 0.00
             dct["resource"] = 0.00
-        if wh == 'where':
+        if wh in ('where', 'list'):
             dct["boolean"] = 0.00
             dct["literal"] = 0.00
             dct["resource"] = 1.00
@@ -393,7 +396,7 @@ def heuristics(dct, wh, lb):
             dct["boolean"] = 0.00
             dct["literal"] = 1.00
             dct["resource"] = 0.00
-        if wh in ('name a', 'tell me', 'name the'):
+        if wh in ('name a', 'tell me', 'name the', 'tell', 'mention'):
             dct["boolean"] = 0.00
             dct["literal"] = 0.00
             dct["resource"] = 1.00

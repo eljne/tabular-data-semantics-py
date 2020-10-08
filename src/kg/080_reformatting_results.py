@@ -51,8 +51,8 @@ def get_first_list(value):
 results['category'] = results.apply(get_first, axis=1)
 results['type'] = results.apply(get_first_list, axis=1)
 results = results.apply(heuristics_2, axis=1)
-print(results['question'])
-results = results[['id', 'category', 'type']]
+# print(results['question'])
+results = results[['id', 'category', 'type', 'question', 'wh']]
 results_list = []
 
 
@@ -60,9 +60,12 @@ def reform(value):
     i = value['id']
     c = value['category']
     t = value['type']
-    dict = {"id": i, "category": c, "type": t}
+    q = value['question']
+    wh = value['wh']
+    # dict = {"id": i, "category": c, "type": t}
+    dict = {"category": c, 'wh': wh, "question": q}
     results_list.append(dict)
-    # print(dict)
+    print(dict)
     return 0
 
 

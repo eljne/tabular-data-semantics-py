@@ -1,5 +1,6 @@
 ''' author: Eleanor Bill @eljne '''
 ''' join all data - lots of renaming and dropping fields'''
+'''takes about 20 minutes'''
 
 from kg.EB_classes import pickl, unpickle
 import numpy as np
