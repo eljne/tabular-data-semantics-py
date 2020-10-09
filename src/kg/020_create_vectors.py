@@ -38,6 +38,7 @@ print('done find wh')
 dbpedia_train_wh = re_list
 pickl('training_vectors/01_dbpedia_train_wh', dbpedia_train_wh)
 
+
 re_list = []
 for entry in dbpedia_train_wh:
     question = entry['question']

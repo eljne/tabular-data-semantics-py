@@ -76,23 +76,29 @@ def try_to_load_as_pickled_object_or_None(filepath):
 
 # search questions for given wh words
 def find_w(question):
+    question = question.lower()
     # in order of how important they are e.g. only use those near end of list if those closer to the front aren't found
     wh_words = ['why', 'where', 'when', 'how many', 'enumerate', 'what', 'how', 'which', 'who', 'whose', 'whom', 'can',
                 'does', 'is it true', 'name a', 'name the', 'tell me', 'were', 'did', 'give', 'is the', 'list', 'is',
-                'was', 'are', 'do you know', 'can you', 'has', 'tell', 'mention', 'count', 'do the', 'does']
+                'was', 'are', 'do you know', 'can you', 'has', 'tell', 'mention', 'count', 'do the', 'does', 'provide',
+                'name', 'guess', 'do', 'name', 'get', 'state', 'describe']
     # lowercase
     wh = []
     for a in wh_words:  # search for each word in above array
+        # print(a)
         if re.search(a, question.lower()):
+            # print('yes')
             wh.append(a)  # if found, append
     if len(wh) == 0:
         wh.append('N/A')
+    # print(question, wh)
     return wh
 
 
 # parse and extract nouns using NLTK
 def nouns(question):
     tokens = nltk.word_tokenize(question)
+    tags = nltk.pos_tag(tokens)
     tags = nltk.pos_tag(tokens)
     nouns = [word for word, pos in tags if (pos == 'NN' or pos == 'NNP' or pos == 'NNS' or pos == 'NNPS')]
     return nouns
@@ -354,7 +360,7 @@ def replace_Location_2(l):
 def heuristics(dct, wh, lb):
     if lb == 'type':
         if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are', 'can', 'do you know', 'can you', 'has',
-                  'do the'):
+                  'do the', 'were', 'do'):
             dct["boolean"] = 1.00
         if wh in ('how many', 'count', 'enumerate'):
             dct["number"] = 1.00
@@ -368,9 +374,11 @@ def heuristics(dct, wh, lb):
         if wh in ('who', 'whose', 'whom'):
             dct['dbo:Person'] = 1.00
             dct["boolean"] = 0.00
+        # which what how why name a name the tell me give list mention
+        # provide name guess get state describe
     if lb == 'category':
         if wh in ('does', 'is it true', 'did', 'is the', 'is', 'was', 'are', 'can', 'do you know', 'can you', 'has',
-                  'do the'):
+                  'do the', 'were', 'do'):
             dct["literal"] = 0.00
             dct["boolean"] = 1.00
             dct["resource"] = 0.00
@@ -396,10 +404,12 @@ def heuristics(dct, wh, lb):
             dct["boolean"] = 0.00
             dct["literal"] = 1.00
             dct["resource"] = 0.00
-        if wh in ('name a', 'tell me', 'name the', 'tell', 'mention'):
+        if wh in ('name a', 'tell me', 'name the', 'tell', 'mention', 'name', 'state'):
             dct["boolean"] = 0.00
             dct["literal"] = 0.00
             dct["resource"] = 1.00
+        if wh in ('provide', 'guess', 'describe'):
+            dct["boolean"] = 0.00
     return dct
 
 

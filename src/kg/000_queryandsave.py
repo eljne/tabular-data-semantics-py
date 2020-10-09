@@ -77,9 +77,9 @@ from kg.EB_classes import unpickle
 # all_td.to_csv('data/test code/reformat_concatvec.csv')
 
 # check results formatting
-results = unpickle('results/results_ALLTD')
-results = results[0:10]
-results.to_csv('data/test code/results.csv')
+# results = unpickle('results/results_ALLTD')
+# results = results[0:10]
+# results.to_csv('data/test code/results.csv')
 
 # testing_vectors = unpickle('testing_vectors/11_dbpedia_test_fin')
 # testing_vectors = testing_vectors[0:10]
@@ -94,12 +94,12 @@ results.to_csv('data/test code/results.csv')
 # results.to_csv('data/test code/final_original_training_vectors_minus_tests.csv')
 
 # all training data
-all_td = unpickle('test_data')
-all_td = pd.DataFrame(all_td)
-for a in all_td['con_wh_nouns']:
-    print(len(a))
-all_td = all_td[0:20]
-all_td.to_csv('data/test code/all_td.csv')
+# all_td = unpickle('test_data')
+# all_td = pd.DataFrame(all_td)
+# for a in all_td['con_wh_nouns']:
+#     print(len(a))
+# all_td = all_td[0:20]
+# all_td.to_csv('data/test code/all_td.csv')
 
 # all_td = unpickle('train_data')
 # all_td = pd.DataFrame(all_td)
@@ -119,3 +119,23 @@ all_td.to_csv('data/test code/all_td.csv')
 #     print(len(a[3]))
 # all_td = all_td[0:20]
 # all_td.to_csv('data/test code/all_td.csv')
+
+
+test = unpickle('training_vectors/12_train_new_positive_samples')
+test = pd.DataFrame(test)
+test = test[0:2000]
+
+
+def reform(value):
+    i = value['id']
+    c = value['category']
+    t = value['type']
+    q = value['question']
+    wh = value['wh']
+    # dict = {"id": i, "category": c, "type": t}
+    dict = {"category": c, 'wh': wh, "question": q}
+    print(dict)
+    return 0
+
+
+test.apply(reform, axis=1)

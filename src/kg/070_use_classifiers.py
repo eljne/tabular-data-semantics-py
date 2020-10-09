@@ -8,8 +8,8 @@ import re
 import numpy as np
 
 '''change depending on vector component to test'''
-vector_component_category = 'we_wh_vector'
-vector_component_type = 'we_wh_vector'
+vector_component_category = 'con_wh_kge'
+vector_component_type = 'con_wh_kge'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
@@ -48,9 +48,9 @@ test_data = pd.DataFrame(dbpedia_test_final)
 # test_data = test_data2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
 # print(len(test_data['con_wh_nouns'][0]))
 
-# test_data['con_wh_kge_2'] = test_data.apply(reformat_3, axis=1)
-# test_data2 = test_data.drop(['con_wh_kge'], axis=1)
-# test_data = test_data2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
+test_data['con_wh_kge_2'] = test_data.apply(reformat_3, axis=1)
+test_data2 = test_data.drop(['con_wh_kge'], axis=1)
+test_data = test_data2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
 
 # test_data['con_nouns_KGE_2'] = test_data.apply(reformat_4, axis=1)
 # test_data2 = test_data.drop(['con_nouns_KGE'], axis=1)

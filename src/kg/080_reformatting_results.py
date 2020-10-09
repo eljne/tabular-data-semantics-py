@@ -5,9 +5,9 @@ from kg.EB_classes import unpickle, heuristics_2
 import re
 import json
 
-# results = unpickle('results/results_OGTD')
-
-results = unpickle('results/results_ALLTD')
+results = unpickle('results/results_OGTD')
+# 0
+# results = unpickle('results/results_ALLTD')
 
 ''' REFORMATTING FOR EVAL SCRIPT '''
 ''' export results to be used in evaluation script '''
@@ -62,8 +62,8 @@ def reform(value):
     t = value['type']
     q = value['question']
     wh = value['wh']
-    # dict = {"id": i, "category": c, "type": t}
-    dict = {"category": c, 'wh': wh, "question": q}
+    dict = {"id": i, "category": c, "type": t}
+    # dict = {"category": c, 'wh': wh, "question": q}
     results_list.append(dict)
     print(dict)
     return 0

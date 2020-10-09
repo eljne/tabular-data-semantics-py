@@ -8,8 +8,8 @@ import numpy as np
 
 
 '''change depending on vector component to test'''
-vector_component_category = 'we_wh_vector'
-vector_component_type = 'we_wh_vector'
+vector_component_category = 'con_wh_kge'
+vector_component_type = 'con_wh_kge'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
@@ -45,9 +45,9 @@ td['polarity'] = "1"
 # td = td2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
 # print(td['con_wh_nouns'])
 
-# td['con_wh_kge_2'] = td.apply(reformat_3, axis=1)
-# td2 = td.drop(['con_wh_kge'], axis=1)
-# td = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
+td['con_wh_kge_2'] = td.apply(reformat_3, axis=1)
+td2 = td.drop(['con_wh_kge'], axis=1)
+td = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
 #
 # td['con_nouns_KGE_2'] = td.apply(reformat_4, axis=1)
 # td2 = td.drop(['con_nouns_KGE'], axis=1)
@@ -142,6 +142,7 @@ def label_polarity_all_typs(row, label, column):
 def train_classifier_category(train, label):
     training_data = np.array(list(train))
     clf = MLPClassifier(max_iter=300)
+    # clf = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
     clf.fit(training_data, label)
     return clf
 
@@ -149,6 +150,7 @@ def train_classifier_category(train, label):
 def train_classifier(train, label):
     training_data = np.array(list(train))
     clf = MLPClassifier(max_iter=300)
+    # clf = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
     clf.fit(training_data, label)
     return clf
 

@@ -1,5 +1,7 @@
 ''' author: Eleanor Bill @eljne '''
 ''' augment positive samples to create more positive samples '''
+''' about 20 mins '''
+
 import pandas as pd
 from kg.EB_classes import pickl, unpickle, get_last
 from matching.kg_matching import Endpoint
