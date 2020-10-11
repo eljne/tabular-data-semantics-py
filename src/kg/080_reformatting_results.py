@@ -5,9 +5,9 @@ from kg.EB_classes import unpickle, heuristics_2
 import re
 import json
 
-results = unpickle('results/results_OGTD')
-# 0
-# results = unpickle('results/results_ALLTD')
+# results = unpickle('results/results_OGTD')
+
+results = unpickle('results/results_ALLTD')
 
 ''' REFORMATTING FOR EVAL SCRIPT '''
 ''' export results to be used in evaluation script '''

@@ -415,7 +415,7 @@ def heuristics(dct, wh, lb):
 
 def heuristics_2(row):
     if row['category'] == 'boolean':
-        row['type'][0] = 'boolean'    # If the category is "boolean" the answer type is always "boolean".
+        row['type'][0] = ['boolean']    # If the category is "boolean" the answer type is always "boolean".
     else:
         if row['category'] == 'literal':    # If the category is "literal", answer types are either "number", "date",
             # or "string" answer type.

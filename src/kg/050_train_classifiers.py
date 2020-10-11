@@ -6,49 +6,42 @@ from kg.EB_classes import reformat, reformat_2, reformat_3, reformat_4, reformat
 from sklearn.neural_network import MLPClassifier
 import numpy as np
 
-
 '''change depending on vector component to test'''
-vector_component_category = 'con_wh_kge'
-vector_component_type = 'con_wh_kge'
+vector_component_category = 'concatenated_vector'
+vector_component_type = 'concatenated_vector'
 # we_wh_vector
 # we_nouns_vector
 # entities_KGE_vector
 # we_type_vector
-# concatenated_vector
 # con_wh_nouns
 # con_wh_kge
 # con_nouns_KGE
 # con_wh_nouns_kge
 # con_wh_kge_types
+# concatenated_vector
 
 '''load training data'''
 # use all training data
-# file_path_cat = 'classifiers/classifiers_all_cat_ALL'
-# file_path_typ = 'classifiers/classifiers_all_typ_ALL'
-# all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
-# td = pd.DataFrame(all_td)
+file_path_cat = 'classifiers/classifiers_all_cat_ALL'
+file_path_typ = 'classifiers/classifiers_all_typ_ALL'
+all_td = unpickle('training_vectors/31_all_td_fin') # use all training data
+td = pd.DataFrame(all_td)
 
 # use only original training data
-file_path_cat = 'classifiers/classifiers_all_cat_OGTD'
-file_path_typ = 'classifiers/classifiers_all_typ_OGTD'
-og_td = unpickle('training_vectors/final_original_training_vectors')
-td = pd.DataFrame(og_td)
-td['polarity'] = "1"
-
-# td['concatenated_vector_2'] = td.apply(reformat, axis=1)
-# td2 = td.drop(['concatenated_vector'], axis=1)
-# td = td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
-# # print(td['concatenated_vector'])
+# file_path_cat = 'classifiers/classifiers_all_cat_OGTD'
+# file_path_typ = 'classifiers/classifiers_all_typ_OGTD'
+# og_td = unpickle('training_vectors/final_original_training_vectors')
+# td = pd.DataFrame(og_td)
+# td['polarity'] = "1"
 
 # td['con_wh_nouns_2'] = td.apply(reformat_2, axis=1)
 # td2 = td.drop(['con_wh_nouns'], axis=1)
 # td = td2.rename(columns={'con_wh_nouns_2': 'con_wh_nouns'})
-# print(td['con_wh_nouns'])
 
-td['con_wh_kge_2'] = td.apply(reformat_3, axis=1)
-td2 = td.drop(['con_wh_kge'], axis=1)
-td = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
-#
+# td['con_wh_kge_2'] = td.apply(reformat_3, axis=1)
+# td2 = td.drop(['con_wh_kge'], axis=1)
+# td = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
+
 # td['con_nouns_KGE_2'] = td.apply(reformat_4, axis=1)
 # td2 = td.drop(['con_nouns_KGE'], axis=1)
 # td = td2.rename(columns={'con_nouns_KGE_2': 'con_nouns_KGE'})
@@ -59,13 +52,14 @@ td = td2.rename(columns={'con_wh_kge_2': 'con_wh_kge'})
 
 # td['con_wh_kge_types_2'] = td.apply(reformat_6, axis=1)
 # td2 = td.drop(['con_wh_kge_types'], axis=1)
-# training_data = td2.rename(columns={'con_wh_kge_types_2': 'con_wh_kge_types'})
+# td = td2.rename(columns={'con_wh_kge_types_2': 'con_wh_kge_types'})
+
+td['concatenated_vector_2'] = td.apply(reformat, axis=1)
+td2 = td.drop(['concatenated_vector'], axis=1)
+td = td2.rename(columns={'concatenated_vector_2': 'concatenated_vector'})
 
 training_data = td
 print('done reformat cc v')
-# pickl('train_data', training_data[0:10])
-# print('pickled')
-
 
 '''split on types/categories again'''
 categories = training_data['category'].unique()
